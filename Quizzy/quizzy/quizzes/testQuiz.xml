@@ -1,0 +1,66 @@
+<quizzes>
+	<quiz>
+		<title>Test Quiz</title>
+			<description>
+			<text>
+			This is a test quiz to see if it'll work for smrtwatr.me
+			</text>
+			</description>
+		<grading/>
+			<question type="">
+				<text>How much water is there in the human body?</text>
+			<option>
+				<text>10%</text>
+				<score>0</score>
+				<explanation>
+					<text>Fooled you!</text>
+				</explanation>
+			</option>
+			<option>
+				<text>11%</text>
+				<score>0</score>
+				<explanation>
+					<text>Fooled you!</text>
+				</explanation>
+			</option>
+			<option>
+				<text>12%</text>
+				<score>0</score>
+				<explanation>
+					<text>Fooled you!</text>
+				</explanation>
+			</option>
+			<option>
+				<text>70%</text>
+				<score>1</score>
+				<explanation>
+					<text>This is right.</text>
+				</explanation>
+			</option>
+		</question>
+		<question type="">
+			<text>How many kids are fat?</text>
+			<option>
+				<text>All of them</text>
+				<score>0</score>
+				<explanation>
+					<text>Come on, you've seen a skinny kid before...</text>
+				</explanation>
+			</option>
+			<option>
+				<text>50%</text>
+				<score>1</score>
+				<explanation>
+					<text>Yep</text>
+				</explanation>
+			</option>
+			<option>
+				<text>None of them</text>
+				<score>0</score>
+				<explanation>
+					<text>You've never seen a fat kid?</text>
+				</explanation>
+			</option>
+		</question>
+	</quiz>
+</quizzes>
