@@ -16,7 +16,16 @@
 	$quizIndex = intval($_GET['quizIndex']);
   $questNo = intval($_GET['questNo']);
   $score = intval($_GET['score']);
-	
+	?>
+
+  <script type="text/javascript">
+  console.log('----REQUESTED QUESTION----');
+  console.log('questNo: ' + '<?php echo $questNo; ?>');
+  console.log('MAX_QUESTIONS: ' + '<?php echo $MAX_QUESTIONS; ?>')
+  </script>
+
+  <?php
+
 	//load up the quiz
 	include 'quizzyXML.php';
 	$quiz = loadQuiz($quizFile, $quizIndex);	
@@ -24,54 +33,21 @@
   //represents where this quiz's pictures should be found
   $picDir = 'quizzy/'.$quizFolder.'/'.$picFolder.'/';
 	
-  //see if the requested question doesn't exist
-  if($questNo >= count($quiz->question))
-  {
-    //see what the max possible score for the quiz was
-    $maxPossible = 0;
-    foreach($quiz->question as $quest) {
-      $thisBest = 0;
-      foreach($quest->option as $opt) {
-        if(intval($opt->score) > $thisBest)
-          $thisBest = $opt->score;
-      }
-      $maxPossible += intval($thisBest);
-    }
-?>
-    <div class="quizzy_result">
-      <h1><?php echo $endQuizMessage; ?></h1>
-      <p>You scored <span class="quizzy_result_score"><?php echo $score;?></span> out of 
-      <span class="quizzy_result_max"><?php echo $maxPossible;?></span> possible points!</p>
-    
-<?php
-  
-  //figure out a percentage score, then use the grading information in the xml data to put some more stuff up
-  $percentage = ($score / $maxPossible) * 100;
-  
-  //find the correct scoreRange
-  $scoreRange = NULL;
-  foreach($quiz->grading->range as $range) {
-    //take care of 0 boundary case in easiest way possible.
-    if(intval($range['start']) == 0) $range['start'] = -1;
-    if(intval($range['start']) < $percentage && intval($range['end']) >= $percentage) {
-      $scoreRange = $range;
-      break;
-    }
+  //see if the requested question exists
+  while($questNo >= count($quiz->question)) {
+    $questNo--; // Iterate down until the question exists (this is not likely to be an issue)
   }
-  
-?>
-    
-      <p>Grade: <span class="quizzy_result_grade quizzy_result_grade_<?php echo $scoreRange->grade; ?>"><?php echo $scoreRange->grade; ?></span> (<?php printf('%.1f%%', $percentage); ?>)</p>
-      <?php if(isset($scoreRange->img)) { ?>
-        <div class="quizzy_result_img"><img src="<?php echo $picDir . $scoreRange->img['src'];?>" alt="<?php echo $scoreRange->img['alt'];?>" ></div>
-      <?php } ?>
-      <p class="quizzy_result_rank quizzy_result_rank_<?php echo $scoreRange->rank; ?>"><?php echo $scoreRange->rank; ?></p>
-      <div class="quizzy_result_foot"><input type="submit" onclick="restartQuizzy();" value="Do a different Quiz"></div>
-    </div>
-<?php
+  ?>
+
+  <?php
+  // SCORING FUNCTIONS GO HERE //
+  if ($questNo >= $MAX_QUESTIONS) {
+    $questNo == $MAX_QUESTIONS;
+    include 'endgame.php';
     return;
   }
-  
+
+  // QUESTION FETCHING //
 	//get the requested question
   $quest=$quiz->question[$questNo];
 ?>
@@ -89,9 +65,13 @@
   $oi = 0;
 	foreach($quest->option as $opt)
 	{
+    $oiletter = intToLetter($oi);
 ?>
-		<p class="quizzy_q_opt" id="quizzy_q<?php echo $questNo; ?>_opt<?php echo $oi; ?>">
+		<div class="quizzy_q_opt noselect animate_all" id="quizzy_q<?php echo $questNo; ?>_opt<?php echo $oi; ?>">
 			<!-- input type=radio class=quizzy_q_opt id=quizzy_q[qi]_opt[oi] name=quizzy_q[qi] -->
+      <script type="text/javascript">
+      </script>
+      <span class="quizzy_q_opt_letter" id="quizzy_q<?php echo $questNo; ?>_opt<?php echo $oiletter; ?>_b"><?php echo $oiletter; ?></span>
 			<input type="radio" name="quizzy_q<?php echo $questNo; ?>" class="quizzy_q_opt_b" id="quizzy_q<?php echo $questNo; ?>_opt<?php echo $oi; ?>_b">
 			<label>
 				<?php echo $opt->text; ?>
@@ -100,7 +80,7 @@
         <?php } ?>
         <span class="quizzy_q_opt_val" id="quizzy_q<?php echo $questNo ?>_opt<?php echo $oi; ?>_val"></span>
 			</label>
-		</p>
+		</div>
 		
 <?php
 		//finish loop
@@ -108,12 +88,13 @@
 	}
 	//end list
 ?>
+</div><!--options-->
 <div class="quizzy_q_exp" id="quizzy_q<?php echo $questNo ?>_exp"></div>
 
-</div><!--options-->
 
 
+<!-- 
 <div class="quizzy_q_foot">
 	<input type="submit" class="quizzy_q_foot_b" id="quizzy_q<?php echo $questNo ?>_foot_chk" value="Check Answer">
 	<input type="submit" class="quizzy_q_foot_b" id="quizzy_q<?php echo $questNo ?>_foot_nxt" value="Next">				
-</div>
+</div> -->

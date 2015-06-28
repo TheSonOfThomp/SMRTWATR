@@ -17,7 +17,7 @@
 	$quizIndex = intval($_GET['quizIndex']);
   $questNo = intval($_GET['questNo']);
   $selOpt = intval($_GET['selOpt']);
-	
+
 	//load up the quiz
 	include 'quizzyXML.php';
 	$quiz = loadQuiz($quizFile, $quizIndex);	
@@ -28,29 +28,38 @@
 	//get the requested question
   $quest=$quiz->question[$questNo];
   
-  //then the requested option and explanation
-  $opt = $quest->option[$selOpt];
-  $exp = $opt->explanation;
-  
+  //Check if the option is valid
+  if ($selOpt >= 0) {
+    //then the requested option and explanation
+    $opt = $quest->option[$selOpt];
+    $exp = $opt->explanation;
+    //get the score to add for this option
+    $addScore = intval($opt->score);
+  }
+  //otherwise, we have timedout
+  else {
+    $opt = -1;
+    $exp->text = $timeoutMsg;
+    $addScore = 0;
+  }
+
 	//get the max possible score
 	$maxScore = intval($quest->maxscore);
-  
+
   //set the javascript variables
-  //get the score to add for this option
-  $addScore = intval($opt->score);
 ?>
   <script language='JavaScript'>
     optValues = new Array();
     addScore = <?php echo $addScore ?>;
     
 <?php
-  //figure out what the highest possible score
+  //iterate thru the options to figure out the highest possible score
   $i = 0;
   $bestScore = 0;
   $correctOpt = -1;
-	foreach($quest->option as $opt)
+	foreach($quest->option as $option)
 	{
-	  $curScore = intval($opt->score);
+	  $curScore = intval($option->score);
 ?>
     //set optValue[]
     optValues[<?php echo $i ?>] = <?php echo $curScore ?>;

@@ -2,8 +2,9 @@
 <script type="text/javascript" src="quizzy/lib/jquery.loading.min.js"></script>
 <script type="text/javascript" src="quizzy/quizzyConfig.js" charset="utf-8"></script>
 <script type="text/javascript" src="quizzy/quizzy.js" charset="utf-8"></script>
-<link rel="stylesheet" type="text/css" href="quizzy/quizzy.css" charset="utf-8">
-<link rel="stylesheet" type="text/css" href="quizzy/quizzySkin.css" charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="style/css/quizzy.css" charset="utf-8">
+<link rel="stylesheet" type="text/css" href="style/css/quizzySkin.css" charset="utf-8">
 <!-- overflow:hidden in IE is currently breaking mask calcs :( -->
 <!--[if IE]>
   <style type="text/css">

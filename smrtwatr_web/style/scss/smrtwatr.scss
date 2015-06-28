@@ -1,0 +1,83 @@
+/* Colours */
+$smrt_bg: #F2F6FC;
+$smrt_blue: #1D4381;
+$smrt_blue_fade: #D1DBE9;
+$smrt_teal: #19838E;
+$smrt_light_blue: #6C91CD;
+$smrt_white: #fafafa;
+
+$ans_correct: #A1CD24;
+$ans_incorrect: #8E3A2E;
+$ans_correct_bg: #D6E8A4;
+$ans_incorrect_bg: #D9C0BC;
+
+$font: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
+$secondary_font: "Raleway", "Lato", "Trebuchet", sans-serif;
+
+/* Helper Classes */
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -moz-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.animate_all{
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out; 
+}
+
+html {
+	font-size: 12px;
+	body {
+	  padding: 0; 
+	  margin: 0;
+	  background: $smrt_bg;
+	  font-family: $font;
+	  font-size: 1.33em;
+
+		.play_header {
+			width: 100%;
+			height: 20vw;
+			background-image: url('../../img/small_header_logo.png');
+			background-repeat: no-repeat;
+			background-size: 50%;
+			background-position: 50%;
+		}
+
+		.timer {
+			position: fixed;
+			bottom: 25px;
+			right: 0; left: 0;
+			margin: auto;
+			height: 50px; /* change these to scale */
+			width: 50px;
+			background-color: $smrt_blue_fade;
+			border-radius: 100%;
+
+			.circle {
+				stroke: $smrt_blue;
+				fill: $smrt_blue_fade;
+				stroke-dasharray: 100 100;
+				stroke-dashoffset: 0;
+				transition: stroke-dashoffset 1s;
+			  	transition-timing-function: linear;
+			}
+
+			.text {
+				fill: $smrt_blue;
+				font-size: 10px;
+				text-anchor: middle;
+			}
+		}
+
+
+	}
+}
+
+

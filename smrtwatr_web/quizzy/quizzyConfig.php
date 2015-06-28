@@ -4,6 +4,9 @@
   //PLEASE NOTE:
   //There are several other JavaScript-only options configurable in the quizzyConfig.js file
   
+  // Set the max number of questions per quiz game
+  $MAX_QUESTIONS = 3; 
+
   //where the quiz xml files are stored under the /quizzy directory
   //default is /quizzy/quizzes so by default the variable is set to 'quizzes'
   $quizFolder = 'quizzes';
@@ -26,5 +29,12 @@
   //this is put in an h1 tag
   $endQuizMessage = 'Done!';
 
+  //The message to be displayedif the user takes too long
+  $timeoutMsg = "You took too long";
+
   $cwd = str_replace('\\', '/', getcwd());
+
+  function intToLetter($num) {
+    return chr($num+65);
+  }
 ?>

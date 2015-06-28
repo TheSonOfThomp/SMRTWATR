@@ -1,5 +1,11 @@
 //JavaScript-Only Global Variables
 
+//max time to answer questions
+var MAX_QUESTION_TIME = 15; //seconds
+
+//max time after anwering a question
+var MAX_CHECK_TIME = 7 //seconds
+
 //how fast fading animations should be completed (in ms)
 var fadeSpeed = "def";
 
@@ -15,8 +21,9 @@ var slideUpWait = 500;
 //how long to wait in ms before fading in the explanation
 var expFadeInWait = 200;
 
+// DEPRECATED //
 //how long to wait in ms before fading in the next button
-var nextFadeInWait = 500;
+//var nextFadeInWait = 500;
 
 //time in ms it takes for the quiz to restart
 var restartSpeed = 500;
@@ -44,3 +51,7 @@ var loadingAlign = 'bottom-left';
 //how long to wait before putting the loading message up in milliseconds.
 //This setting will not do anything as of this version because the delay feature of loading is broken.
 var loadingDelay = 300;
+
+function toMS(s) {
+	return s*1000 + 1000;
+}

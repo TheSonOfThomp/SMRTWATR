@@ -18,11 +18,11 @@
 	$quiz = loadQuiz($quizFile, $quizIndex);	
 	
 	//find the number of questions and dump it to a javascript variable
-	$numQuestions = count($quiz->question);
+	$totalQuestions = count($quiz->question);
 ?>
   
   <script language="JavaScript">
-    numQuestions = <?php echo $numQuestions; ?>;
+    totalQuestions = <?php echo $totalQuestions; ?>;
   </script>
 
 <?php	
@@ -33,16 +33,16 @@
 	//make the containers
 ?>
 
-	<div class="quizzy_title"> <?php echo $quizTitle; ?> </div>
+	<div class="quizzy_title">Question <span>1</span></div>
 	<div id="quizzy_q_c">
 
 	<?php
-		//make a div for all the questions
-		for($qi=0; $qi < $numQuestions + 1; $qi++)
+		//make a div for the max # of questions
+		for($qi=0; $qi < $MAX_QUESTIONS + 1; $qi++)
 		{
 	?>
 	
-		<div class="quizzy_q" id="quizzy_q<?php echo $qi; ?>" style="width: <?php echo $quizWidth; ?>">&nbsp;</div>
+		<div class="quizzy_q" id="quizzy_q<?php echo $qi; ?>">&nbsp;</div>
 	
 	<?php
 			//end the loop
