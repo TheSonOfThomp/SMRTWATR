@@ -1,0 +1,321 @@
+/*
+ * This file is part of quizzyBuilder.
+ *
+ * quizzyBuilder is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * quizzyBuilder is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public
+ * License along with quizzyBuilder. If not, see <http://www.gnu.org/licenses/>.
+ */
+/*
+  * * { outline: 2px dotted green }
+  * * * { outline: 2px dotted orange }
+  * * * * { outline: 2px dotted blue }
+  * * * * * { outline: 1px solid red }
+  * * * * * * { outline: 1px solid green }
+  * * * * * * * { outline: 1px solid orange }
+  * * * * * * * * { outline: 1px solid blue }
+*/
+body, #quizzyBuilder {
+  text-align: center;
+  background-color: #F2F6FC;
+}
+
+.button {
+  background: #D1DBE9 !important;
+  cursor: pointer;
+}
+
+h1 {
+  color: #1D4381;
+  margin: 8px;
+}
+
+h2 {
+  color: #1D4381;
+  margin: 5px;
+}
+
+h2:hover {
+  text-decoration: underline;
+}
+
+#note {
+  text-align: center;
+}
+
+h3 {
+  font-weight: normal;
+  font-size: 48pt;
+  margin: 0px;
+}
+
+.new {
+  color: #07C607;
+}
+
+ul {
+  padding: 0px;
+}
+
+a {
+  color: #0040E2;
+  text-decoration: none;
+}
+
+a:hover{
+  color: #0040E2;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #0040E2;
+}
+
+a:active {
+  color: #0036C0;
+}
+
+input{
+  width: 98%;
+}
+
+textarea, input[type='text'] {
+  text-align: left;
+  font-size: 12pt;
+}
+
+#content {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 265px;
+  width: 850px;
+
+  background: #F2F6FC url('smrtwatr.png') no-repeat top center;
+  text-align: left;
+  font-family: sans-serif;
+}
+
+p{
+  margin: 1px;
+}
+
+ div {
+}
+
+.float_right {
+  float: right;
+}
+
+.float_left {
+  float: left;
+}
+
+.group {
+  clear:both;
+  width: 100%;
+}
+
+.hider, .hider_all {
+  margin-top: 6px;
+  margin-right: 7px;
+  float:right;
+  font-size: smaller;
+  width: auto;
+  cursor:pointer;
+}
+
+.hider_all {
+  margin-top: 20px;
+}
+
+.hide, .hide:hover, .hide_all, .hide_all:hover {
+  color: #400;
+}
+
+.show, .show:hover , .show_all, .show_all:hover {
+  color: #040;
+}
+
+.delete {
+  margin-top: 6px;
+  margin-right: 7px;
+  float:right;
+  font-size: smaller;
+  width: auto;
+  cursor:pointer;
+  color: #400;
+}
+
+.hval_cont {
+  width: 530px;
+  overflow: hidden;
+}
+
+.main {
+  width: 850px;
+  margin-top: 25px;
+  padding: 3px;
+  border: solid 1px #bbb;
+  background: #fbfbfb;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.sect {
+  width: 100%;
+  clear: both;
+}
+
+.sub_sect {
+  width: 841px;
+  margin: 7px 2px;
+  padding: 3px;
+  border: solid 1px #bbb;
+  background: #ededed;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.sect_head_cont {
+  width: 850px;
+  padding: 3px;
+  font-size: 14pt;
+}
+
+.sect_head {
+  width: auto;
+  float: left;
+  margin-right: 5px;
+}
+
+.pic {
+  width: 245px;
+  font-size: 9pt;
+  margin-bottom: 10px;
+}
+
+.pic input {
+  width: 80%;
+  height: 9pt;
+  font-size: 8pt;
+}
+
+.group_title {
+  display: block;
+  font-size: 16pt;
+  text-align: center;
+  text-decoration: underline;
+}
+
+div.group_title {
+  width: 600px;
+}
+
+.opt_txt {
+  display: inline-block;
+  width: 50%;
+}
+.correct_opt {
+  display: inline-block;
+}
+
+.dragging_container {
+  padding: 0px;
+  list-style: none;
+}
+
+.short_input {
+  width: 40px;
+}
+
+.hide_all_cont {
+  font-size: smaller;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  float:right;
+  cursor:pointer;
+  margin-top: 45px;
+  margin-left: 15px;
+}
+
+#load_exclusive {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width:100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+  margin: 0px;
+  display: none;
+}
+
+#load_input {
+  position: absolute;
+  display: none;
+  clear:both;
+  width:auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+#load_input .group_title {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+/*Loading styling*/
+.loading {
+    background: #AAAAAA;
+    color: black;
+    font-weight: bold;
+    padding: 3px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.loading-img, .loading-element {
+    background: transparent;
+    padding: 0px;
+}
+.loading.top {
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 0px;
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 0px;
+}
+.loading.left {
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+}
+.loading.bottom {
+    -moz-border-radius-bottomleft: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+}
+.loading.right {
+    -moz-border-radius-topright: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-top-right-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+}
+.loading-masked { overflow: hidden; }
+.loading-error {
+    color: #FFF;
+    background: red;
+}
+
+

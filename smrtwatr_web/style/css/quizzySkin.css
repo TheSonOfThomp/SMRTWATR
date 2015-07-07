@@ -1,0 +1,247 @@
+/* Colours */
+/* Helper Classes */
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent; }
+
+.animate_all {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out; }
+
+html {
+  font-size: 12px; }
+  html body {
+    padding: 0;
+    margin: 0;
+    background: #F2F6FC;
+    font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
+    font-size: 1.33em; }
+    html body .play_header {
+      width: 100%;
+      height: 20vw;
+      background-image: url("../../img/small_header_logo.png");
+      background-repeat: no-repeat;
+      background-size: 50%;
+      background-position: 50%; }
+    html body .timer {
+      position: fixed;
+      bottom: 25px;
+      right: 0;
+      left: 0;
+      margin: auto;
+      height: 50px;
+      /* change these to scale */
+      width: 50px;
+      background-color: rgba(29, 67, 129, 0.15);
+      border-radius: 100%; }
+      html body .timer .circle {
+        stroke: #1D4381;
+        fill: #D1DBE9;
+        stroke-dasharray: 100 100;
+        stroke-dashoffset: 0;
+        transition: stroke-dashoffset 1s;
+        transition-timing-function: linear; }
+      html body .timer .text {
+        fill: #1D4381;
+        font-size: 10px;
+        text-anchor: middle; }
+
+#quizzy_frame {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  width: 100vw; }
+
+#quizzy {
+  font-family: inherit;
+  min-width: 100%;
+  min-height: 100%;
+  /*
+   * NOTE: using position: absolute is ok here, but
+   * it will BREAK jquery loading (and your user won't be
+   * shown that data is loading). If you're ok with that
+   * go ahead. This doesn't break ie compatibility btw.
+   */ }
+  #quizzy #quizzy_c {
+    width: 300%; }
+    #quizzy #quizzy_c #quizzy_quiz {
+      width: 300%;
+      float: left; }
+      #quizzy #quizzy_c #quizzy_quiz .quizzy_title {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1.6em;
+        font-weight: 200;
+        color: #19838E;
+        text-decoration: underline; }
+      #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_body {
+        text-align: center;
+        margin: 1rem 0;
+        font-size: 1.5rem;
+        color: #1D4381; }
+      #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts {
+        border-top: 1px solid #1D4381;
+        border-bottom: 1px solid #1D4381; }
+        #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt:active, #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt:hover {
+          background: #D1DBE9; }
+        #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt {
+          cursor: pointer;
+          height: 56px;
+          margin: 0;
+          font-weight: light;
+          color: #1D4381;
+          background: #fafafa; }
+          #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt .quizzy_q_opt_letter {
+            display: inline-block;
+            float: left;
+            width: 56px;
+            text-align: center;
+            font-size: 2rem;
+            line-height: 28px;
+            padding: 14px 0;
+            background: #1D4381;
+            color: #fafafa; }
+          #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt input {
+            display: none; }
+          #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt label {
+            display: block;
+            float: left;
+            font-size: 2rem;
+            line-height: 28px;
+            height: 28px;
+            padding: 14px 28px;
+            vertical-align: middle;
+            cursor: pointer; }
+        #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt.correct {
+          background: #D6E8A4; }
+          #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt.correct .quizzy_q_opt_letter {
+            background: #A1CD24; }
+        #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt.incorrect {
+          background: #D9C0BC; }
+          #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt.incorrect .quizzy_q_opt_letter {
+            background: #8E3A2E; }
+      #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_exp {
+        text-align: center;
+        margin: 1rem 0;
+        font-size: 2rem; }
+
+#quizzy p {
+  margin: 0px; }
+
+#quizzy_load h1 {
+  margin: 2px;
+  text-align: center;
+  font-size: 16pt; }
+
+.quizzy_quiz_desc {
+  margin: 0px 3px 0px 23px;
+  padding: 2px;
+  border: solid 1px #e0e0e0;
+  background: #efefef;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px; }
+
+.quizzy_load_body {
+  height: 90%; }
+
+.quizzy_load_foot {
+  height: 10%;
+  text-align: right;
+  padding: 3px; }
+
+/*question pane */
+.quizzy_q_opt {
+  cursor: pointer; }
+
+.quizzy_q_opt_val {
+  float: none;
+  margin-left: 21px; }
+
+.quizzy_opt_best {
+  color: #00C800;
+  font-weight: bold; }
+
+.quizzy_opt_worst {
+  color: #B90000; }
+
+.quizzy_opt_mid {
+  color: #804000; }
+
+/*Completed Screen*/
+.quizzy_result h1 {
+  font-weight: bolder;
+  text-align: center;
+  font-size: 23pt;
+  margin: 2px 0px 2px 0px; }
+
+.quizzy_result span {
+  font-size: 16pt;
+  font-weight: bolder; }
+
+.quizzy_result_grade {
+  font-size: 20pt; }
+
+.quizzy_result_img {
+  text-align: center; }
+
+.quizzy_result_rank {
+  font-weight: bolder;
+  text-align: center;
+  font-size: 21pt;
+  margin: 2px 0px 2px 0px; }
+
+.quizzy_result_foot {
+  margin-top: 10px;
+  text-align: center; }
+
+/*Loading styling*/
+.loading {
+  background: #AAAAAA;
+  color: black;
+  font-weight: bold;
+  padding: 3px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px; }
+
+.loading-img, .loading-element {
+  background: transparent;
+  padding: 0px; }
+
+.loading.top {
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-top-right-radius: 0px; }
+
+.loading.left {
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-bottom-left-radius: 0px; }
+
+.loading.bottom {
+  -moz-border-radius-bottomleft: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px; }
+
+.loading.right {
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px; }
+
+.loading-masked {
+  overflow: hidden; }
+
+.loading-error {
+  color: #FFF;
+  background: red; }
+
+/*# sourceMappingURL=quizzySkin.css.map */

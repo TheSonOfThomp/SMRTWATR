@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quizzes>
+  <quiz>
+    <title>TEST QUIZ</title>
+    <description>
+      <text>testtest</text>
+    </description>
+    <grading/>
+    <question type="">
+      <text>How many people worldwide do not have access to clean drinking water?</text>
+      <option>
+        <text>350 million (about 1 in 20 people)</text>
+        <score/>
+        <explanation>
+          <text>no</text>
+        </explanation>
+      </option>
+      <option>
+        <text>460 million (about 1 in 15 people)</text>
+        <score/>
+        <explanation>
+          <text>no</text>
+        </explanation>
+      </option>
+      <option>
+        <text>780 million (about 1 in 10 people)</text>
+        <score>1</score>
+        <explanation>
+          <text>yes</text>
+        </explanation>
+      </option>
+      <option>
+        <text>1.4 billion (about 1 in 5 people)</text>
+        <score/>
+        <explanation>
+          <text>no</text>
+        </explanation>
+      </option>
+      <dyk>http://www.unwater.org/water-cooperation-2013/water-cooperation/facts-and-figures/en/ </dyk>
+    </question>
+    <question type="">
+      <text>How many people die each year from diseases related to contaminated water?</text>
+      <option>
+        <text>0 - 1 million</text>
+        <score/>
+        <explanation>
+          <text/>
+        </explanation>
+      </option>
+      <option>
+        <text>1 - 2 million</text>
+        <score/>
+        <explanation>
+          <text/>
+        </explanation>
+      </option>
+      <option>
+        <text>2 - 3 million</text>
+        <score>1</score>
+        <explanation>
+          <text/>
+        </explanation>
+      </option>
+      <option>
+        <text>3 - 4 million</text>
+        <score/>
+        <explanation>
+          <text/>
+        </explanation>
+      </option>
+      <dyk/>
+    </question>
+    <question type="">
+      <text>What volume of untreated sewage gets dumped into Canada’s water resources each year?</text>
+      <option>
+        <text>2 million litres</text>
+        <score/>
+        <explanation>
+          <text/>
+        </explanation>
+      </option>
+      <option>
+        <text>200 million litres</text>
+        <score/>
+        <explanation>
+          <text/>
+        </explanation>
+      </option>
+      <option>
+        <text>2 billion litres</text>
+        <score/>
+        <explanation>
+          <text/>
+        </explanation>
+      </option>
+      <option>
+        <text>200 billion litres</text>
+        <score>1</score>
+        <explanation>
+          <text/>
+        </explanation>
+      </option>
+      <dyk/>
+    </question>
+  </quiz>
+</quizzes>
