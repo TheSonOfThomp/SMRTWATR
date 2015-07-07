@@ -1,5 +1,3 @@
-<script type="text/javascript" src="quizzy/lib/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="quizzy/lib/jquery.loading.min.js"></script>
 <script type="text/javascript" src="quizzy/quizzyConfig.js" charset="utf-8"></script>
 <script type="text/javascript" src="quizzy/quizzy.js" charset="utf-8"></script>
 

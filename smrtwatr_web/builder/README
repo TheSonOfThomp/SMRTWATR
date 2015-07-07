@@ -1,0 +1,10 @@
+quizzyBuilder 2.0 is a companion tool to the PHP library quizzy. It can be used to graphically build quizzes
+that are usable by the quizzy library.
+
+To use quizzyBuilder on your server, just extract this archive into its own folder on your server and go index.php
+in your web browser. Your server must be running PHP 5 for simpleXML
+You can also just use the public quizzyBuilder on the quizzy homepage at http://quizzy.sf.net/quizzyBuilder
+It might be more desirable to use online version because it is guaranteed to be the latest version and the current
+version of quizzyBuilder produces several warnings in PHP if warnings are turned on.
+
+If you encounter any problems with quizzyBuilder, please report them to https://sourceforge.net/apps/trac/quizzy.

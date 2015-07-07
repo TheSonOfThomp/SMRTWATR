@@ -1,5 +1,6 @@
 <?php
   include 'quizzyConfig.php';
+  
   /*
    * DESCRIPTION: 
    * 	 Used as an AJAX call in the core quizzy javascript file. Returns the passed 
@@ -15,7 +16,10 @@
 
 	$quizFile = $cwd.'/'.$quizFolder.'/'.$_GET['quizFile'];
 	$quizIndex = intval($_GET['quizIndex']);
+  //The nth question asked to the user
   $questNo = intval($_GET['questNo']);
+  //The Id in the question list
+  $questionId = intval($_GET['questionId']);
   $selOpt = intval($_GET['selOpt']);
 
 	//load up the quiz
@@ -26,7 +30,7 @@
   $picDir = 'quizzy/'.$quizFolder.'/'.$picFolder.'/';
 	
 	//get the requested question
-  $quest=$quiz->question[$questNo];
+  $quest=$quiz->question[$questionId];
   
   //Check if the option is valid
   if ($selOpt >= 0) {

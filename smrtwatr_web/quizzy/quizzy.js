@@ -1,10 +1,14 @@
 //NOTE: QuizzyConfig.js MUST be included BEFORE this file!
 
+MAX_QUESTIONS = 3;
+
 //current quiz state
 var quizFile = "testQuiz.xml";
 var quizIndex = 0;
 var curQuestion = -1;
 var score = 0;
+var questionsArray = new Array(MAX_QUESTIONS);
+var questionId = -1;
 
 //this is set by jquery when the user clicks on one of the radio buttons
 var selOpt = 0;
@@ -18,6 +22,7 @@ var totalQuestions = -1;
 var quizWidth = -1;
 var quizHeight = -1;
 
+//Question Timeout timer
 var questionTimeout = 0;
 
 //When the quiz is ready, start loading up the quiz
@@ -52,8 +57,6 @@ function startQuiz()
 	//unbind the click events for this button
 	$(this).unbind();
 	
-	//globals were already set when the user clicked on the radio buttons
-	
 	//fade out quiz options
 	$('.quizzy_quiz_b').fadeOut(fadeSpeed);
 	
@@ -61,13 +64,16 @@ function startQuiz()
 	//  _GET['quizFile']       xml file to open
 	//  _GET['quizIndex']      index of requested quiz in xml file
 	$.get('quizzy/serveQuiz.php', {quizFile: quizFile, quizIndex: quizIndex}, function(data){
-		
-		//put up throbber
-		//$('#quizzy').loading(true);
-		
+
 		//we got our quiz datas, just dump them into the correct div
 		$('#quizzy_quiz').html(data);
+
+		for (var i = 0; i < MAX_QUESTIONS; i++) {
+			questionsArray[i] = Math.floor((Math.random() * 100))%totalQuestions;
+		}
+		console.log(questionsArray);
 		
+
 		//we also got a totalQuestions set, need to resize a few divs.
 		$('.quizzy_q').width(quizWidth);
 		$('#quizzy_c').width((totalQuestions + 3) * quizWidth);
@@ -83,12 +89,13 @@ function startQuiz()
 function requestNextQuestion()
 {		
 
+	questionId = questionsArray[curQuestion];
 	//parameters passed in GET:
 	//  _GET["quizFile"]       xml file to open
 	//  _GET["quizIndex"]      index of requested quiz in xml file
 	//  _GET["questNo"]        question to return [first question is number 0]
 	//  _GET['score']          score the player currently has (needed for serving last page)
-	$.get('quizzy/serveQuestion.php', {quizFile: quizFile, quizIndex: quizIndex, questNo: curQuestion, score: score}, function(data){
+	$.get('quizzy/serveQuestion.php', {quizFile: quizFile, quizIndex: quizIndex, questNo: curQuestion, questionId: questionId, score: score}, function(data){
 		
 		$('.quizzy_title span').html(curQuestion + 1);
 
@@ -101,13 +108,6 @@ function requestNextQuestion()
 		};
 		//as soon as the user picks an option, we check the answer
 		$('#quizzy_q' + curQuestion +' .quizzy_q_opt').click(checkQuestion);
-
-
-		// document.addEventListener('touchstart', function(e) {
-		//     e.preventDefault();
-		//     var touch = e.touches[0];
-		//     alert(touch.pageX + " - " + touch.pageY);
-		// }, false);
 
 
 				//add click handlers so that when a user clicks on any first option, it sets selOpt to 0
@@ -149,7 +149,11 @@ function requestNextQuestion()
 				questionTimeout = setTimeout(function() {
 					forfeitQuestion()
 				}, toMS(MAX_QUESTION_TIME));
-			}else killTimer();
+			}
+			else {
+				killTimer();
+
+			}
 	});
 }
 
@@ -176,7 +180,7 @@ function checkQuestion()
 	//  _GET['quizIndex']      index of requested quiz in xml file
 	//  _GET['questNo']        question to return (first is 1)
 	//	_GET['selOpt']				 the option for which to retrieve the explanation
-	$.get('quizzy/serveExplanation.php',  {quizFile: quizFile, quizIndex: quizIndex, questNo: curQuestion, selOpt: selOpt}, function(data) {
+	$.get('quizzy/serveExplanation.php',  {quizFile: quizFile, quizIndex: quizIndex, questNo: curQuestion, questionId: questionId, selOpt: selOpt}, function(data) {
 
 			//reset the radial timer to read the explanation
 			resetTimer(MAX_CHECK_TIME);
@@ -221,8 +225,8 @@ function checkQuestion()
 					//$('#quizzy_q' + curQuestion + '_opt' + i + '_val').html('<span class="' + useClass + '">' + toWrite + '</span>');
 					
 				}
-				//show checks & Xs after the question
-				//$('.quizzy_q_opt_val').fadeIn(fadeSpeed);
+					//show checks & Xs after the question
+					//$('.quizzy_q_opt_val').fadeIn(fadeSpeed);
 
 		//debugger;
 
@@ -260,7 +264,7 @@ function forfeitQuestion(){
 	//since no option was selected,
 	selOpt = -1;
 
-	$.get('quizzy/serveExplanation.php',  {quizFile: quizFile, quizIndex: quizIndex, questNo: curQuestion, selOpt: selOpt}, function(data) {
+	$.get('quizzy/serveExplanation.php',  {quizFile: quizFile, quizIndex: quizIndex, questNo: curQuestion, questionId: questionId, selOpt: selOpt}, function(data) {
 		//have the data returned by that ajax query, set the proper div info
 		$('#quizzy_q' + curQuestion + '_exp').html(data);
 		//that should have set the correctOpt and addScore variables
@@ -355,4 +359,11 @@ function showQuizList() {
 		//set the click event on the submit button
 		$('#quizzy_start_b').click(startQuiz);
 	});
+}
+
+// DEBUGGER FUNCTIONS //
+function STOP(){
+	//Cancel the question timeout timer
+	clearTimeout(questionTimeout);
+	killTimer();
 }

@@ -4,7 +4,7 @@
 var MAX_QUESTION_TIME = 15; //seconds
 
 //max time after anwering a question
-var MAX_CHECK_TIME = 7 //seconds
+var MAX_CHECK_TIME = 5; //seconds
 
 //how fast fading animations should be completed (in ms)
 var fadeSpeed = "def";
@@ -53,5 +53,5 @@ var loadingAlign = 'bottom-left';
 var loadingDelay = 300;
 
 function toMS(s) {
-	return s*1000 + 1000;
+	return s*1000;
 }

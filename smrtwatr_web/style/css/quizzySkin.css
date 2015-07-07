@@ -38,7 +38,7 @@ html {
       height: 50px;
       /* change these to scale */
       width: 50px;
-      background-color: #D1DBE9;
+      background-color: rgba(29, 67, 129, 0.15);
       border-radius: 100%; }
       html body .timer .circle {
         stroke: #1D4381;
@@ -88,7 +88,7 @@ html {
       #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts {
         border-top: 1px solid #1D4381;
         border-bottom: 1px solid #1D4381; }
-        #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt:active {
+        #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt:active, #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt:hover {
           background: #D1DBE9; }
         #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt {
           cursor: pointer;
@@ -112,11 +112,12 @@ html {
           #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt label {
             display: block;
             float: left;
-            cursor: pointer;
             font-size: 2rem;
             line-height: 28px;
+            height: 28px;
             padding: 14px 28px;
-            vertical-align: middle; }
+            vertical-align: middle;
+            cursor: pointer; }
         #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt.correct {
           background: #D6E8A4; }
           #quizzy #quizzy_c #quizzy_quiz #quizzy_q_c .quizzy_q .quizzy_q_opts .quizzy_q_opt.correct .quizzy_q_opt_letter {

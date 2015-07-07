@@ -38,7 +38,7 @@ html {
       height: 50px;
       /* change these to scale */
       width: 50px;
-      background-color: #D1DBE9;
+      background-color: rgba(29, 67, 129, 0.15);
       border-radius: 100%; }
       html body .timer .circle {
         stroke: #1D4381;

@@ -1,5 +1,5 @@
 // GAMEPLAY TIMER FUNCTIONS //
-//By David M.
+//Based on the codepen by David M.
 //http://codepen.io/wasser/
 // rAF - https://raw.githubusercontent.com/darius/requestAnimationFrame/master/requestAnimationFrame.min.js
 var timerT = 0;
@@ -28,9 +28,11 @@ if (!Date.now) Date.now = function() {
 })();
 
   // It's the final countdown
+  // Don't use this function unless you're sure there is no timer set yet
+  // Otherwise use resetTimer()
 function setTimer(time) {
     'use strict';
-  var totalTime = time,
+  var totalTime = time-1,
       currentTime = totalTime,
       percentTime = null,
       timerId = null,

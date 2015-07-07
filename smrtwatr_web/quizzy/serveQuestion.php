@@ -1,5 +1,6 @@
 <?php
   include 'quizzyConfig.php';
+  
 	/*
 	 * DESCRIPTION: 
 	 * 	 used in the AJAX of the core quizzy php. serves up ONE question of the
@@ -14,13 +15,17 @@
 	 */
 	$quizFile = $cwd.'/'.$quizFolder.'/'.$_GET['quizFile'];
 	$quizIndex = intval($_GET['quizIndex']);
-  $questNo = intval($_GET['questNo']);
-  $score = intval($_GET['score']);
+	//The nth question asked to the user
+  	$questNo = intval($_GET['questNo']);
+  	//The Id in the question list
+  	$questionId = intval($_GET['questionId']);
+  	$score = intval($_GET['score']);
 	?>
 
   <script type="text/javascript">
   console.log('----REQUESTED QUESTION----');
   console.log('questNo: ' + '<?php echo $questNo; ?>');
+  console.log('ID: ' + '<?php echo $questionId; ?>');
   console.log('MAX_QUESTIONS: ' + '<?php echo $MAX_QUESTIONS; ?>')
   </script>
 
@@ -49,7 +54,7 @@
 
   // QUESTION FETCHING //
 	//get the requested question
-  $quest=$quiz->question[$questNo];
+  $quest=$quiz->question[$questionId];
 ?>
 
 <div class="quizzy_q_body">
