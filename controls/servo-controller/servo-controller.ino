@@ -2,28 +2,68 @@
 // by BARRAGAN <http://barraganstudio.com> 
 
 #include <Servo.h> 
- 
-Servo myservo;  // create servo object to control a servo 
-                // a maximum of eight servo objects can be created 
- 
-int pos = 0;    // variable to store the servo position 
- 
-void setup() 
-{ 
-  myservo.attach(20);  // attaches the servo on pin 20 
+
+const int BUFFER_LEN = 6;
+char instr_buff[BUFFER_LEN];
+int DISCRETE_JET_HEIGHTS[4] = {600, 1100, 2500, 4095}; // discrete heights to be used during quiz mode
+
+// jet mapping is
+// center, bottom-left, top-left, top-right, bottom-right (ccw)
+int jet_height[5] = {0, 0, 0, 0, 0};
+int jet_pins[5] = {23, 22, 20, 17, 16};
+
+// servo mapping is
+// bottom-left, top-left, top-right, bottom-right (ccw)
+Servo servo[4];
+int servo_pins[4] = {3, 4, 6, 9};
+
+void setup() { 
+  Serial.begin(9600);
+  analogWriteResolution(12);
+  // PWM pins on the left side of the board
+  for(int ii=0; ii<4; ii++){
+    servo[ii].attach(servo_pins[ii]);
+  }
 } 
+
+// fountain has two modes:
+// 1. Quiz gameplay mode, in which it simply responds to the scores of the users
+// 2. Routine mode, in which it executes a full routine
  
- 
-void loop() 
-{ 
-  for(pos = 10; pos < 170; pos += 1)  // goes from 10 degrees to 170 degrees 
-  {                                  // in steps of 1 degree 
-    myservo.write(pos);              // tell servo to go to position in variable 'pos' 
-    delay(15);                       // waits 15ms for the servo to reach the position 
-  } 
-  for(pos = 180; pos>=1; pos-=1)     // goes from 180 degrees to 0 degrees 
-  {                                
-    myservo.write(pos);              // tell servo to go to position in variable 'pos' 
-    delay(15);                       // waits 15ms for the servo to reach the position 
-  } 
-} 
+void loop() {   
+  if (Serial.peek() == 'q') {
+    if (Serial.available()>=BUFFER_LEN) {
+      Serial.readBytes(instr_buff, BUFFER_LEN);
+      Serial.println(instr_buff);
+      routine_setup(); // instructions have just been recieved, set any initial state here
+      } 
+    } else {
+      Serial.read();
+    }
+  }
+
+void routine_setup() {
+  switch (instr_buff[1]) {
+    case '1':
+       set_discrete_pump_heights();
+       break;
+    case '2':
+       set_discrete_pump_heights();
+       break;
+    case '3':
+      set_discrete_pump_heights();
+      break;
+    case '4':
+      set_discrete_pump_heights();
+      break;         
+  }
+}
+
+void set_discrete_pump_heights() {
+  for (int ii = 0; ii < 4; ii++) {
+    jet_height[ii] = DISCRETE_JET_HEIGHTS[instr_buff[ii + 2] - '0'];
+    Serial.println(jet_height[ii]);
+    analogWrite(jet_pins[ii], jet_height[ii]);
+  }
+}
+
