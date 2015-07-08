@@ -1,5 +1,6 @@
 import logging
 import sys, os
+import os.path
 sys.path.append('tornado')
 import tornado.websocket
 import tornado.httpserver
@@ -172,8 +173,6 @@ player2 = Player('2', game)
 player3 = Player('3', game)
 player4 = Player('4', game)
 
-settings = {'static_path': os.path.join(os.path.realpath(__file__ + '/../'), 'web-socket-js')}
-
 application = tornado.web.Application(
     [
      (r"/",              SplashHandler,   {'template': 'splash.html'}),
@@ -198,8 +197,12 @@ application = tornado.web.Application(
                                     'template': 'player.html'}),
      (r'/play/er4/grid', PlayerHandler,   {'player': player4,
                                     'template': 'grid.html'}),
-     (r'/play/er4/ws',   PlayerWebSocket, {'player': player4})],
-    **settings)
+     (r'/play/er4/ws',   PlayerWebSocket, {'player': player4})
+    ],
+    template_path=os.path.join(os.path.dirname(__file__), "templates"),
+    static_path=os.path.join(os.path.dirname(__file__), "static")
+)
+
 
 if __name__ == '__main__':
     http_server = tornado.httpserver.HTTPServer(application)

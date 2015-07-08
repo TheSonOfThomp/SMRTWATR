@@ -4,6 +4,7 @@ html {
   font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif; }
 
 body {
-  background-image: url("../img/smrt-bg.jpg"); }
+  background-image: url("../img/smrt-bg.jpg");
+  background-size: 100%; }
 
 /*# sourceMappingURL=splash.css.map */
