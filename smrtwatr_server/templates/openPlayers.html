@@ -1,0 +1,7 @@
+
+{% for player in openPlayers %}
+  <a href="/play/er{{player}}">Play as Player {{player}}</a>
+{% end %}
+{% if len(openPlayers) == 0 %}
+	<h1>No room to play right now. Hang out and the current game will be over soon.</h1>
+{% end %}

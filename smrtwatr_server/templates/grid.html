@@ -1,0 +1,28 @@
+{{ player.forget() or '' }}
+
+{% if player.game.grid %}
+<table>
+{% for y in xrange(3) %}
+<tr>
+{% for x in xrange(3) %}
+<td>
+{% if player.game.grid[y][x] %}
+  {{ player.game.grid[y][x] }}
+{% else %}
+  <a href="#" onclick="ws.send('{{ player.remember(player.make_move, x, y) }}');return false;">*</a>
+{% end %}
+{% end %}
+</tr>
+{% end %}
+</table>
+
+{% else %}
+
+<h2>Waiting for 4 people to play game.</h2>
+
+{% if len(player.game.players) > 1 %}
+
+<h2>Or begin game <a href="#" onclick="gws.send('Starting game');return false;">now</a></h2>
+
+{% end %}
+{% end %}
