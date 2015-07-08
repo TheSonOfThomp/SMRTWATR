@@ -3,4 +3,4 @@ To run:
 2. cd SMRTWATR/smrtwatr_server
 3. git pull
 4. python server.py
-5. Go to http://localhost:9999/ (or smrtwatr.me:9999 if running it off of server)
+5. go to smrtwatr.me:9999
