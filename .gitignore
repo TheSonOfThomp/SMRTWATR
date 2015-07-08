@@ -27,3 +27,7 @@
 *.out
 *.app
 quizdash/
+
+smrtwatr_server/web-socket-js/
+
+smrtwatr_server/tornado/
