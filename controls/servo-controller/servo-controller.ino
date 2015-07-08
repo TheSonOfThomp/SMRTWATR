@@ -28,7 +28,13 @@ void setup() {
 
 // fountain has two modes:
 // 1. Quiz gameplay mode, in which it simply responds to the scores of the users
-// 2. Routine mode, in which it executes a full routine
+// 2. Routine mode, in which it executes a full display
+
+// data format
+// q [0-x] [0-3] [0-3] [0-3] [0-3]
+// q is the start bit
+// [0-x] is the routine. Routines 1, 2, 3, 4 are quiz questions
+// [0-3] [0-3] [0-3] [0-3] [0-3] are the jet heights representing player's scores
  
 void loop() {   
   if (Serial.peek() == 'q') {
