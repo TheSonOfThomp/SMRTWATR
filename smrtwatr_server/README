@@ -1,7 +1,6 @@
-1. git submodule init
-2. git submodule update
-3. sudo perl -T socketpolicy/socketpolicy.pl 
-   (This runs a small server on port 843 which is required by Flash to make socket connections. See http://www.lightsphere.com/dev/articles/flash_socket_policy.html)
+To run:
+1. ssh root@104.236.102.202
+2. cd SMRTWATR/smrtwatr_server
+3. git pull
 4. python server.py
-5. Go to http://localhost:9999/X
-6. Go to http://localhost:9999/O
+5. Go to http://localhost:9999/ (or smrtwatr.me:9999 if running it off of server)
