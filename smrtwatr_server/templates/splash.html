@@ -1,34 +1,59 @@
 <html>
 <head>
-<title>SMRT WATR - Home</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script type="text/javascript" src="/static/swfobject.js"></script>
-<script type="text/javascript" src="/static/FABridge.js"></script>
-<script type="text/javascript" src="/static/web_socket.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<title>SMRT WATR - Home</title>
 
-<script>
-WebSocket.__swfLocation = "/static/WebSocketMain.swf";
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-function update_players() {
-    $('#players').load('http://' + location.hostname + ':' + location.port + '/openplayers');
-}
+		<!-- No scaling on mobile -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Disable tap highlights on Windows -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<!-- Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300|Raleway:300,400' rel='stylesheet' type='text/css'>
+		<!-- jQuery CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<!-- Bootstrap CDN -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-$(document).ready(function() {
-    
-    gws = new WebSocket('ws://' + location.hostname + ':' + location.port + '/game/ws')
+	<!-- Page specific style Styles -->
+	<link rel="stylesheet" type="text/css" href="/static/css/splash.css">
 
-    gws.onmessage = function(msg) {
-        update_players();
-    }
+	<script type="text/javascript" src="/static/swfobject.js"></script>
+	<script type="text/javascript" src="/static/FABridge.js"></script>
+	<script type="text/javascript" src="/static/web_socket.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 
-    update_players();
-});
-</script>
+	<script>
+	WebSocket.__swfLocation = "/static/WebSocketMain.swf";
+
+	function update_players() {
+	    $('#players').load('http://' + location.hostname + ':' + location.port + '/openplayers');
+	}
+
+	$(document).ready(function() {
+	    
+	    gws = new WebSocket('ws://' + location.hostname + ':' + location.port + '/game/ws')
+
+	    gws.onmessage = function(msg) {
+	        update_players();
+	    }
+
+	    update_players();
+	});
+	</script>
 
 </head>
 <body>
-<h1>Welcome to SMRT WATR</h1>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        <img alt="Brand" src="...">
+	      </a>
+	    </div>
+	  </div>
+	</nav>
 <div id="players">
 </div>
 </body>

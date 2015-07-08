@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";AAiBA,IAAK;EACJ,SAAS,EAAE,IAAI;EACf,WAAW,EALC,kEAAW;;ACZxB,IAAK;EACJ,gBAAgB,EAAE,yBAAyB",
+"sources": ["../scss/smrt-style.scss","../scss/splash.scss"],
+"names": [],
+"file": "splash.css"
+}
