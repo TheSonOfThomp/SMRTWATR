@@ -7,9 +7,22 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.template
 import traceback
+from threading import Timer
 from itertools import cycle
 
 loader = tornado.template.Loader(os.path.join(os.path.join(os.path.realpath(__file__) + '/../'), 'templates'))
+
+questions = [
+    {'q': 'Best Taylor Swift song?', 'a': ['Our Song', 'Red', 'Teardrops on My Guitar', 'Speak Now']},
+    {'q': 'Best Female Canadian Soccer Player?', 'a': ['Tancredi', 'Chapman', 'Schmidt', 'Fleming']},
+    {'q': 'Best Season?', 'a': ['Fall', 'Winter', 'Spring', 'Summer']}
+]
+
+answers = [
+    'Speak Now',
+    'Chapman',
+    'Fall'
+]
 
 class Game(object):
     def __init__(self):
@@ -18,6 +31,7 @@ class Game(object):
         self.winner = None
         self.openPlayers = ["1", "2", "3", "4"]
         self.grid = None
+        self.rightAnswer = ''
 
     def add_player(self, player):
         self.players.append(player)
@@ -25,29 +39,43 @@ class Game(object):
         if len(self.players) == 4:
             self.start_game()
 
-    def start_game(self):
-        self.grid = [[None, None, None],
-                     [None, None, None],
-                     [None, None, None]]
-        self.broadcast('Game started')
-        # This creates a generator which cycles over the elements in a list
-        self.turn_order = cycle(self.players)
-        self.next_player = self.turn_order.next()
-        self.winner = None
-        self.broadcast('New game')
+    def start_question(self, *args):
+        for player in self.players:
+            player.correct = None
+            player.guess = ''
+        i = args[0]
+        self.rightAnswer = answers[i]
+        self.grid = questions[i]
+        self.broadcast('new question')
 
-    def make_move(self, player, x, y):
-        if player != self.next_player:
-            player.socket.write_message('ERR: Out of turn!')
-            return
-        if self.grid[y][x] != None:
-            player.socket.write_message('ERR: Space occupied')
-            return
-        self.grid[y][x] = player.symbol
-        self.broadcast('%s played at %s, %s' % (player.symbol, x, y))
-        self.check_winner()
-        self.next_player = self.turn_order.next()
-        self.broadcast("It is Player " + self.next_player.symbol + "'s turn")
+    def start_game(self):
+        #self.grid = [[None, None, None],
+        #             [None, None, None],
+        #             [None, None, None]]
+        # This creates a generator which cycles over the elements in a list
+        #self.turn_order = cycle(self.players)
+        #self.next_player = self.turn_order.next()
+        self.winner = None
+        t1 = Timer(0.0, self.start_question, [0])
+        t2 = Timer(15.0, self.start_question, [1])
+        t3 = Timer(30.0, self.start_question, [2])
+        t4 = Timer(45.0, self.check_winner)
+        t1.start()
+        t2.start()
+        t3.start()
+        t4.start()
+        
+
+    def make_guess(self, player, answer):
+        player.guess = answer
+        if answer == self.rightAnswer :
+            player.correct = True
+            player.score += 10
+            player.socket.write_message('You Are Right!')
+        else :
+            player.correct = False
+            player.socket.write_message('You Are Wrong!')
+            player.socket.write_message('The right answer was ' + self.rightAnswer)
 
     def broadcast(self, message):
         try:
@@ -58,30 +86,16 @@ class Game(object):
             traceback.print_exc()
     
     def check_winner(self):
-        def all_same(symbol, set):
-            set = map(lambda _: _ == symbol, set)
-            return all(set)
-
+        score = 0
+        winner = 'nobody. Because everyone scored 0:'
         for player in self.players:
-            for y in xrange(0, 3):
-                if all_same(player.symbol, self.grid[y]):
-                    self.winner = player.symbol
-            for x in xrange(0, 3):
-                if all_same(player.symbol, [self.grid[0][x],
-                                            self.grid[1][x],
-                                            self.grid[2][x]]):
-                    self.winner = player.symbol
-            if all_same(player.symbol, [self.grid[0][0],
-                                        self.grid[1][1],
-                                        self.grid[2][2]]):
-                    self.winner = player.symbol
-            if all_same(player.symbol, [self.grid[0][2],
-                                        self.grid[1][1],
-                                        self.grid[2][0]]):
-                    self.winner = player.symbol
-        if self.winner:
-            self.broadcast(self.winner + ' wins!')
-            self.start_game()
+            self.broadcast('Player ' + player.symbol + ' score: ' + str(player.score))
+            if player.score == score :
+                winner = winner + ' and Player' + player.symbol
+            elif player.score > score :
+                winner = 'Player' + player.symbol
+                score = player.score
+        self.broadcast('Winner is ' + winner)
 
 class Player(object):
     def __init__(self, symbol, game):
@@ -89,6 +103,8 @@ class Player(object):
         self.socket = None
         self.game = game
         self.callbacks = {}
+        self.score = 0
+        self.guess = ''
 
     def add(self):
         self.game.add_player(self)
@@ -103,8 +119,8 @@ class Player(object):
         self.callbacks[cid] = doit
         return cid
 
-    def make_move(self, x, y):
-        self.game.make_move(self, x, y)
+    def make_guess(self, answer):
+        self.game.make_guess(self, answer)
 
 class PlayerHandler(tornado.web.RequestHandler):
     def __init__(self, *args, **kwargs):
