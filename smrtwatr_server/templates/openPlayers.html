@@ -1,7 +1,11 @@
+{% if len(openPlayers) > 0 %}
+<a class="playdrop" href="/play/er{{openPlayers[0]}}">
+<script type="text/javascript">
+	console.log('Will be Player ' + {{openPlayers[0]}})
+</script>
+{% else %}
+<a class="playdrop full">
+{% end %}
 
-{% for player in openPlayers %}
-  <a href="/play/er{{player}}">Play as Player {{player}}</a>
-{% end %}
-{% if len(openPlayers) == 0 %}
-	<h1>No room to play right now. Hang out and the current game will be over soon.</h1>
-{% end %}
+	<img src="/static/img/play.png">
+</a>

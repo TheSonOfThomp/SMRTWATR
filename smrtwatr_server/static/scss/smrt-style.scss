@@ -18,4 +18,19 @@ $secondary_font: "Raleway", "Lato", "Trebuchet", sans-serif;
 html {
 	font-size: 16px;
 	font-family: $font_stack;
+	color: $smrt_blue;
+	background-color: $smrt_bg;
+	
+	.btn-round {
+		border-radius: 26px;
+	}
+	.btn-lblue {
+		color: $smrt_white;
+		background-color: $smrt_light_blue;
+	}
+	.btn-lblue:hover, .btn-lblue:active {
+		color: $smrt_white;
+		background-color: $smrt_light_blue;
+		border: 1px solid $smrt_blue;
+	}
 }

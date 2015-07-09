@@ -28,7 +28,7 @@
 	WebSocket.__swfLocation = "/static/WebSocketMain.swf";
 
 	function update_players() {
-	    $('#players').load('http://' + location.hostname + ':' + location.port + '/openplayers');
+	    $('#play').load('http://' + location.hostname + ':' + location.port + '/openplayers');
 	}
 
 	$(document).ready(function() {
@@ -45,12 +45,23 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	    </div>
-	  </div>
-	</nav>
-<div id="players">
+<div class="clearfix">
+	<div class="row header-row">
+		<div class="header splash col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	</div>
+	</div>
+	<div class="row play-row">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+		<div class="play col-xs-4 col-sm-4 col-md-4 col-lg-4" id="play">
+		</div>
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+	</div>
+	<div class="row make-it-rain-row">
+		<div class="col-xs-2 col-sm-2 col-md-3 col-lg-4"></div>
+		<div class="make-it-rain col-xs-8 col-sm-8 col-md-6 col-lg-4">
+			<a class="btn btn-block btn-default btn-lblue btn-round" href="#" role="button">MΛKE IT RΛIN</a>
+		</div>
+		<div class="col-xs-2 col-sm-2 col-md-3 col-lg-4"></div>
+	</div>
 </div>
 </body>

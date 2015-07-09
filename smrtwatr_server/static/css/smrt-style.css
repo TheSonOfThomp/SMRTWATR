@@ -1,6 +1,17 @@
 /* Colours */
 html {
   font-size: 16px;
-  font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif; }
+  font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
+  color: #1D4381;
+  background-color: #F2F6FC; }
+  html .btn-round {
+    border-radius: 26px; }
+  html .btn-lblue {
+    color: #fafafa;
+    background-color: #6C91CD; }
+  html .btn-lblue:hover, html .btn-lblue:active {
+    color: #fafafa;
+    background-color: #6C91CD;
+    border: 1px solid #1D4381; }
 
 /*# sourceMappingURL=smrt-style.css.map */
