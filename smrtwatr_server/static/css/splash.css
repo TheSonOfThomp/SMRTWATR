@@ -1,33 +1,10 @@
 /* Colours */
-html {
-  font-size: 16px;
-  font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
-  color: #1D4381;
-  background-color: #F2F6FC; }
-  html .btn-round {
-    border-radius: 26px; }
-  html .btn-lblue {
-    color: #fafafa;
-    background-color: #6C91CD; }
-  html .btn-lblue:hover, html .btn-lblue:active {
-    color: #fafafa;
-    background-color: #6C91CD;
-    border: 1px solid #1D4381; }
-
+/* Player Colours */
 body {
   background-image: url("../img/smrt-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat; }
-  body .header-row {
-    margin: 0; }
-    body .header-row .header {
-      background-image: url("../img/large_header_logo.png");
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 92px;
-      margin-bottom: 41px; }
   body .play-row {
     margin: 1.5rem 0; }
     body .play-row .play .full {

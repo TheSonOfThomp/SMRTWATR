@@ -1,0 +1,20 @@
+@import 'smrt-vars.scss';
+
+body {
+	font-size: 16px;
+	font-family: $font_stack;
+	color: $smrt_blue;
+	background-color: $smrt_bg;
+
+	.player-row {
+		text-align: center;
+		.player-name {
+			font-size: 1.5rem;
+		}
+	}
+
+	.dyk-row {
+		padding: 2rem 0; 
+	}
+
+}

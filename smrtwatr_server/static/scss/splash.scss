@@ -1,22 +1,10 @@
-@import 'smrt-style.scss';
+@import 'smrt-vars.scss';
 
 body {
 	background-image: url('../img/smrt-bg.jpg');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	.header-row {
-		margin: 0;
-		.header {
-			background-image: url('../img/large_header_logo.png');
-			background-size: contain;
-			background-position: center;
-			background-repeat: no-repeat;
-			
-			height: 92px;
-			margin-bottom: 41px
-		}
-	}
 
 	.play-row {
 		margin: 1.5rem 0;

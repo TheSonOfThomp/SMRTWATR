@@ -15,22 +15,8 @@ $ans_incorrect_bg: #D9C0BC;
 $font_stack: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
 $secondary_font: "Raleway", "Lato", "Trebuchet", sans-serif;
 
-html {
-	font-size: 16px;
-	font-family: $font_stack;
-	color: $smrt_blue;
-	background-color: $smrt_bg;
-	
-	.btn-round {
-		border-radius: 26px;
-	}
-	.btn-lblue {
-		color: $smrt_white;
-		background-color: $smrt_light_blue;
-	}
-	.btn-lblue:hover, .btn-lblue:active {
-		color: $smrt_white;
-		background-color: $smrt_light_blue;
-		border: 1px solid $smrt_blue;
-	}
-}
+/* Player Colours */
+$player_1: #2565CC;
+$player_2: #CC3525;
+$player_3: #A1CD24;
+$player_4: #CF9925;

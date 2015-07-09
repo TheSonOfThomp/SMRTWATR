@@ -1,9 +1,11 @@
 /* Colours */
+/* Player Colours */
 html {
   font-size: 16px;
   font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
   color: #1D4381;
-  background-color: #F2F6FC; }
+  background-color: #F2F6FC;
+  /* PLAYER COLOURS */ }
   html .btn-round {
     border-radius: 26px; }
   html .btn-lblue {
@@ -13,5 +15,48 @@ html {
     color: #fafafa;
     background-color: #6C91CD;
     border: 1px solid #1D4381; }
+  html .header-row {
+    margin: 0; }
+    html .header-row .header {
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat; }
+    html .header-row .splash-header {
+      background-image: url("../img/large_header_logo.png");
+      height: 92px;
+      margin-bottom: 41px; }
+    html .header-row .game-header {
+      background-image: url("../img/small_header_logo.png");
+      height: 64px; }
+  html .panel-dyk {
+    text-align: center; }
+    html .panel-dyk .panel-heading {
+      background-color: #1D4381; }
+      html .panel-dyk .panel-heading .panel-title {
+        color: #fafafa; }
+    html .panel-dyk .panel-body {
+      background-color: #D1DBE9; }
+  html .player-dot {
+    display: inline-block;
+    height: 0.6em;
+    width: 0.6em;
+    margin-right: 0.2em;
+    border-radius: 100%; }
+  html .player_1 {
+    color: #2565CC; }
+    html .player_1 .player-dot {
+      background-color: #2565CC; }
+  html .player_2 {
+    color: #CC3525; }
+    html .player_2 .player-dot {
+      background-color: #CC3525; }
+  html .player_3 {
+    color: #A1CD24; }
+    html .player_3 .player-dot {
+      background-color: #A1CD24; }
+  html .player_4 {
+    color: #CF9925; }
+    html .player_4 .player-dot {
+      background-color: #CF9925; }
 
 /*# sourceMappingURL=smrt-style.css.map */
