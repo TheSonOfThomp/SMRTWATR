@@ -37,6 +37,7 @@ html {
 		}
 	}
 
+	/*  'DID YOU KNOW' PANEL */
 	.panel-dyk {
 		text-align: center;
 		.panel-heading {
@@ -48,6 +49,34 @@ html {
 		}
 		.panel-body {
 			background-color: $smrt_blue_fade;
+		}
+	}
+
+	/* RADIAL TIMER */
+
+	.timer {
+		position: fixed;
+		bottom: 25px;
+		right: 0; left: 0;
+		margin: auto;
+		height: 50px; /* change these to scale */
+		width: 50px;
+		background-color: $smrt_blue_transp;
+		border-radius: 100%;
+
+		.circle {
+			stroke: $smrt_blue;
+			fill: $smrt_blue_fade;
+			stroke-dasharray: 100 100;
+			stroke-dashoffset: 0;
+			transition: stroke-dashoffset 1s;
+		  	transition-timing-function: linear;
+		}
+
+		.text {
+			fill: $smrt_blue;
+			font-size: 10px;
+			text-anchor: middle;
 		}
 	}
 

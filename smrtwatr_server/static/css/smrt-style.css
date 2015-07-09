@@ -5,6 +5,8 @@ html {
   font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
   color: #1D4381;
   background-color: #F2F6FC;
+  /*  'DID YOU KNOW' PANEL */
+  /* RADIAL TIMER */
   /* PLAYER COLOURS */ }
   html .btn-round {
     border-radius: 26px; }
@@ -36,6 +38,28 @@ html {
         color: #fafafa; }
     html .panel-dyk .panel-body {
       background-color: #D1DBE9; }
+  html .timer {
+    position: fixed;
+    bottom: 25px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 50px;
+    /* change these to scale */
+    width: 50px;
+    background-color: rgba(29, 67, 129, 0.15);
+    border-radius: 100%; }
+    html .timer .circle {
+      stroke: #1D4381;
+      fill: #D1DBE9;
+      stroke-dasharray: 100 100;
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 1s;
+      transition-timing-function: linear; }
+    html .timer .text {
+      fill: #1D4381;
+      font-size: 10px;
+      text-anchor: middle; }
   html .player-dot {
     display: inline-block;
     height: 0.6em;
