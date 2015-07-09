@@ -56,12 +56,6 @@ class Game(object):
         self.broadcast('new question')
 
     def start_game(self):
-        #self.grid = [[None, None, None],
-        #             [None, None, None],
-        #             [None, None, None]]
-        # This creates a generator which cycles over the elements in a list
-        #self.turn_order = cycle(self.players)
-        #self.next_player = self.turn_order.next()
         self.winner = None
         t1 = Timer(0.0, self.start_question, [0])
         t2 = Timer(15.0, self.start_question, [1])
@@ -104,7 +98,9 @@ class Game(object):
             elif player.score > score :
                 winner = 'Player' + player.symbol
                 score = player.score
+            player.score = 0
         self.broadcast('Winner is ' + winner)
+        self.grid = None
 
 class Player(object):
     def __init__(self, symbol, game):
@@ -139,7 +135,6 @@ class PlayerHandler(tornado.web.RequestHandler):
 
     def get(self):
         self.write(loader.load(self.template).generate(player=self.player))
-        #self.player.socket.write_message("Player joined")
         if self.player.symbol in game.openPlayers :
             gamebroadcast('Player added')
             self.player.add()
@@ -150,15 +145,10 @@ class PlayerWebSocket(tornado.websocket.WebSocketHandler):
         self.player = kwargs.pop('player')
         self.player.socket = self
         super(PlayerWebSocket, self).__init__(*args, **kwargs)
-
-    #def open(self):
-    #   self.receive_message(self.on_message)
     
     def on_message(self, message):
         if self.player.callbacks.get(message, None):
             self.player.callbacks[message]()
-        # Keep receiving messages
-        # self.receive_message(self.on_message)
 
 class GameWebSocket(tornado.websocket.WebSocketHandler):
     waiters = set()
