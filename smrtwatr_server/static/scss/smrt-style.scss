@@ -1,0 +1,86 @@
+@import 'smrt-vars';
+
+html {
+	font-size: 16px;
+	font-family: $font_stack;
+	color: $smrt_blue;
+	background-color: $smrt_bg;
+	
+	.btn-round {
+		border-radius: 26px;
+	}
+	.btn-lblue {
+		color: $smrt_white;
+		background-color: $smrt_light_blue;
+	}
+	.btn-lblue:hover, .btn-lblue:active {
+		color: $smrt_white;
+		background-color: $smrt_light_blue;
+		border: 1px solid $smrt_blue;
+	}
+
+	.header-row {
+		margin: 0;
+		.header {
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		.splash-header {
+			background-image: url('../img/large_header_logo.png');
+			height: 92px;
+			margin-bottom: 41px
+		}
+		.game-header {
+			background-image: url('../img/small_header_logo.png');
+			height: 64px;
+		}
+	}
+
+	.panel-dyk {
+		text-align: center;
+		.panel-heading {
+			background-color: $smrt_blue;
+
+			.panel-title {
+				color: $smrt_white;
+			}
+		}
+		.panel-body {
+			background-color: $smrt_blue_fade;
+		}
+	}
+
+	/* PLAYER COLOURS */
+	.player-dot {
+		display: inline-block;
+		height: 0.6em;
+		width: 0.6em;
+		margin-right: 0.2em;
+		border-radius: 100%;
+	}
+	.player_1 {
+		color: $player_1;
+		.player-dot {
+			background-color: $player_1;
+		}
+	}
+	.player_2 {
+		color: $player_2;
+		.player-dot {
+			background-color: $player_2;
+		}
+	}
+	.player_3 {
+		color: $player_3;
+		.player-dot {
+			background-color: $player_3;
+		}
+	}
+	.player_4 {
+		color: $player_4;
+		.player-dot {
+			background-color: $player_4;
+		}
+	}
+}
