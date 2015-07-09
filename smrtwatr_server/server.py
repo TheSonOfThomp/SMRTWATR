@@ -23,6 +23,13 @@ answers = [
     'Chapman',
     'Fall'
 ]
+    
+def gamebroadcast(message):
+    for waiter in GameWebSocket.waiters:
+        try:
+            waiter.write_message(message)
+        except:
+            logging.error("Error sending message", exc_info=True)
 
 class Game(object):
     def __init__(self):
@@ -71,9 +78,11 @@ class Game(object):
         if answer == self.rightAnswer :
             player.correct = True
             player.score += 10
+            gamebroadcast('Update: Player ' + player.symbol + ' got it right and now has ' + str(player.score) + ' points')
             player.socket.write_message('You Are Right!')
         else :
             player.correct = False
+            gamebroadcast('Update: Player ' + player.symbol + ' got it wrong and remains at ' + str(player.score) + ' points')
             player.socket.write_message('You Are Wrong!')
             player.socket.write_message('The right answer was ' + self.rightAnswer)
 
@@ -132,12 +141,7 @@ class PlayerHandler(tornado.web.RequestHandler):
         self.write(loader.load(self.template).generate(player=self.player))
         #self.player.socket.write_message("Player joined")
         if self.player.symbol in game.openPlayers :
-            for waiter in GameWebSocket.waiters:
-                try:
-                    waiter.write_message('Player added')
-                except:
-                    logging.error("Error sending message", exc_info=True)
-
+            gamebroadcast('Player added')
             self.player.add()
             game.openPlayers.remove(self.player.symbol)
 
@@ -158,12 +162,11 @@ class PlayerWebSocket(tornado.websocket.WebSocketHandler):
 
 class GameWebSocket(tornado.websocket.WebSocketHandler):
     waiters = set()
-    
+
     def __init__(self, *args, **kwargs):
         self.game = kwargs.pop('game')
         self.game.socket = self
         super(GameWebSocket, self).__init__(*args, **kwargs)
-
 
     def open(self):
         GameWebSocket.waiters.add(self)

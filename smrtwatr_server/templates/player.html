@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Tic Tac Toe - {{ player.symbol }}</title>
+<title>Tic Tac Toe - Player {{ player.symbol }}</title>
 <style>
 #grid { font-size: 250%; font-family: sans-serif; }
 </style>
@@ -23,7 +23,15 @@ $(document).ready(function() {
 
     ws.onmessage = function(msg) {
         update_grid();
-        $('#messages').prepend(msg.data + '<br/>');
+        console.log(msg)
+        //$('#messages').prepend(msg.data + '<br/>');
+    }
+
+    gws.onmessage = function(msg) {
+    	if (msg.data.lastIndexOf('Update', 0) === 0) {
+    		$('#messages').prepend(msg.data + '<br/>');
+    	}
+    	console.log(msg)
     }
 
     update_grid();
@@ -31,7 +39,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<h1>Tic Tac Toe - {{ player.symbol }}</h1>
+<h1>Tic Tac Toe - Player {{ player.symbol }}</h1>
 
 <div id="grid">
 </div>
