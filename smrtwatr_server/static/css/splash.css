@@ -6,7 +6,7 @@ body {
   background-position: center;
   background-repeat: no-repeat; }
   body .play-row {
-    margin: 1.5rem 0; }
+    margin: 0 0 2rem 0; }
     body .play-row .play .full {
       opacity: 50%; }
     body .play-row .play .full:after {

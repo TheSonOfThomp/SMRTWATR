@@ -1,15 +1,15 @@
 /* Colours */
 /* Player Colours */
-body {
-  font-size: 16px;
-  font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
-  color: #1D4381;
-  background-color: #F2F6FC; }
-  body .player-row {
-    text-align: center; }
-    body .player-row .player-name {
-      font-size: 1.5rem; }
-  body .dyk-row {
-    padding: 2rem 0; }
+body .player-row {
+  text-align: center;
+  margin-top: 1.5em; }
+  body .player-row .player-name {
+    font-size: 1.5rem; }
+body .dyk-row {
+  padding: 1.2rem 0; }
+body .timer-row {
+  text-align: center; }
+body .play-now-row {
+  padding: 1.2rem 0; }
 
 /*# sourceMappingURL=waiting.css.map */

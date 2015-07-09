@@ -1,0 +1,38 @@
+/* Colours */
+/* Player Colours */
+/* Colours */
+/* Player Colours */
+body .player-row {
+  text-align: center;
+  margin-top: 1.5em; }
+  body .player-row .player-name {
+    font-size: 1.5rem; }
+body .dyk-row {
+  padding: 1.2rem 0; }
+body .timer-row {
+  text-align: center; }
+body .play-now-row {
+  padding: 1.2rem 0; }
+
+body {
+  font-size: 16px;
+  font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
+  color: #1D4381;
+  background-color: #F2F6FC; }
+  body .other-players-row {
+    text-align: center;
+    background-color: #D1DBE9;
+    border-top: 1px solid #1D4381;
+    border-bottom: 1px solid #1D4381;
+    margin-right: 0;
+    margin-left: 0; }
+    body .other-players-row .other-player {
+      padding-top: 0.4em;
+      padding-bottom: 0.4em;
+      margin-top: 0.2em;
+      margin-bottom: 0.2em; }
+    body .other-players-row .other-player:nth-child(2) {
+      border-left: 1px solid #1D4381;
+      border-right: 1px solid #1D4381; }
+
+/*# sourceMappingURL=game.css.map */

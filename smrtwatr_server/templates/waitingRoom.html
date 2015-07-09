@@ -1,0 +1,68 @@
+<!-- PLAYER NAME -->
+<div class="row player-row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div>You're in line as</div>
+        <div class="player-name player_{{ player.symbol }}">
+            <span class="player-dot"></span>Player {{ player.symbol }}
+        </div>
+    </div>
+</div>
+<!-- /end PLAYER NAME -->
+<div class="small-title"><h6>Playing with:</h6></div>
+<div class="row other-players-row">
+    {% for otherPlayer in player.game.players %}
+        {% if otherPlayer.symbol != player.symbol %}
+            <div class="other-player player_{{otherPlayer.symbol}} col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                Player {{otherPlayer.symbol}}
+            </div>
+        {% end %}
+    {% end %}
+    {% if len(player.game.players) < 4 %}
+        {% for x in range(4 - len(player.game.players)) %}
+            <div class="other-player empty_player col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                open...
+            </div>
+        {% end %}
+    {% end %}
+</div>
+
+<!-- DID YOU KNOW -->
+<div class="row dyk-row">
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        <div class="panel panel-dyk">
+            <div class="panel-heading">
+                <h3 class="panel-title">Did You Know...?</h3>
+            </div>
+            <div class="panel-body">
+                Load Panel content
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+</div>
+<!-- /end DID YOU KNOW -->
+<!-- RADIAL TIMER OR PLEASE WAIT -->
+<div class="row timer-row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {% if len(player.game.players) > 1 %}
+            {% if len(player.game.players) < 4 %}
+                <span>Wait for more players, or</span>
+            {% else %}
+                {% set timerTitle = "Game starting in..." %}
+                {% include "radialTimer.html" %}
+            {% end %}
+        {% else %}
+            <span>Waiting for more players...</span>
+        {% end %}
+    </div>
+</div>
+<div class="row play-now-row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        {% if len(player.game.players) > 1 %}
+            <a class="btn btn-block btn-default btn-teal btn-round" href="#" onclick="gws.send('Starting game');return false;">Play Now</a>
+        {% end %}
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+</div>

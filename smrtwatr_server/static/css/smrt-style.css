@@ -4,83 +4,97 @@ html {
   font-size: 16px;
   font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
   color: #1D4381;
-  background-color: #F2F6FC;
-  /*  'DID YOU KNOW' PANEL */
-  /* RADIAL TIMER */
-  /* PLAYER COLOURS */ }
-  html .btn-round {
-    border-radius: 26px; }
-  html .btn-lblue {
-    color: #fafafa;
-    background-color: #6C91CD; }
-  html .btn-lblue:hover, html .btn-lblue:active {
-    color: #fafafa;
-    background-color: #6C91CD;
-    border: 1px solid #1D4381; }
-  html .header-row {
-    margin: 0; }
-    html .header-row .header {
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat; }
-    html .header-row .splash-header {
-      background-image: url("../img/large_header_logo.png");
-      height: 92px;
-      margin-bottom: 41px; }
-    html .header-row .game-header {
-      background-image: url("../img/small_header_logo.png");
-      height: 64px; }
-  html .panel-dyk {
-    text-align: center; }
-    html .panel-dyk .panel-heading {
-      background-color: #1D4381; }
-      html .panel-dyk .panel-heading .panel-title {
-        color: #fafafa; }
-    html .panel-dyk .panel-body {
-      background-color: #D1DBE9; }
-  html .timer {
-    position: fixed;
-    bottom: 25px;
-    right: 0;
-    left: 0;
-    margin: auto;
-    height: 50px;
-    /* change these to scale */
-    width: 50px;
-    background-color: rgba(29, 67, 129, 0.15);
-    border-radius: 100%; }
-    html .timer .circle {
-      stroke: #1D4381;
-      fill: #D1DBE9;
-      stroke-dasharray: 100 100;
-      stroke-dashoffset: 0;
-      transition: stroke-dashoffset 1s;
-      transition-timing-function: linear; }
-    html .timer .text {
-      fill: #1D4381;
-      font-size: 10px;
-      text-anchor: middle; }
-  html .player-dot {
-    display: inline-block;
-    height: 0.6em;
-    width: 0.6em;
-    margin-right: 0.2em;
-    border-radius: 100%; }
-  html .player_1 {
-    color: #2565CC; }
-    html .player_1 .player-dot {
-      background-color: #2565CC; }
-  html .player_2 {
-    color: #CC3525; }
-    html .player_2 .player-dot {
-      background-color: #CC3525; }
-  html .player_3 {
-    color: #A1CD24; }
-    html .player_3 .player-dot {
-      background-color: #A1CD24; }
-  html .player_4 {
-    color: #CF9925; }
-    html .player_4 .player-dot {
-      background-color: #CF9925; }
+  background-color: #F2F6FC; }
+  html body {
+    font-size: 16px;
+    font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
+    color: #1D4381;
+    background-color: #F2F6FC;
+    /*  'DID YOU KNOW' PANEL */
+    /* RADIAL TIMER */
+    /* PLAYER COLOURS */ }
+    html body .btn-round {
+      border-radius: 26px; }
+    html body .btn-lblue {
+      color: #fafafa;
+      background-color: #6C91CD; }
+    html body .btn-lblue:hover, html body .btn-lblue:active {
+      color: #fafafa;
+      background-color: #6C91CD;
+      border: 1px solid #1D4381; }
+    html body .btn-teal {
+      color: #fafafa;
+      background-color: #19838E; }
+    html body .header-row {
+      margin: 0; }
+      html body .header-row .header {
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat; }
+      html body .header-row .splash-header {
+        background-image: url("../img/large_header_logo.png");
+        height: 92px;
+        margin-bottom: 41px; }
+      html body .header-row .game-header {
+        background-image: url("../img/small_header_logo.png");
+        height: 64px; }
+    html body .small-title h6 {
+      font-weight: normal;
+      padding-left: 0.6em;
+      margin-bottom: 0.4em; }
+    html body .panel-dyk {
+      text-align: center;
+      margin-bottom: 0; }
+      html body .panel-dyk .panel-heading {
+        background-color: #1D4381; }
+        html body .panel-dyk .panel-heading .panel-title {
+          color: #fafafa; }
+      html body .panel-dyk .panel-body {
+        background-color: #D1DBE9; }
+    html body .timerTitle {
+      padding-bottom: 0.6em; }
+    html body .timer {
+      position: relative;
+      margin: auto;
+      height: 50px;
+      /* change these to scale */
+      width: 50px;
+      background-color: rgba(29, 67, 129, 0.15);
+      border-radius: 100%; }
+      html body .timer .circle {
+        stroke: #1D4381;
+        fill: #D1DBE9;
+        stroke-dasharray: 100 100;
+        stroke-dashoffset: 0;
+        transition: stroke-dashoffset 1s;
+        transition-timing-function: linear; }
+      html body .timer .text {
+        fill: #1D4381;
+        font-size: 10px;
+        text-anchor: middle; }
+    html body .player-dot {
+      display: inline-block;
+      height: 0.6em;
+      width: 0.6em;
+      margin-right: 0.2em;
+      border-radius: 100%; }
+    html body .player_1 {
+      color: #2565CC; }
+      html body .player_1 .player-dot {
+        background-color: #2565CC; }
+    html body .player_2 {
+      color: #CC3525; }
+      html body .player_2 .player-dot {
+        background-color: #CC3525; }
+    html body .player_3 {
+      color: #A1CD24; }
+      html body .player_3 .player-dot {
+        background-color: #A1CD24; }
+    html body .player_4 {
+      color: #CF9925; }
+      html body .player_4 .player-dot {
+        background-color: #CF9925; }
+    html body .empty_player {
+      color: #9B9B9B; }
 
 /*# sourceMappingURL=smrt-style.css.map */
