@@ -112,3 +112,10 @@ void zero_servos() {
     d.Delay(SERVO_DELAY);
   }
 }
+
+void sweep_servos() {
+  for (int ii=0; ii<4; ii++) {
+    if (servo_sweep[ii])
+  }
+}
+
