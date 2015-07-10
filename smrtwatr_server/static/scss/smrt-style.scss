@@ -40,21 +40,6 @@ html {
 			}
 		}
 
-		/*  'DID YOU KNOW' PANEL */
-		.panel-dyk {
-			text-align: center;
-			margin-bottom: 0;
-			.panel-heading {
-				background-color: $smrt_blue;
-
-				.panel-title {
-					color: $smrt_white;
-				}
-			}
-			.panel-body {
-				background-color: $smrt_blue_fade;
-			}
-		}
 
 		/* RADIAL TIMER */
 		.timerTitle {
@@ -120,17 +105,6 @@ html {
 			color: $empty_player;
 		}
 
-		/* QUIZ COLOURS */
-
-		.rightAnswer {
-			color: $ans_correct;
-			background-color: $ans_correct_bg;
-		}
-		.wrongAnswer {
-			color: $ans_incorrect;
-			background-color: $ans_incorrect_bg;
-		}
-
 		/* HELPER CLASSES */
 		.btn-round {
 			border-radius: 26px;
@@ -151,7 +125,7 @@ html {
 
 		.fix-to-bottom {
 			position: fixed;
-			bottom: 25px;
+			bottom: 4px;
 			left: 0;
 			right: 0;
 			margin: auto;

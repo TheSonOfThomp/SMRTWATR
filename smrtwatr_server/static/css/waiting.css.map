@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": ";;AAIC,gBAAY;EACX,UAAU,EAAE,MAAM;EAClB,UAAU,EAAE,KAAK;EACjB,6BAAa;IACZ,SAAS,EAAE,MAAM;AAInB,aAAS;EACR,OAAO,EAAE,QAAQ;AAGlB,eAAW;EACV,UAAU,EAAE,MAAM;AAGnB,kBAAc;EACb,OAAO,EAAE,QAAQ",
-"sources": ["../scss/waiting.scss"],
-"names": [],
-"file": "waiting.css"
-}

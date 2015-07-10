@@ -10,10 +10,8 @@ html {
     font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
     color: #1D4381;
     background-color: #F2F6FC;
-    /*  'DID YOU KNOW' PANEL */
     /* RADIAL TIMER */
     /* PLAYER COLOURS */
-    /* QUIZ COLOURS */
     /* HELPER CLASSES */ }
     html body .header-row {
       margin: 0; }
@@ -32,15 +30,6 @@ html {
       font-weight: normal;
       padding-left: 0.6em;
       margin-bottom: 0.4em; }
-    html body .panel-dyk {
-      text-align: center;
-      margin-bottom: 0; }
-      html body .panel-dyk .panel-heading {
-        background-color: #1D4381; }
-        html body .panel-dyk .panel-heading .panel-title {
-          color: #fafafa; }
-      html body .panel-dyk .panel-body {
-        background-color: #D1DBE9; }
     html body .timerTitle {
       padding-bottom: 0.6em; }
     html body .timer {
@@ -86,12 +75,6 @@ html {
         background-color: #CF9925; }
     html body .empty_player {
       color: #9B9B9B; }
-    html body .rightAnswer {
-      color: #A1CD24;
-      background-color: #D6E8A4; }
-    html body .wrongAnswer {
-      color: #8E3A2E;
-      background-color: #D9C0BC; }
     html body .btn-round {
       border-radius: 26px; }
     html body .btn-lblue {
@@ -106,7 +89,7 @@ html {
       background-color: #19838E; }
     html body .fix-to-bottom {
       position: fixed;
-      bottom: 25px;
+      bottom: 4px;
       left: 0;
       right: 0;
       margin: auto; }

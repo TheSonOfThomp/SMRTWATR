@@ -17,7 +17,8 @@
 
 <div class="list-group quiz-options">
 {% for answer in player.game.grid['a'] %}
-  <a type="button" class="list-group-item" id="option_{{answer}}" href="#" onclick="ws.send('{{ player.remember(player.make_guess, answer) }}');return false;">
+
+  <a type="button" class="list-group-item option" id="option_{{answer.replace(" ", "_")}}" href="#" onclick="ws.send('{{ player.remember(player.make_guess, answer) }}');return false;">
   {{answer}}
   </a>
 {% end %}
@@ -25,66 +26,86 @@
 
 {% if player.correct == True %}
   <!-- Hide all false answers -->
-  <h3> Correct! </h3>
+  <script type="text/javascript">
   {% for answer in player.game.grid['a'] %}
     {% if answer == player.game.rightAnswer %}
-      <script type="text/javascript">
-        $('#option_{{answer}}').addClass('rightAnswer');
-      </script>
+        $('#option_{{answer.replace(" ", "_")}}').addClass('rightAnswer');
     {% else %}
-      <script type="text/javascript">
-        $('#option_{{answer}}').hide();
-      </script>
+      $('#option_{{answer.replace(" ", "_")}}').slideUp(optSlideTime);
     {% end %}
+      // and remove interactivity from these elements
+      $('.option').attr('type', '').attr('onclick', '').unbind();
   {% end %}
+  </script>
 
 {% elif player.correct == False %}
   <!-- Hide all other answers -->
-  <h3> Wrong! </h3>
+  <script type="text/javascript">
   {% for answer in player.game.grid['a'] %}
     {% if answer == player.game.rightAnswer %}
-        <script type="text/javascript">
-          $('#option_{{answer}}').addClass('rightAnswer');
-        </script>
+          $('#option_{{answer.replace(" ", "_")}}').addClass('rightAnswer');
       {% elif answer == player.guess %}
-        <script type="text/javascript">
-          $('#option_{{answer}}').addClass('wrongAnswer');
-        </script>
+          $('#option_{{answer.replace(" ", "_")}}').addClass('wrongAnswer');
       {% else %}
-        <script type="text/javascript">
-          $('#option_{{answer}}').hide();
-        </script>
+        $('#option_{{answer.replace(" ", "_")}}').slideUp(optSlideTime);
     {% end %}
+      // and remove interactivity from these elements
+      $('.option').attr('type', '').attr('onclick', '').unbind();
   {% end %}
+  </script>
 {% else %}
 {% end %}
 
-<div class="row player-row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="player-name player_{{ player.symbol }}">
-            <span class="player-dot"></span>Player {{ player.symbol }}
+{% if player.guess or player.correct == False %}
+<!-- DID YOU KNOW -->
+<div class="row dyk-row simple-dyk-row">
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        <div class="simple-dyk" style="display: none;">
+          Bacon ipsum dolor amet hamburger boudin meatball kielbasa beef ribs pork chop tri-tip.
         </div>
-        <div class="player-score player_{{ player.symbol }}">{{ player.score }}pts</div>
     </div>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 </div>
+<script type="text/javascript">
+  setTimeout(function(){
+    $('.simple-dyk').fadeIn(dykFadeTime);
+  }, optSlideTime/1.5);
+</script>
+{% end %}
 
+<!-- FIXED TO BOTTOM -->
 <div class="fix-to-bottom">
-  {% if player.correct == True or player.correct == False %}
+  <!-- PLAYER NAME & SCORE -->
+  <div class="row player-row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="player-name player_{{ player.symbol }}">
+              <span class="player-dot"></span>PLΛYER {{ player.symbol }}
+          </div>
+          <div class="player-score player_{{ player.symbol }}">{{ player.score }}pts</div>
+      </div>
+  </div>
+
+  {% if player.guess or player.correct == False %}
   <!-- OTHER PLAYERS -->
   <div class="row other-players-row">
       {% for otherPlayer in player.game.players %}
           {% if otherPlayer.symbol != player.symbol %}
               <div class="other-player player_{{otherPlayer.symbol}} col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                  Player {{otherPlayer.symbol}}
+                  PLΛYER {{otherPlayer.symbol}}
                   <br/>
-                  {{ otherPlayer.score }}pts
+                  {% if otherPlayer.guess %}
+                    {{ otherPlayer.score }}pts
+                  {% else %}
+                    waiting...
+                  {% end %}
               </div>
           {% end %}
       {% end %}
       {% if len(player.game.players) < 4 %}
           {% for x in range(4 - len(player.game.players)) %}
               <div class="other-player empty_player col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                  empty seat
+                  empty<br/>seat
               </div>
           {% end %}
       {% end %}

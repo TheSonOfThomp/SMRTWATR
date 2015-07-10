@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div>You're in line as</div>
         <div class="player-name player_{{ player.symbol }}">
-            <span class="player-dot"></span>Player {{ player.symbol }}
+            <span class="player-dot"></span>PLΛYER {{ player.symbol }}
         </div>
     </div>
 </div>
@@ -13,7 +13,7 @@
     {% for otherPlayer in player.game.players %}
         {% if otherPlayer.symbol != player.symbol %}
             <div class="other-player player_{{otherPlayer.symbol}} col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                Player {{otherPlayer.symbol}}
+                PLΛYER {{otherPlayer.symbol}}
             </div>
         {% end %}
     {% end %}
@@ -35,7 +35,7 @@
                 <h3 class="panel-title">Did You Know...?</h3>
             </div>
             <div class="panel-body">
-                Load Panel content
+                Bacon ipsum dolor amet hamburger boudin meatball kielbasa beef ribs pork chop tri-tip.
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         {% if len(player.game.players) > 1 %}
             {% if len(player.game.players) < 4 %}
-                <span>Wait for more players, or"</span>
+                <span>Wait for more players, or</span>
             {% else %}
                 {% set timerTitle = "Game starting in..." %}
                 {% include "radialTimer.html" %}

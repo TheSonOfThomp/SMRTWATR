@@ -6,36 +6,50 @@ body {
   color: #1D4381;
   background-color: #F2F6FC;
   /* GLOBAL GAME STYLES */
+  /*  'DID YOU KNOW' PANEL */
   /* WAITING ROOM */
   /* QUIZ PLAY */ }
   body .other-players-row {
     text-align: center;
-    background-color: #D1DBE9;
+    background-color: #f2f2f2;
     border-top: 1px solid #1D4381;
     border-bottom: 1px solid #1D4381;
-    margin-right: 0;
-    margin-left: 0; }
+    margin: 0.8rem 0; }
     body .other-players-row .other-player {
-      padding-top: 0.4em;
-      padding-bottom: 0.4em;
+      padding-top: 0.2em;
+      padding-bottom: 0.2em;
       margin-top: 0.2em;
       margin-bottom: 0.2em; }
     body .other-players-row .other-player:nth-child(2) {
       border-left: 1px solid #1D4381;
       border-right: 1px solid #1D4381; }
+  body .panel-dyk {
+    text-align: center;
+    margin-bottom: 0; }
+    body .panel-dyk .panel-heading {
+      background-color: #1D4381; }
+      body .panel-dyk .panel-heading .panel-title {
+        color: #fafafa; }
+    body .panel-dyk .panel-body {
+      background-color: #D1DBE9; }
+  body .simple-dyk {
+    padding: 0;
+    margin: 0;
+    text-align: center; }
   body .player-row {
     text-align: center;
-    margin-top: 1.5em; }
+    margin-top: 1em; }
     body .player-row .player-name {
       font-size: 1.5rem; }
     body .player-row .player-score {
       font-size: 1.5rem; }
   body .dyk-row {
-    padding: 1.2rem 0; }
+    padding: 0.4rem 0; }
   body .timer-row {
+    padding: 0.6rem 0;
     text-align: center; }
   body .play-now-row {
-    padding: 1.2rem 0; }
+    padding: 0.4rem 0; }
   body .question-header-row {
     padding-top: 0.8rem;
     padding-bottom: 0.4rem; }
@@ -49,5 +63,22 @@ body {
     padding-bottom: 0.4rem; }
     body .question-content-row .question-content {
       text-align: center; }
+  body .quiz-options {
+    border-top: 1px solid #1D4381;
+    border-bottom: 1px solid #1D4381;
+    /* ANSWER COLOURS */ }
+    body .quiz-options .option {
+      color: #1D4381;
+      background-color: #fafafa; }
+    body .quiz-options .option:hover {
+      color: #1D4381;
+      background-color: #fafafa; }
+    body .quiz-options .option:focus, body .quiz-options .option:active {
+      color: #1D4381;
+      background-color: #D1DBE9; }
+    body .quiz-options .rightAnswer, body .quiz-options .rightAnswer:hover, body .quiz-options .rightAnswer:active, body .quiz-options .rightAnswer:focus {
+      background-color: #D6E8A4; }
+    body .quiz-options .wrongAnswer, body .quiz-options .wrongAnswer:hover, body .quiz-options .wrongAnswer:active, body .quiz-options .wrongAnswer:focus {
+      background-color: #D9C0BC; }
 
 /*# sourceMappingURL=game.css.map */

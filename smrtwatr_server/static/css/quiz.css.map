@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": ";;AAGC,qBAAiB;EAChB,KAAK,ECCK,OAAO;EDAjB,SAAS,EAAE,MAAM;EACjB,UAAU,EAAE,MAAM;EAClB,eAAe,EAAE,SAAS",
-"sources": ["../scss/quiz.scss","../scss/smrt-vars.scss"],
-"names": [],
-"file": "quiz.css"
-}

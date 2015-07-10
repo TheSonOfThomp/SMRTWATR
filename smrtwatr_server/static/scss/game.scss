@@ -9,14 +9,13 @@ body {
 	/* GLOBAL GAME STYLES */
 	.other-players-row {
 		text-align: center;
-		background-color: $smrt_blue_fade;
+		background-color: $smrt_l_grey;
 		border-top: 1px solid $smrt_blue;
 		border-bottom: 1px solid $smrt_blue;
-		margin-right: 0;
-		margin-left: 0;
+		margin: 0.8rem 0;
 		.other-player {
-			padding-top: 0.4em;
-			padding-bottom: 0.4em;
+			padding-top: 0.2em;
+			padding-bottom: 0.2em;
 			margin-top: 0.2em;
 			margin-bottom: 0.2em;
 		}
@@ -26,10 +25,31 @@ body {
 		}
 	}
 
+	/*  'DID YOU KNOW' PANEL */
+	.panel-dyk {
+		text-align: center;
+		margin-bottom: 0;
+		.panel-heading {
+			background-color: $smrt_blue;
+
+			.panel-title {
+				color: $smrt_white;
+			}
+		}
+		.panel-body {
+			background-color: $smrt_blue_fade;
+		}
+	}
+	.simple-dyk {
+		padding: 0;
+		margin: 0;
+		text-align: center;
+	}
+
 	/* WAITING ROOM */
 	.player-row {
 		text-align: center;
-		margin-top: 1.5em;
+		margin-top: 1em;
 
 		.player-name {
 			font-size: 1.5rem;
@@ -41,15 +61,16 @@ body {
 	}
 
 	.dyk-row {
-		padding: 1.2rem 0;
+		padding: 0.4rem 0;
 	}
 
 	.timer-row {
+		padding: 0.6rem 0;
 		text-align: center;
 	}
 
 	.play-now-row {
-		padding: 1.2rem 0;
+		padding: 0.4rem 0;
 	}
 
 
@@ -70,6 +91,33 @@ body {
 		padding-bottom: 0.4rem;
 		.question-content {
 			text-align: center;
+		}
+	}
+
+	.quiz-options {
+		border-top: 1px solid $smrt_blue;
+        border-bottom: 1px solid $smrt_blue;
+		
+		.option {
+			color: $smrt_blue;
+			background-color: $smrt_white;
+		}
+		.option:hover{
+			color: $smrt_blue;
+			background-color: $smrt_white;
+		}
+		.option:focus, .option:active {
+			color: $smrt_blue;
+			background-color: $smrt_blue_fade;
+		}
+
+		/* ANSWER COLOURS */
+
+		.rightAnswer, .rightAnswer:hover, .rightAnswer:active, .rightAnswer:focus {
+			background-color: $ans_correct_bg;
+		}
+		.wrongAnswer, .wrongAnswer:hover, .wrongAnswer:active, .wrongAnswer:focus {
+			background-color: $ans_incorrect_bg;
 		}
 	}
 }
