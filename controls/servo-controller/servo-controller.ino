@@ -1,6 +1,4 @@
-// Sweep
-// by BARRAGAN <http://barraganstudio.com> 
-
+#include "Delay.h"
 #include <Servo.h> 
 
 const int BUFFER_LEN = 6;
@@ -9,6 +7,7 @@ const int SERVO_LL = 10;
 const int SERVO_RL = 170;
 char instr_buff[BUFFER_LEN];
 int DISCRETE_JET_HEIGHTS[4] = {600, 1100, 2500, 4095}; // discrete heights to be used during quiz mode
+NonBlockDelay d;
 
 // jet mapping is
 // center, bottom-left, top-left, top-right, bottom-right (ccw)
@@ -58,9 +57,6 @@ void routine_setup() {
     case '1':
        set_discrete_pump_heights();
        // place servos at leftmost edge
-       for (int ii=0; ii<4; ii++) {
-          servo[ii].write(10); 
-       }
        break;
     case '2':
        set_discrete_pump_heights();
@@ -89,18 +85,30 @@ void routine() {
   }
 }
 
-void zero_servos() {
-  for (int ii = 0; ii<4; ii++)  {
-    if (servo_sweep[ii] > SERVO_LL) {
-      
-    }
-  }
-}
-
 void set_discrete_pump_heights() {
+  // set discrete jet heights (1, 2, 3, 4) during the quiz
   for (int ii = 0; ii < 4; ii++) {
     jet_height[ii] = DISCRETE_JET_HEIGHTS[instr_buff[ii + 2] - '0'];
     Serial.println(jet_height[ii]);
     analogWrite(jet_pins[ii], jet_height[ii]);
+  }
+}
+
+void zero_servos() {
+  // reset servos to either the left or right edge before the routine starts
+  int zeroed_servos = 0;
+  while (zeroed_servos < 4 && d.Timeout()) {
+    for (int ii=0; ii<4; ii++)  {
+      if (servo_sweep[ii] && servo_pos[ii] > SERVO_LL) {
+        servo_pos[ii] -= 1;
+        servo[ii].write(servo_pos[ii]);
+      } else if (!servo_sweep[ii] && servo_pos[ii] < SERVO_RL) {
+        servo_pos[ii] += 1;
+        servo[ii].write(servo_pos[ii]);
+      } else {
+        zeroed_servos++;
+      }
+    }
+    d.Delay(SERVO_DELAY);
   }
 }
