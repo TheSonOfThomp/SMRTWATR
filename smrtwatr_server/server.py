@@ -55,16 +55,27 @@ class Game(object):
         self.grid = questions[i]
         self.broadcast('new question')
 
+    def end_question(self):
+        for player in self.players:
+            if player.guess == '':
+                self.make_guess(player, '')
+
     def start_game(self):
         self.winner = None
         t1 = Timer(0.0, self.start_question, [0])
-        t2 = Timer(15.0, self.start_question, [1])
-        t3 = Timer(30.0, self.start_question, [2])
-        t4 = Timer(45.0, self.check_winner)
+        t2 = Timer(15.0, self.end_question)
+        t3 = Timer(20.0, self.start_question, [1])
+        t4 = Timer(35.0, self.end_question)
+        t5 = Timer(40.0, self.start_question, [2])
+        t6 = Timer(55.0, self.end_question)
+        t7 = Timer(60.0, self.check_winner)
         t1.start()
         t2.start()
         t3.start()
         t4.start()
+        t5.start()
+        t6.start()
+        t7.start()
         
 
     def make_guess(self, player, answer):
