@@ -46,6 +46,10 @@ class Game(object):
         if len(self.players) == 4:
             self.start_game()
 
+    def quiz_splash(self):
+        self.grid = 'start'
+        self.broadcast('starting quiz')
+
     def start_question(self, *args):
         for player in self.players:
             player.correct = None
@@ -62,13 +66,15 @@ class Game(object):
 
     def start_game(self):
         self.winner = None
-        t1 = Timer(0.0, self.start_question, [0])
-        t2 = Timer(15.0, self.end_question)
-        t3 = Timer(20.0, self.start_question, [1])
-        t4 = Timer(35.0, self.end_question)
-        t5 = Timer(40.0, self.start_question, [2])
-        t6 = Timer(55.0, self.end_question)
-        t7 = Timer(60.0, self.check_winner)
+        t0 = Timer(0.0, self.quiz_splash)
+        t1 = Timer(5.0, self.start_question, [0])
+        t2 = Timer(20.0, self.end_question)
+        t3 = Timer(25.0, self.start_question, [1])
+        t4 = Timer(40.0, self.end_question)
+        t5 = Timer(45.0, self.start_question, [2])
+        t6 = Timer(60.0, self.end_question)
+        t7 = Timer(65.0, self.check_winner)
+        t0.start()
         t1.start()
         t2.start()
         t3.start()

@@ -1,7 +1,11 @@
 {{ player.forget() or '' }}
 {% if player.game.grid %}
-    <!-- if there is a game, we include the game template -->
-    {% include "quiz.html" %}
+	{% if player.game.grid == 'start'%}
+		{% include "start_game.html" %}
+	{% else %}
+    	<!-- if there is a game, we include the game template -->
+    	{% include "quiz.html" %}
+    {% end %}
 {% else %}
     <!-- otherwise, we show the waiting room -->
     {% include "waitingRoom.html" %}
