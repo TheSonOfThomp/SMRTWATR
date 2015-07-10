@@ -1,34 +1,103 @@
-<h1>{{player.game.grid['q']}}</h1>
+<div class="row question-header-row">
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+  <div class="question-header col-xs-10 col-sm-10 col-md-10 col-lg-10">
+    Question #
+  </div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+</div>
+
+<div class="row question-content-row">
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+  <div class="question-content col-xs-10 col-sm-10 col-md-10 col-lg-10">
+    {{player.game.grid['q']}}
+  </div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+</div>
+
+
+<div class="list-group quiz-options">
+{% for answer in player.game.grid['a'] %}
+  <a type="button" class="list-group-item" id="option_{{answer}}" href="#" onclick="ws.send('{{ player.remember(player.make_guess, answer) }}');return false;">
+  {{answer}}
+  </a>
+{% end %}
+</div>
 
 {% if player.correct == True %}
-<h3> Correct! </h3>
-{% for answer in player.game.grid['a'] %}
-  {% if answer == player.game.rightAnswer %}
-  	<span style="color: green;">
-  {% else %}
-  	<span>
+  <!-- Hide all false answers -->
+  <h3> Correct! </h3>
+  {% for answer in player.game.grid['a'] %}
+    {% if answer == player.game.rightAnswer %}
+      <script type="text/javascript">
+        $('#option_{{answer}}').addClass('rightAnswer');
+      </script>
+    {% else %}
+      <script type="text/javascript">
+        $('#option_{{answer}}').hide();
+      </script>
+    {% end %}
   {% end %}
-  	{{answer}}</span>
-{% end %}
 
 {% elif player.correct == False %}
-<h3> Wrong! </h3>
-{% for answer in player.game.grid['a'] %}
-  {% if answer == player.game.rightAnswer %}
-  	<span style="color: green;">
-  {% elif answer == player.guess %}
-  	<span style="color: red;">
-  {% else %}
-  	<span>
+  <!-- Hide all other answers -->
+  <h3> Wrong! </h3>
+  {% for answer in player.game.grid['a'] %}
+    {% if answer == player.game.rightAnswer %}
+        <script type="text/javascript">
+          $('#option_{{answer}}').addClass('rightAnswer');
+        </script>
+      {% elif answer == player.guess %}
+        <script type="text/javascript">
+          $('#option_{{answer}}').addClass('wrongAnswer');
+        </script>
+      {% else %}
+        <script type="text/javascript">
+          $('#option_{{answer}}').hide();
+        </script>
+    {% end %}
   {% end %}
-  	{{answer}}</span>
-{% end %}
-
-
 {% else %}
-
-{% for answer in player.game.grid['a'] %}
-  <a href="#" onclick="ws.send('{{ player.remember(player.make_guess, answer) }}');return false;">{{answer}}</a>
 {% end %}
 
-{% end %}
+<div class="row player-row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="player-name player_{{ player.symbol }}">
+            <span class="player-dot"></span>Player {{ player.symbol }}
+        </div>
+        <div class="player-score player_{{ player.symbol }}">{{ player.score }}pts</div>
+    </div>
+</div>
+
+<div class="fix-to-bottom">
+  {% if player.correct == True or player.correct == False %}
+  <!-- OTHER PLAYERS -->
+  <div class="row other-players-row">
+      {% for otherPlayer in player.game.players %}
+          {% if otherPlayer.symbol != player.symbol %}
+              <div class="other-player player_{{otherPlayer.symbol}} col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                  Player {{otherPlayer.symbol}}
+                  <br/>
+                  {{ otherPlayer.score }}pts
+              </div>
+          {% end %}
+      {% end %}
+      {% if len(player.game.players) < 4 %}
+          {% for x in range(4 - len(player.game.players)) %}
+              <div class="other-player empty_player col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                  empty seat
+              </div>
+          {% end %}
+      {% end %}
+  </div>
+
+  {% else %}
+  <!-- TIMER -->
+  <div class="row timer-row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {% set timerTitle = "" %}
+        {% include "radialTimer.html" %}
+      </div>
+  </div>
+  <script type="text/javascript"> resetTimer(15); </script>
+  {% end %}
+</div>

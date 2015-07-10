@@ -12,19 +12,9 @@ html {
     background-color: #F2F6FC;
     /*  'DID YOU KNOW' PANEL */
     /* RADIAL TIMER */
-    /* PLAYER COLOURS */ }
-    html body .btn-round {
-      border-radius: 26px; }
-    html body .btn-lblue {
-      color: #fafafa;
-      background-color: #6C91CD; }
-    html body .btn-lblue:hover, html body .btn-lblue:active {
-      color: #fafafa;
-      background-color: #6C91CD;
-      border: 1px solid #1D4381; }
-    html body .btn-teal {
-      color: #fafafa;
-      background-color: #19838E; }
+    /* PLAYER COLOURS */
+    /* QUIZ COLOURS */
+    /* HELPER CLASSES */ }
     html body .header-row {
       margin: 0; }
       html body .header-row .header {
@@ -96,5 +86,29 @@ html {
         background-color: #CF9925; }
     html body .empty_player {
       color: #9B9B9B; }
+    html body .rightAnswer {
+      color: #A1CD24;
+      background-color: #D6E8A4; }
+    html body .wrongAnswer {
+      color: #8E3A2E;
+      background-color: #D9C0BC; }
+    html body .btn-round {
+      border-radius: 26px; }
+    html body .btn-lblue {
+      color: #fafafa;
+      background-color: #6C91CD; }
+    html body .btn-lblue:hover, html body .btn-lblue:active {
+      color: #fafafa;
+      background-color: #6C91CD;
+      border: 1px solid #1D4381; }
+    html body .btn-teal {
+      color: #fafafa;
+      background-color: #19838E; }
+    html body .fix-to-bottom {
+      position: fixed;
+      bottom: 25px;
+      left: 0;
+      right: 0;
+      margin: auto; }
 
 /*# sourceMappingURL=smrt-style.css.map */

@@ -1,5 +1,4 @@
 @import 'smrt-vars.scss';
-@import 'waiting.scss';
 
 body {
 	font-size: 16px;
@@ -7,6 +6,7 @@ body {
 	color: $smrt_blue;
 	background-color: $smrt_bg;
 
+	/* GLOBAL GAME STYLES */
 	.other-players-row {
 		text-align: center;
 		background-color: $smrt_blue_fade;
@@ -23,6 +23,53 @@ body {
 		.other-player:nth-child(2) {
 			border-left: 1px solid $smrt_blue;
 			border-right: 1px solid $smrt_blue;
+		}
+	}
+
+	/* WAITING ROOM */
+	.player-row {
+		text-align: center;
+		margin-top: 1.5em;
+
+		.player-name {
+			font-size: 1.5rem;
+		}
+
+		.player-score {
+			font-size: 1.5rem;
+		}
+	}
+
+	.dyk-row {
+		padding: 1.2rem 0;
+	}
+
+	.timer-row {
+		text-align: center;
+	}
+
+	.play-now-row {
+		padding: 1.2rem 0;
+	}
+
+
+	/* QUIZ PLAY */
+	.question-header-row {
+		padding-top: 0.8rem;
+		padding-bottom: 0.4rem;
+		.question-header {
+			color: $smrt_teal;
+			font-size: 1.5rem;
+			text-align: center;
+			text-decoration: underline;
+		}
+	}
+	
+	.question-content-row {
+		padding-top: 0.4rem;
+		padding-bottom: 0.4rem;
+		.question-content {
+			text-align: center;
 		}
 	}
 }

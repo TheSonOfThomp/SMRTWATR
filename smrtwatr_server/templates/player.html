@@ -4,41 +4,8 @@
     {% include "global_head.html" %}
 
     <link rel="stylesheet" type="text/css" href="/static/css/game.css">
-
-    <script>
-    WebSocket.__swfLocation = "/static/WebSocketMain.swf";
-
-    function update_grid() {
-        $('#grid').load(location.pathname + '/grid');
-    }
-
-    $(document).ready(function() {
-        ws = new WebSocket('ws://' + location.hostname + ':' + location.port + location.pathname + '/ws')
-
-        gws = new WebSocket('ws://' + location.hostname + ':' + location.port + '/game/ws')
-
-        ws.onmessage = function(msg) {
-            update_grid();
-            console.log(msg.data)
-            $('#messages').prepend(msg.data + '<br/>');
-            // toast new players
-        }
-
-        gws.onmessage = function(msg) {
-        	if (msg.data.lastIndexOf('Update', 0) === 0) {
-
-                // toast other players' scores
-        		$('#messages').prepend(msg.data + '<br/>');
-        	}
-        	console.log(msg.data)
-        }
-
-        update_grid();
-    });
-    $('#radialTimer').load(function(){
-        resetTimer(15);
-    });
-    </script>
+    <script type="text/javascript" src="/static/js/game.js"></script>
+    
 </head>
 
 <body>

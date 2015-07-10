@@ -1,4 +1,4 @@
-{% if len(openPlayers) > 0 %}
+{% if (len(openPlayers) > 0)%}
 <a class="playdrop" href="/play/er{{openPlayers[0]}}">
 <script type="text/javascript">
 	console.log('Will be Player ' + {{openPlayers[0]}})

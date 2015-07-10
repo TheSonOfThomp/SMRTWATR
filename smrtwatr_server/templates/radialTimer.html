@@ -1,5 +1,5 @@
 <div id="radialTimer">
-<div class="timerTitle">{{ timerTitle }}</div>
+<div class="timerTitle">{% if timerTitle %}{{ timerTitle }}{% end %}</div>
 <svg class="timer" viewBox="0 0 34 34">
 	<g>	
   	<circle class="circle" cx="15" cy="17" r="15.9" transform="rotate(-90 16 16)"></circle>

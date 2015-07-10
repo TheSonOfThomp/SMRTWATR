@@ -42,21 +42,27 @@
     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 </div>
 <!-- /end DID YOU KNOW -->
+
+
 <!-- RADIAL TIMER OR PLEASE WAIT -->
 <div class="row timer-row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         {% if len(player.game.players) > 1 %}
             {% if len(player.game.players) < 4 %}
-                <span>Wait for more players, or</span>
+                <span>Wait for more players, or"</span>
             {% else %}
                 {% set timerTitle = "Game starting in..." %}
                 {% include "radialTimer.html" %}
+                <script type="text/javascript"> 
+                    resetTimer(5);
+                </script>
             {% end %}
         {% else %}
             <span>Waiting for more players...</span>
         {% end %}
     </div>
 </div>
+
 <div class="row play-now-row">
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">

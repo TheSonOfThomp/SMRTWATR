@@ -12,23 +12,6 @@ html {
 		color: $smrt_blue;
 		background-color: $smrt_bg;
 
-		.btn-round {
-			border-radius: 26px;
-		}
-		.btn-lblue {
-			color: $smrt_white;
-			background-color: $smrt_light_blue;
-		}
-		.btn-lblue:hover, .btn-lblue:active {
-			color: $smrt_white;
-			background-color: $smrt_light_blue;
-			border: 1px solid $smrt_blue;
-		}
-		.btn-teal {
-			color: $smrt_white;
-			background-color: $smrt_teal;
-		}
-
 		.header-row {
 			margin: 0;
 			.header {
@@ -135,6 +118,43 @@ html {
 		}
 		.empty_player {
 			color: $empty_player;
+		}
+
+		/* QUIZ COLOURS */
+
+		.rightAnswer {
+			color: $ans_correct;
+			background-color: $ans_correct_bg;
+		}
+		.wrongAnswer {
+			color: $ans_incorrect;
+			background-color: $ans_incorrect_bg;
+		}
+
+		/* HELPER CLASSES */
+		.btn-round {
+			border-radius: 26px;
+		}
+		.btn-lblue {
+			color: $smrt_white;
+			background-color: $smrt_light_blue;
+		}
+		.btn-lblue:hover, .btn-lblue:active {
+			color: $smrt_white;
+			background-color: $smrt_light_blue;
+			border: 1px solid $smrt_blue;
+		}
+		.btn-teal {
+			color: $smrt_white;
+			background-color: $smrt_teal;
+		}
+
+		.fix-to-bottom {
+			position: fixed;
+			bottom: 25px;
+			left: 0;
+			right: 0;
+			margin: auto;
 		}
 	}
 }

@@ -13,7 +13,7 @@ from itertools import cycle
 loader = tornado.template.Loader(os.path.join(os.path.join(os.path.realpath(__file__) + '/../'), 'templates'))
 
 questions = [
-    {'q': 'Best Taylor Swift song?', 'a': ['Our Song', 'Red', 'Teardrops on My Guitar', 'Speak Now']},
+    {'q': 'What is the best Taylor Swift song?', 'a': ['Our Song', 'Red', 'Teardrops on My Guitar', 'Speak Now']},
     {'q': 'Best Female Canadian Soccer Player?', 'a': ['Tancredi', 'Chapman', 'Schmidt', 'Fleming']},
     {'q': 'Best Season?', 'a': ['Fall', 'Winter', 'Spring', 'Summer']}
 ]

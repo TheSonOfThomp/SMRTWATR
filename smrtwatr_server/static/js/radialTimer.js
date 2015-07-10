@@ -67,3 +67,11 @@ function resetTimer(time){
     killTimer();
   setTimer(time);
 }
+
+function hideTimer(){
+  $('.timer').hide();
+}
+
+function showTimer(){
+  $('.timer').show();
+}
