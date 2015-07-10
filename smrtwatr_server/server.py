@@ -150,6 +150,13 @@ class PlayerWebSocket(tornado.websocket.WebSocketHandler):
         if self.player.callbacks.get(message, None):
             self.player.callbacks[message]()
 
+    def on_close(self):
+        game.players.remove(self.player)
+        game.openPlayers.append(self.player.symbol)
+        game.openPlayers.sort()
+        game.broadcast("Player Removed")
+        gamebroadcast("Player Removed")
+
 class GameWebSocket(tornado.websocket.WebSocketHandler):
     waiters = set()
 
