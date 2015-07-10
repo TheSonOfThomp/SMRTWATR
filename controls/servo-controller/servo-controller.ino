@@ -4,6 +4,9 @@
 #include <Servo.h> 
 
 const int BUFFER_LEN = 6;
+const int SERVO_DELAY = 25; // ms per degree
+const int SERVO_LL = 10;
+const int SERVO_RL = 170;
 char instr_buff[BUFFER_LEN];
 int DISCRETE_JET_HEIGHTS[4] = {600, 1100, 2500, 4095}; // discrete heights to be used during quiz mode
 
@@ -16,6 +19,8 @@ int jet_pins[5] = {23, 22, 20, 17, 16};
 // bottom-left, top-left, top-right, bottom-right (ccw)
 Servo servo[4];
 int servo_pins[4] = {3, 4, 6, 9};
+int servo_pos[4] = {0, 0, 0, 0};
+bool servo_sweep[4] = {0, 0 , 0, 0}; // 0 = cw, 1 = ccw
 
 void setup() { 
   Serial.begin(9600);
@@ -52,6 +57,10 @@ void routine_setup() {
   switch (instr_buff[1]) {
     case '1':
        set_discrete_pump_heights();
+       // place servos at leftmost edge
+       for (int ii=0; ii<4; ii++) {
+          servo[ii].write(10); 
+       }
        break;
     case '2':
        set_discrete_pump_heights();
@@ -65,6 +74,29 @@ void routine_setup() {
   }
 }
 
+void routine() {
+  switch (instr_buff[1]) {
+    case '1':
+    break;
+    case '2':
+    break;
+    case '3':
+    break;
+    case '4':
+    break;
+    case '5':
+    break;
+  }
+}
+
+void zero_servos() {
+  for (int ii = 0; ii<4; ii++)  {
+    if (servo_sweep[ii] > SERVO_LL) {
+      
+    }
+  }
+}
+
 void set_discrete_pump_heights() {
   for (int ii = 0; ii < 4; ii++) {
     jet_height[ii] = DISCRETE_JET_HEIGHTS[instr_buff[ii + 2] - '0'];
@@ -72,4 +104,3 @@ void set_discrete_pump_heights() {
     analogWrite(jet_pins[ii], jet_height[ii]);
   }
 }
-
