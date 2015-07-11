@@ -1,6 +1,9 @@
 #include "Delay.h"
 #include <Servo.h> 
 
+const bool CW = true;
+const bool CCW = false;
+
 const int BUFFER_LEN = 6;
 const int SERVO_DELAY = 25; // ms per degree
 const int SERVO_LL = 10;
@@ -19,7 +22,7 @@ int jet_pins[5] = {23, 22, 20, 17, 16};
 Servo servo[4];
 int servo_pins[4] = {3, 4, 6, 9};
 int servo_pos[4] = {0, 0, 0, 0};
-bool servo_sweep[4] = {0, 0 , 0, 0}; // 0 = cw, 1 = ccw
+bool servo_sweep[4] = {CW, CW, CW, CW};
 
 void setup() { 
   Serial.begin(9600);
@@ -50,22 +53,32 @@ void loop() {
     } else {
       Serial.read();
     }
+    routine();
   }
 
 void routine_setup() {
   switch (instr_buff[1]) {
     case '1':
        set_discrete_pump_heights();
-       // place servos at leftmost edge
+       servo_sweep[0] = servo_sweep[1] = servo_sweep[2] = servo_sweep[3] = CW;
+       zero_servos();
        break;
     case '2':
+       servo_sweep[0] = servo_sweep[2] = CW;
+       servo_sweep[1] = servo_sweep[3] = CCW;
        set_discrete_pump_heights();
+       zero_servos();
        break;
     case '3':
       set_discrete_pump_heights();
+      servo_sweep[0] = servo_sweep[1] = servo_sweep[2] = servo_sweep[3] = CW;
+      zero_servos();
       break;
     case '4':
+      servo_sweep[0] = servo_sweep[2] = CW;
+      servo_sweep[1] = servo_sweep[3] = CCW;
       set_discrete_pump_heights();
+      zero_servos();
       break;         
   }
 }
@@ -73,15 +86,15 @@ void routine_setup() {
 void routine() {
   switch (instr_buff[1]) {
     case '1':
-    break;
     case '2':
-    break;
     case '3':
-    break;
     case '4':
-    break;
+      if (d.Timeout()) {
+        sweep_servos();
+        d.Delay(SERVO_DELAY);
+      }
     case '5':
-    break;
+      break;
   }
 }
 
@@ -96,16 +109,18 @@ void set_discrete_pump_heights() {
 
 void zero_servos() {
   // reset servos to either the left or right edge before the routine starts
+  // do this smoothely (as opposed to in a single sweep) to avoid whipping the jet around
   int zeroed_servos = 0;
   while (zeroed_servos < 4 && d.Timeout()) {
     for (int ii=0; ii<4; ii++)  {
-      if (servo_sweep[ii] && servo_pos[ii] > SERVO_LL) {
+      if (servo_sweep[ii]==CW && servo_pos[ii] > SERVO_LL) {
         servo_pos[ii] -= 1;
         servo[ii].write(servo_pos[ii]);
-      } else if (!servo_sweep[ii] && servo_pos[ii] < SERVO_RL) {
+      } else if (servo_sweep[ii]==CCW && servo_pos[ii] < SERVO_RL) {
         servo_pos[ii] += 1;
         servo[ii].write(servo_pos[ii]);
       } else {
+        servo_sweep[ii] = !servo_sweep[ii];
         zeroed_servos++;
       }
     }
@@ -114,8 +129,22 @@ void zero_servos() {
 }
 
 void sweep_servos() {
+  // sweep the servos back and forth based on the initial condition given in servo_sweep
   for (int ii=0; ii<4; ii++) {
-    if (servo_sweep[ii])
+    // reverse direction if necessary
+    if (servo_sweep[ii]==CW && servo_pos[ii] > SERVO_RL) {
+      servo_sweep[ii] = CCW;
+    }
+    if (servo_sweep[ii]==CCW && servo_pos[ii] < SERVO_LL) {
+      servo_sweep[ii] = CW;
+    }
+    // advance servos if necessary
+    if (servo_sweep[ii] == CW) {
+      servo_pos[ii] += 1;
+      servo[ii].write(servo_pos[ii]);
+    } else {
+      servo_pos[ii] -= 1;
+      servo[ii].write(servo_pos[ii]);
+    }
   }
 }
-
