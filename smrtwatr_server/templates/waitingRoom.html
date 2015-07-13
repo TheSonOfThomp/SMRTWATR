@@ -1,5 +1,5 @@
 <!-- PLAYER NAME -->
-<div class="row player-row">
+<div class="row player-row player-header">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div>You're in line as</div>
         <div class="player-name player_{{ player.symbol }}">
@@ -51,7 +51,7 @@
             {% if len(player.game.players) < 4 %}
                 <span>Wait for more players, or</span>
             {% else %}
-                {% set timerTitle = "Game starting in..." %}
+                {% set timerTitle = "Get Ready!" %}
                 {% include "radialTimer.html" %}
                 <script type="text/javascript"> 
                     resetTimer(5);

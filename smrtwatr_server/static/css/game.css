@@ -6,9 +6,7 @@ body {
   color: #1D4381;
   background-color: #F2F6FC;
   /* GLOBAL GAME STYLES */
-  /*  'DID YOU KNOW' PANEL */
-  /* WAITING ROOM */
-  /* QUIZ PLAY */ }
+  /*  'DID YOU KNOW' PANEL */ }
   body .other-players-row {
     text-align: center;
     background-color: #f2f2f2;
@@ -23,6 +21,13 @@ body {
     body .other-players-row .other-player:nth-child(2) {
       border-left: 1px solid #1D4381;
       border-right: 1px solid #1D4381; }
+  body .dyk-row {
+    padding: 0.4rem 0; }
+  body .timer-row {
+    padding: 0.6rem 0;
+    text-align: center; }
+  body .play-now-row {
+    padding: 0.4rem 0; }
   body .panel-dyk {
     text-align: center;
     margin-bottom: 0; }
@@ -36,49 +41,55 @@ body {
     padding: 0;
     margin: 0;
     text-align: center; }
-  body .player-row {
-    text-align: center;
-    margin-top: 1em; }
-    body .player-row .player-name {
-      font-size: 1.5rem; }
-    body .player-row .player-score {
-      font-size: 1.5rem; }
-  body .dyk-row {
-    padding: 0.4rem 0; }
-  body .timer-row {
-    padding: 0.6rem 0;
-    text-align: center; }
-  body .play-now-row {
-    padding: 0.4rem 0; }
-  body .question-header-row {
-    padding-top: 0.8rem;
-    padding-bottom: 0.4rem; }
-    body .question-header-row .question-header {
-      color: #19838E;
-      font-size: 1.5rem;
+  body .waiting-room, body .quiz-splash {
+    /* WAITING ROOM */ }
+    body .waiting-room .player-row, body .quiz-splash .player-row {
       text-align: center;
-      text-decoration: underline; }
-  body .question-content-row {
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem; }
-    body .question-content-row .question-content {
-      text-align: center; }
-  body .quiz-options {
-    border-top: 1px solid #1D4381;
-    border-bottom: 1px solid #1D4381;
-    /* ANSWER COLOURS */ }
-    body .quiz-options .option {
-      color: #1D4381;
-      background-color: #fafafa; }
-    body .quiz-options .option:hover {
-      color: #1D4381;
-      background-color: #fafafa; }
-    body .quiz-options .option:focus, body .quiz-options .option:active {
-      color: #1D4381;
-      background-color: #D1DBE9; }
-    body .quiz-options .rightAnswer, body .quiz-options .rightAnswer:hover, body .quiz-options .rightAnswer:active, body .quiz-options .rightAnswer:focus {
-      background-color: #D6E8A4; }
-    body .quiz-options .wrongAnswer, body .quiz-options .wrongAnswer:hover, body .quiz-options .wrongAnswer:active, body .quiz-options .wrongAnswer:focus {
-      background-color: #D9C0BC; }
+      margin-top: 1em; }
+      body .waiting-room .player-row .player-name, body .quiz-splash .player-row .player-name {
+        font-size: 1.5rem; }
+      body .waiting-room .player-row .player-score, body .quiz-splash .player-row .player-score {
+        font-size: 1.5rem; }
+  body .quiz {
+    /* QUIZ PLAY */ }
+    body .quiz .question-header-row {
+      padding-top: 0.8rem;
+      padding-bottom: 0.4rem; }
+      body .quiz .question-header-row .question-header {
+        color: #19838E;
+        font-size: 1.5rem;
+        text-align: center;
+        text-decoration: underline; }
+    body .quiz .question-content-row {
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem; }
+      body .quiz .question-content-row .question-content {
+        text-align: center; }
+    body .quiz .quiz-options {
+      border-top: 1px solid #1D4381;
+      border-bottom: 1px solid #1D4381;
+      /* ANSWER COLOURS */ }
+      body .quiz .quiz-options .option {
+        color: #1D4381;
+        background-color: #fafafa; }
+      body .quiz .quiz-options .option:hover {
+        color: #1D4381;
+        background-color: #fafafa; }
+      body .quiz .quiz-options .option:focus, body .quiz .quiz-options .option:active {
+        color: #1D4381;
+        background-color: #D1DBE9; }
+      body .quiz .quiz-options .rightAnswer, body .quiz .quiz-options .rightAnswer:hover, body .quiz .quiz-options .rightAnswer:active, body .quiz .quiz-options .rightAnswer:focus {
+        background-color: #D6E8A4; }
+      body .quiz .quiz-options .wrongAnswer, body .quiz .quiz-options .wrongAnswer:hover, body .quiz .quiz-options .wrongAnswer:active, body .quiz .quiz-options .wrongAnswer:focus {
+        background-color: #D9C0BC; }
+    body .quiz .player-row {
+      text-align: center;
+      margin-top: 0.6em; }
+      body .quiz .player-row .player-name {
+        font-size: 1.2rem; }
+      body .quiz .player-row .player-score {
+        font-size: 1.2rem; }
+    body .quiz .timer-row {
+      padding-top: 0; }
 
 /*# sourceMappingURL=game.css.map */
