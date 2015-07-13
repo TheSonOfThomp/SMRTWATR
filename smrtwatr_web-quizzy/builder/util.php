@@ -31,14 +31,12 @@
 
 
   function addHider($id_name, $show_del = FALSE) {
-?>
-    <div class="hider hide" id="<?php echo $id_name;?>_hider">[Hide]</div>
-<?php
     if ($show_del) {
 ?>
     <div class="delete" id="<?php echo $id_name; ?>_del">[Delete]</div>
     <script type="text/javascript">addDeleter('<?php echo $id_name; ?>');</script>
 <?php } ?>
+  <div class="hider hide" id="<?php echo $id_name;?>_hider">[Hide]</div>
     <script type="text/javascript">
       $('#<?php echo $id_name; ?>_hider:first').click(function () {
         hide('<?php echo $id_name; ?>');
