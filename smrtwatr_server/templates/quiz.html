@@ -1,7 +1,7 @@
 <div class="row question-header-row">
   <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
   <div class="question-header col-xs-10 col-sm-10 col-md-10 col-lg-10">
-    Question #
+    Question {{ player.game.grid['idx'] + 1 }}
   </div>
   <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 </div>
@@ -16,53 +16,51 @@
 
 
 <div class="list-group quiz-options">
-{% for answer in player.game.grid['a'] %}
 
-  <a type="button" class="list-group-item option" id="option_{{answer.replace(" ", "_")}}" href="#" onclick="ws.send('{{ player.remember(player.make_guess, answer) }}');return false;">
+{% for a, answer in enumerate(player.game.grid['opt']) %}
+
+  <a type="button" class="list-group-item option" id="option_{{a}}" href="#" onclick="ws.send('{{ player.remember(player.make_guess, a) }}');return false;">
   {{answer}}
   </a>
+
+  {% if player.correct == True %}
+    <!-- Hide all false answers -->
+    <script type="text/javascript">
+      {% if a == player.game.rightAnswer %}
+          $('#option_{{a}}').addClass('rightAnswer');
+      {% else %}
+        $('#option_{{a}}').slideUp(optSlideTime);
+      {% end %}
+        // and remove interactivity from these elements
+        $('.option').attr('type', '').attr('onclick', '').unbind();
+    </script>
+
+  {% elif player.correct == False %}
+    <!-- Hide all other answers -->
+    <script type="text/javascript">
+      {% if a == player.game.rightAnswer %}
+            $('#option_{{a}}').addClass('rightAnswer');
+        {% elif a == player.guess %}
+            $('#option_{{a}}').addClass('wrongAnswer');
+        {% else %}
+          $('#option_{{a}}').slideUp(optSlideTime);
+      {% end %}
+        // and remove interactivity from these elements
+        $('.option').attr('type', '').attr('onclick', '').unbind();
+    </script>
+  {% else %}
+  {% end %}
+
 {% end %}
 </div>
 
-{% if player.correct == True %}
-  <!-- Hide all false answers -->
-  <script type="text/javascript">
-  {% for answer in player.game.grid['a'] %}
-    {% if answer == player.game.rightAnswer %}
-        $('#option_{{answer.replace(" ", "_")}}').addClass('rightAnswer');
-    {% else %}
-      $('#option_{{answer.replace(" ", "_")}}').slideUp(optSlideTime);
-    {% end %}
-      // and remove interactivity from these elements
-      $('.option').attr('type', '').attr('onclick', '').unbind();
-  {% end %}
-  </script>
-
-{% elif player.correct == False %}
-  <!-- Hide all other answers -->
-  <script type="text/javascript">
-  {% for answer in player.game.grid['a'] %}
-    {% if answer == player.game.rightAnswer %}
-          $('#option_{{answer.replace(" ", "_")}}').addClass('rightAnswer');
-      {% elif answer == player.guess %}
-          $('#option_{{answer.replace(" ", "_")}}').addClass('wrongAnswer');
-      {% else %}
-        $('#option_{{answer.replace(" ", "_")}}').slideUp(optSlideTime);
-    {% end %}
-      // and remove interactivity from these elements
-      $('.option').attr('type', '').attr('onclick', '').unbind();
-  {% end %}
-  </script>
-{% else %}
-{% end %}
-
-{% if player.guess or player.correct == False %}
+{% if player.correct == True or player.correct == False %}
 <!-- DID YOU KNOW -->
 <div class="row dyk-row simple-dyk-row">
     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
         <div class="simple-dyk" style="display: none;">
-          Bacon ipsum dolor amet hamburger boudin meatball kielbasa beef ribs pork chop tri-tip.
+          {{ player.game.grid['dyk'] }}
         </div>
     </div>
     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>

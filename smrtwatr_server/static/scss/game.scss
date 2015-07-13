@@ -25,6 +25,19 @@ body {
 		}
 	}
 
+	.dyk-row {
+		padding: 0.4rem 0;
+	}
+
+	.timer-row {
+		padding: 0.6rem 0;
+		text-align: center;
+	}
+
+	.play-now-row {
+		padding: 0.4rem 0;
+	}
+
 	/*  'DID YOU KNOW' PANEL */
 	.panel-dyk {
 		text-align: center;
@@ -46,78 +59,86 @@ body {
 		text-align: center;
 	}
 
-	/* WAITING ROOM */
-	.player-row {
-		text-align: center;
-		margin-top: 1em;
-
-		.player-name {
-			font-size: 1.5rem;
-		}
-
-		.player-score {
-			font-size: 1.5rem;
-		}
-	}
-
-	.dyk-row {
-		padding: 0.4rem 0;
-	}
-
-	.timer-row {
-		padding: 0.6rem 0;
-		text-align: center;
-	}
-
-	.play-now-row {
-		padding: 0.4rem 0;
-	}
-
-
-	/* QUIZ PLAY */
-	.question-header-row {
-		padding-top: 0.8rem;
-		padding-bottom: 0.4rem;
-		.question-header {
-			color: $smrt_teal;
-			font-size: 1.5rem;
+	.waiting-room, .quiz-splash {
+		/* WAITING ROOM */
+		.player-row {
 			text-align: center;
-			text-decoration: underline;
-		}
-	}
-	
-	.question-content-row {
-		padding-top: 0.4rem;
-		padding-bottom: 0.4rem;
-		.question-content {
-			text-align: center;
+			margin-top: 1em;
+
+			.player-name {
+				font-size: 1.5rem;
+			}
+
+			.player-score {
+				font-size: 1.5rem;
+			}
 		}
 	}
 
-	.quiz-options {
-		border-top: 1px solid $smrt_blue;
-        border-bottom: 1px solid $smrt_blue;
+
+	.quiz {
+		/* QUIZ PLAY */
+		.question-header-row {
+			padding-top: 0.8rem;
+			padding-bottom: 0.4rem;
+			.question-header {
+				color: $smrt_teal;
+				font-size: 1.5rem;
+				text-align: center;
+				text-decoration: underline;
+			}
+		}
 		
-		.option {
-			color: $smrt_blue;
-			background-color: $smrt_white;
-		}
-		.option:hover{
-			color: $smrt_blue;
-			background-color: $smrt_white;
-		}
-		.option:focus, .option:active {
-			color: $smrt_blue;
-			background-color: $smrt_blue_fade;
+		.question-content-row {
+			padding-top: 0.4rem;
+			padding-bottom: 0.4rem;
+			.question-content {
+				text-align: center;
+			}
 		}
 
-		/* ANSWER COLOURS */
+		.quiz-options {
+			border-top: 1px solid $smrt_blue;
+	        border-bottom: 1px solid $smrt_blue;
+			
+			.option {
+				color: $smrt_blue;
+				background-color: $smrt_white;
+			}
+			.option:hover{
+				color: $smrt_blue;
+				background-color: $smrt_white;
+			}
+			.option:focus, .option:active {
+				color: $smrt_blue;
+				background-color: $smrt_blue_fade;
+			}
 
-		.rightAnswer, .rightAnswer:hover, .rightAnswer:active, .rightAnswer:focus {
-			background-color: $ans_correct_bg;
+			/* ANSWER COLOURS */
+
+			.rightAnswer, .rightAnswer:hover, .rightAnswer:active, .rightAnswer:focus {
+				background-color: $ans_correct_bg;
+			}
+			.wrongAnswer, .wrongAnswer:hover, .wrongAnswer:active, .wrongAnswer:focus {
+				background-color: $ans_incorrect_bg;
+			}
 		}
-		.wrongAnswer, .wrongAnswer:hover, .wrongAnswer:active, .wrongAnswer:focus {
-			background-color: $ans_incorrect_bg;
+
+		.player-row {
+			text-align: center;
+			margin-top: 0.6em;
+
+			.player-name {
+				font-size: 1.2rem;
+			}
+
+			.player-score {
+				font-size: 1.2rem;
+			}
+		}
+
+		.timer-row {
+			padding-top: 0;
 		}
 	}
 }

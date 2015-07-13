@@ -54,10 +54,10 @@
       </ul>
       <br/>
       <div class="group_title">Did You Know: <textarea rows="3" cols="82" class="hval quest_dyk"><?php echo $quest_dyk; ?></textarea></div>
-      <div class="hider_all hide_all" id="hide_all_<?php echo $main_id; ?>_opts">[Hide All Options]</div>
-      <div class="sub_sect button" style="width:275px;">
+      <!-- <div class="hider_all hide_all" id="hide_all_<?php echo $main_id; ?>_opts">[Hide All Options]</div> -->
+<!--       <div class="sub_sect button" style="width:275px;">
         <h2 style="cursor:pointer;" id="<?php echo $main_id; ?>_opt_add">Add another option</h2>
-      </div>
+      </div> -->
       <script type="text/javascript">
         $('#<?php echo $main_id; ?>_opt_add').click(function () {
             addOpt(<?php echo $quest_no; ?>);

@@ -10,19 +10,22 @@ import traceback
 from threading import Timer
 from itertools import cycle
 
+import xml.etree.ElementTree as ElementTree #AdamT
+from random import randint
+
 loader = tornado.template.Loader(os.path.join(os.path.join(os.path.realpath(__file__) + '/../'), 'templates'))
 
-questions = [
-    {'q': 'What is the best Taylor Swift song?', 'a': ['Our Song', 'Red', 'Teardrops on My Guitar', 'Speak Now']},
-    {'q': 'Best Female Canadian Soccer Player?', 'a': ['Tancredi', 'Chapman', 'Schmidt', 'Fleming']},
-    {'q': 'Best Season?', 'a': ['Fall', 'Winter', 'Spring', 'Summer']}
-]
+# questions = [
+#     {'q': 'What is the best Taylor Swift song?', 'a': ['Our Song', 'Red', 'Teardrops on My Guitar', 'Speak Now']},
+#     {'q': 'Best Female Canadian Soccer Player?', 'a': ['Tancredi', 'Chapman', 'Schmidt', 'Fleming']},
+#     {'q': 'Best Season?', 'a': ['Fall', 'Winter', 'Spring', 'Summer']}
+# ]
 
-answers = [
-    'Speak Now',
-    'Chapman',
-    'Fall'
-]
+# answers = [
+#     'Speak Now',
+#     'Chapman',
+#     'Fall'
+# ]
     
 def gamebroadcast(message):
     for waiter in GameWebSocket.waiters:
@@ -30,6 +33,18 @@ def gamebroadcast(message):
             waiter.write_message(message)
         except:
             logging.error("Error sending message", exc_info=True)
+
+#helper function
+def getRandomIndexes(length):
+    qIdx = [None]*3 # which question index to use 
+
+    for i in range(len(qIdx)):
+        rI = randint(0,length - 1) #first we get a random number within the range of our total questions
+        while (rI in qIdx[0:i]): # check if that number is in the list of indexes already
+            rI = randint(0,length) 
+        # once we find a value that's not in the array, we assign it
+        qIdx[i] = rI
+    return qIdx
 
 class Game(object):
     def __init__(self):
@@ -39,6 +54,34 @@ class Game(object):
         self.openPlayers = ["1", "2", "3", "4"]
         self.grid = None
         self.rightAnswer = ''
+        self.questions = [None] * 3 # null array with length 3 
+
+    def getQuestions(self):
+        quizXML = ElementTree.parse('testQuiz.xml').getroot()
+        quiz = quizXML.find('quiz')
+        qList = quiz.findall('question') # List of questions
+       
+        qIdx = getRandomIndexes(len(quiz.findall('question'))) # Random questions numbers
+
+        # for i, quest in enumerate(qList): # Use to iterate thru all questions
+        for idx in range(len(qIdx)):
+
+            question = qList[qIdx[idx]].find('text').text
+            dyk = qList[qIdx[idx]].find('dyk').text
+            option = [None] * 4
+            answer = -1
+            for j, opt in enumerate(qList[qIdx[idx]].findall('option')):
+                option[j] = opt.find('text').text
+                if opt.find('score').text:
+                    answer = j
+
+            self.questions[idx] = {
+            'idx': idx,
+            'q': question,
+            'opt': option,
+            'ans': answer,
+            'dyk' : dyk
+            }
 
     def add_player(self, player):
         self.players.append(player)
@@ -55,8 +98,8 @@ class Game(object):
             player.correct = None
             player.guess = ''
         i = args[0]
-        self.rightAnswer = answers[i]
-        self.grid = questions[i]
+        self.grid = self.questions[i]
+        self.rightAnswer = self.questions[i]['ans'] #index of question  
         self.broadcast('new question')
 
     def end_question(self):
@@ -65,6 +108,7 @@ class Game(object):
                 self.make_guess(player, '')
 
     def start_game(self):
+        self.getQuestions()
         self.winner = None
         t0 = Timer(0.0, self.quiz_splash)
         t1 = Timer(5.0, self.start_question, [0])
@@ -82,9 +126,9 @@ class Game(object):
         t5.start()
         t6.start()
         t7.start()
-        
 
     def make_guess(self, player, answer):
+        #answer should be the index
         player.guess = answer
         if answer == self.rightAnswer :
             player.correct = True
@@ -95,7 +139,7 @@ class Game(object):
             player.correct = False
             gamebroadcast('Update: Player ' + player.symbol + ' got it wrong and remains at ' + str(player.score) + ' points')
             player.socket.write_message('You Are Wrong!')
-            player.socket.write_message('The right answer was ' + self.rightAnswer)
+            player.socket.write_message('The right answer was ' + str(self.rightAnswer))
 
     def broadcast(self, message):
         try:

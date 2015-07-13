@@ -74,33 +74,33 @@ XML;
     if(isset($_POST['data_desc']))
       $desc->addChild('text', getv('data_desc'));
 
-    addImg('quiz_desc', $desc);
+    //addImg('quiz_desc', $desc);
   }
 
 
 
   //grade range
-  $grading = $quiz->addChild('grading');
-  $i = 0;
-  $cond = 'gr0_start';
-  while(gotv($cond)){
-    $grsel = 'gr'.$i;
+  // $grading = $quiz->addChild('grading');
+  // $i = 0;
+  // $cond = 'gr0_start';
+  // while(gotv($cond)){
+  //   $grsel = 'gr'.$i;
 
-    if(getv($grsel.'_start') != '')
-    {
-      $range = $grading->addChild('range');
-      $range->addAttribute('start', getv($grsel.'_start'));
-      $range->addAttribute('end', getv($grsel.'_end'));
-      $range->addChild('grade', getv($grsel.'_grade'));
-      $range->addChild('rank', getv($grsel.'_txt'));
+  //   if(getv($grsel.'_start') != '')
+  //   {
+  //     $range = $grading->addChild('range');
+  //     $range->addAttribute('start', getv($grsel.'_start'));
+  //     $range->addAttribute('end', getv($grsel.'_end'));
+  //     $range->addChild('grade', getv($grsel.'_grade'));
+  //     $range->addChild('rank', getv($grsel.'_txt'));
 
-      addImg($grsel, $range);
-    }
+  //     //addImg($grsel, $range);
+  //   }
 
-    //move on if there is another grade to process
-    ++$i;
-    $cond = 'gr'.$i.'_start';
-  }
+  //   //move on if there is another grade to process
+  //   ++$i;
+  //   $cond = 'gr'.$i.'_start';
+  // }
 
 
 
@@ -126,7 +126,7 @@ XML;
           break;
       }
       $quest->addAttribute('type', $type);
-      addImg($qsel, $quest);
+      //addImg($qsel, $quest);
 
 
       //Iterate thru options
@@ -141,12 +141,12 @@ XML;
           $opt = $quest->addChild('option');
           $opt->addChild('text', getv($osel.'_txt'));
           $opt->addChild('score', getv($osel.'_score'));
-          addImg($osel, $opt);
+          //addImg($osel, $opt);
 
           //explanation
-          $exp = $opt->addChild('explanation');
-          $exp->addChild('text', getv($osel.'_exp'));
-          addImg($osel.'_exp', $exp);
+          // $exp = $opt->addChild('explanation');
+          // $exp->addChild('text', getv($osel.'_exp'));
+          // addImg($osel.'_exp', $exp);
         }
 
         //move on if there's another

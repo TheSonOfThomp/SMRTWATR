@@ -1,1 +1,49 @@
-<h1>STARTING QUIZ</h1>
+<div class="row">
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		<img src="/static/img/large_header_logo.png" width="100%;">
+	</div>
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+</div>
+
+<!-- PLAYER NAME -->
+<div class="row player-row player-header">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div>Playing as</div>
+        <div class="player-name player_{{ player.symbol }}">
+            <span class="player-dot"></span>PLΛYER {{ player.symbol }}
+        </div>
+    </div>
+</div>
+
+<!-- OTHER PLAYERS -->
+<div class="small-title"><h6>With:</h6></div>
+<div class="row other-players-row">
+    {% for otherPlayer in player.game.players %}
+        {% if otherPlayer.symbol != player.symbol %}
+            <div class="other-player player_{{otherPlayer.symbol}} col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                PLΛYER {{otherPlayer.symbol}}
+            </div>
+        {% end %}
+    {% end %}
+    {% if len(player.game.players) < 4 %}
+        {% for x in range(4 - len(player.game.players)) %}
+            <div class="other-player empty_player col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                open...
+            </div>
+        {% end %}
+    {% end %}
+</div>
+
+<!-- TIMER -->
+<div class="fix-to-bottom">
+<div class="row timer-row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {% set timerTitle = "Game starting in..." %}
+        {% include "radialTimer.html" %}
+        <script type="text/javascript"> 
+            resetTimer(5);
+        </script>
+    </div>
+</div>
+</div>
