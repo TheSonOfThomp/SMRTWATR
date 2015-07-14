@@ -99,8 +99,9 @@ class Game(object):
             player.guess = ''
         i = args[0]
         self.grid = self.questions[i]
-        self.rightAnswer = self.questions[i]['ans'] #index of question  
-        self.broadcast('new question')
+        self.rightAnswer = self.questions[i]['ans'] #index of question
+        self.broadcast('new question')  
+        gamebroadcast('new question')
 
     def end_question(self):
         for player in self.players:
@@ -160,7 +161,9 @@ class Game(object):
                 winner = 'Player' + player.symbol
                 score = player.score
             player.score = 0
+            del(player.correct)
         self.broadcast('Winner is ' + winner)
+        gamebroadcast('Winner is ' + winner)
         self.grid = None
 
 class Player(object):
@@ -259,21 +262,29 @@ application = tornado.web.Application(
                                     'template': 'player.html'}),
      (r'/play/er1/grid', PlayerHandler,   {'player': player1,
                                     'template': 'grid.html'}),
+     (r'/play/er1/quizbtm', PlayerHandler, {'player': player1,
+                                    'template': 'quiz_bottom.html'}),
      (r'/play/er1/ws',   PlayerWebSocket, {'player': player1}),
      (r'/play/er2',      PlayerHandler,   {'player': player2,
                                     'template': 'player.html'}),
      (r'/play/er2/grid', PlayerHandler,   {'player': player2,
                                     'template': 'grid.html'}),
+     (r'/play/er2/quizbtm', PlayerHandler, {'player': player2,
+                                    'template': 'quiz_bottom.html'}),
      (r'/play/er2/ws',   PlayerWebSocket, {'player': player2}),
      (r'/play/er3',      PlayerHandler,   {'player': player3,
                                     'template': 'player.html'}),
      (r'/play/er3/grid', PlayerHandler,   {'player': player3,
                                     'template': 'grid.html'}),
+     (r'/play/er3/quizbtm', PlayerHandler, {'player': player3,
+                                    'template': 'quiz_bottom.html'}),
      (r'/play/er3/ws',   PlayerWebSocket, {'player': player3}),
      (r'/play/er4',      PlayerHandler,   {'player': player4,
                                     'template': 'player.html'}),
      (r'/play/er4/grid', PlayerHandler,   {'player': player4,
                                     'template': 'grid.html'}),
+     (r'/play/er4/quizbtm', PlayerHandler, {'player': player4,
+                                    'template': 'quiz_bottom.html'}),
      (r'/play/er4/ws',   PlayerWebSocket, {'player': player4})
     ],
     template_path=os.path.join(os.path.dirname(__file__), "templates"),
