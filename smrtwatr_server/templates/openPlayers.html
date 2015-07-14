@@ -1,11 +1,31 @@
-{% if (len(openPlayers) > 0)%}
-<a class="playdrop" href="/play/er{{openPlayers[0]}}">
-<script type="text/javascript">
-	console.log('Will be Player ' + {{openPlayers[0]}})
-</script>
-{% else %}
-<a class="playdrop full">
-{% end %}
+<div class="row play-row">
 
-	<img src="/static/img/play.png">
-</a>
+	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+	
+	<div class="play col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	{% if (len(openPlayers) > 0)%}
+		<a class="playdrop" href="/play/er{{openPlayers[0]}}">
+			<script type="text/javascript">
+				console.log('Will be Player ' + {{openPlayers[0]}})
+			</script>
+	{% else %}
+		<a class="playdrop full" href=""> 
+	{% end %}
+			<img src="/static/img/play.png">
+		</a>
+	</div>
+
+	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+
+</div>
+
+{% if (len(openPlayers) > 0)%}
+{% else %}
+	<div class="row">
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 game-full">
+			The game is currently full! Please  wait
+		</div>
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+	</div>
+{% end %}

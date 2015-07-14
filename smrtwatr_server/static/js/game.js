@@ -26,8 +26,6 @@ $(document).ready(function() {
     gws.onmessage = function(msg) {
         console.log('gws: ' + msg.data);
     	//if (msg.data.lastIndexOf('Update', 0) === 0) {
-            
-            //update_grid();
             update_quizbtm();
     		parse_msg(msg)
             // toast other players' scores
@@ -38,6 +36,8 @@ $(document).ready(function() {
 
     update_grid();
     update_quizbtm();
+
+    $('#radialTimer').hide();
 });
 
 function parse_msg(msg) {

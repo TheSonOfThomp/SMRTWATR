@@ -1,6 +1,5 @@
 {% if hasattr(player, 'correct') %}
 <!-- FIXED TO BOTTOM -->
-<!-- <div class="fix-to-bottom"> -->
   <!-- PLAYER NAME & SCORE -->
   <div class="row player-row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -35,16 +34,10 @@
           {% end %}
       {% end %}
   </div>
-
+  <script type="text/javascript">
+      killTimer();
+      $('#radialTimer').hide();
+  </script>
   {% else %}
-  <!-- TIMER -->
-  <div class="row timer-row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        {% set timerTitle = "" %}
-        {% include "radialTimer.html" %}
-      </div>
-  </div>
-  <script type="text/javascript"> resetTimer(15); </script>
   {% end %}
-<!-- </div> -->
 {% end %}

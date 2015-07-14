@@ -24,7 +24,6 @@ body {
   body .dyk-row {
     padding: 0.4rem 0; }
   body .timer-row {
-    padding: 0.6rem 0;
     text-align: center; }
   body .play-now-row {
     padding: 0.4rem 0; }
@@ -82,14 +81,14 @@ body {
         background-color: #D6E8A4; }
       body .quiz .quiz-options .wrongAnswer, body .quiz .quiz-options .wrongAnswer:hover, body .quiz .quiz-options .wrongAnswer:active, body .quiz .quiz-options .wrongAnswer:focus {
         background-color: #D9C0BC; }
-    body .quiz .player-row {
-      text-align: center;
-      margin-top: 0.6em; }
-      body .quiz .player-row .player-name {
-        font-size: 1.2rem; }
-      body .quiz .player-row .player-score {
-        font-size: 1.2rem; }
     body .quiz .timer-row {
       padding-top: 0; }
+  body #quizbtm .player-row {
+    text-align: center;
+    margin-top: 0.6em; }
+    body #quizbtm .player-row .player-name {
+      font-size: 1.2rem; }
+    body #quizbtm .player-row .player-score {
+      font-size: 1.2rem; }
 
 /*# sourceMappingURL=game.css.map */

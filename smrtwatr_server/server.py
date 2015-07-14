@@ -41,7 +41,7 @@ def getRandomIndexes(length):
     for i in range(len(qIdx)):
         rI = randint(0,length - 1) #first we get a random number within the range of our total questions
         while (rI in qIdx[0:i]): # check if that number is in the list of indexes already
-            rI = randint(0,length) 
+            rI = randint(0,length - 1) 
         # once we find a value that's not in the array, we assign it
         qIdx[i] = rI
     return qIdx

@@ -30,7 +30,7 @@ body {
 	}
 
 	.timer-row {
-		padding: 0.6rem 0;
+		//padding: 0.6rem 0;
 		text-align: center;
 	}
 
@@ -74,7 +74,6 @@ body {
 			}
 		}
 	}
-
 
 	.quiz {
 		/* QUIZ PLAY */
@@ -124,21 +123,23 @@ body {
 			}
 		}
 
+		.timer-row {
+			padding-top: 0;
+		}
+	}
+
+	#quizbtm {
 		.player-row {
 			text-align: center;
 			margin-top: 0.6em;
 
-			.player-name {
-				font-size: 1.2rem;
-			}
-
-			.player-score {
-				font-size: 1.2rem;
-			}
+		.player-name {
+			font-size: 1.2rem;
 		}
 
-		.timer-row {
-			padding-top: 0;
+		.player-score {
+			font-size: 1.2rem;
 		}
+	}
 	}
 }

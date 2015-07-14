@@ -12,14 +12,21 @@ body {
 			.full {
 				opacity: 50%;
 			}
-			.full:after {
-				content: 'The game is currently full'
-			}
 			img {
 				width: 100%;
 				height: auto;
 			}
 		}
+	}
+
+	.game-full {
+		text-align: center;
+		font-size: 1rem;
+		padding: 6px 4px;
+		background-color: $smrt_blue_transp;
+		color: $smrt_blue;
+		border-radius: 4px;
+		border: 1px solid $smrt_blue;
 	}
 	
 	.make-it-rain-row {

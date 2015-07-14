@@ -45,15 +45,14 @@
 
 
 <!-- RADIAL TIMER OR PLEASE WAIT -->
-<div class="row timer-row">
+<div class="row text-center">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         {% if len(player.game.players) > 1 %}
             {% if len(player.game.players) < 4 %}
                 <span>Wait for more players, or</span>
             {% else %}
-                {% set timerTitle = "Get Ready!" %}
-                {% include "radialTimer.html" %}
                 <script type="text/javascript"> 
+                    $('#radialTimer').show();
                     resetTimer(5);
                 </script>
             {% end %}

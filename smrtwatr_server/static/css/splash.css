@@ -9,11 +9,17 @@ body {
     margin: 0 0 2rem 0; }
     body .play-row .play .full {
       opacity: 50%; }
-    body .play-row .play .full:after {
-      content: "The game is currently full"; }
     body .play-row .play img {
       width: 100%;
       height: auto; }
+  body .game-full {
+    text-align: center;
+    font-size: 1rem;
+    padding: 6px 4px;
+    background-color: rgba(29, 67, 129, 0.2);
+    color: #1D4381;
+    border-radius: 4px;
+    border: 1px solid #1D4381; }
   body .make-it-rain-row {
     margin: 1.5rem 0; }
 

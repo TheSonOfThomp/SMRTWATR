@@ -13,8 +13,14 @@
         <div id="grid"></div>
         
         <!-- FIXED TO BOTTOM -->
-        <div id="quizbtm" class="fix-to-bottom">
-
+        
+        <div class="fix-to-bottom">
+        	<div id="quizbtm"></div>
+			<div class="row timer-row">
+		    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        			{% include "radialTimer.html" %}
+        		</div>
+        	</div>
         </div>
         <div id="messages" style="overflow: scroll; height: 300px; display: none;"></div>
     </div>

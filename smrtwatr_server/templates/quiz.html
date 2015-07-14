@@ -39,7 +39,7 @@
     <!-- Hide all other answers -->
     <script type="text/javascript">
       {% if a == player.game.rightAnswer %}
-            $('#option_{{a}}').addClass('rightAnswer');
+            //$('#option_{{a}}').addClass('rightAnswer');
         {% elif a == player.guess %}
             $('#option_{{a}}').addClass('wrongAnswer');
         {% else %}
@@ -66,8 +66,18 @@
     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 </div>
 <script type="text/javascript">
+  // Fade in the DYK
   setTimeout(function(){
     $('.simple-dyk').fadeIn(dykFadeTime);
   }, optSlideTime/1.5);
+
+  killTimer()
+  $('#radialTimer').hide();
+
+</script>
+{% else %}
+<script type="text/javascript">
+  $('#radialTimer').show();
+  resetTimer(15);
 </script>
 {% end %}
