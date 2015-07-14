@@ -55,6 +55,7 @@ class Game(object):
         self.grid = None
         self.rightAnswer = ''
         self.questions = [None] * 3 # null array with length 3 
+        self.qindex = 0
 
     def getQuestions(self):
         quizXML = ElementTree.parse('testQuiz.xml').getroot()
@@ -98,6 +99,7 @@ class Game(object):
             player.correct = None
             player.guess = ''
         i = args[0]
+        self.qindex = i + 1
         self.grid = self.questions[i]
         self.rightAnswer = self.questions[i]['ans'] #index of question
         self.broadcast('new question')  
@@ -134,11 +136,11 @@ class Game(object):
         if answer == self.rightAnswer :
             player.correct = True
             player.score += 10
-            gamebroadcast('Update: Player ' + player.symbol + ' got it right and now has ' + str(player.score) + ' points')
+            gamebroadcast('pi: q:' + str(self.qindex) + ' p:' + player.symbol + ' c:1')
             player.socket.write_message('You Are Right!')
         else :
             player.correct = False
-            gamebroadcast('Update: Player ' + player.symbol + ' got it wrong and remains at ' + str(player.score) + ' points')
+            gamebroadcast('pi: q:' + str(self.qindex) + ' p:' + player.symbol + ' c:0')
             player.socket.write_message('You Are Wrong!')
             player.socket.write_message('The right answer was ' + str(self.rightAnswer))
 
