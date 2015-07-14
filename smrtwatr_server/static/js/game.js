@@ -4,13 +4,19 @@ function update_grid() {
     $('#grid').load(location.pathname + '/grid');
 }
 
+function update_quizbtm() {
+    $('#quizbtm').load(location.pathname + '/quizbtm');
+}
+
 $(document).ready(function() {
     ws = new WebSocket('ws://' + location.hostname + ':' + location.port + location.pathname + '/ws')
 
     gws = new WebSocket('ws://' + location.hostname + ':' + location.port + '/game/ws')
 
     ws.onmessage = function(msg) {
+        
         update_grid();
+        //update_quizbtm();
         parse_msg(msg);
         console.log('ws: ' + msg.data);
         $('#messages').prepend(msg.data + '<br/>');
@@ -19,16 +25,19 @@ $(document).ready(function() {
 
     gws.onmessage = function(msg) {
         console.log('gws: ' + msg.data);
-    	if (msg.data.lastIndexOf('Update', 0) === 0) {
-            update_grid();
+    	//if (msg.data.lastIndexOf('Update', 0) === 0) {
+            
+            //update_grid();
+            update_quizbtm();
     		parse_msg(msg)
             // toast other players' scores
     		$('#messages').prepend(msg.data + '<br/>');
-    	}
+    	//}
     	console.log(msg);
     }
 
     update_grid();
+    update_quizbtm();
 });
 
 function parse_msg(msg) {
