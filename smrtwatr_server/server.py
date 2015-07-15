@@ -34,7 +34,7 @@ def gamebroadcast(message):
         except:
             logging.error("Error sending message", exc_info=True)
 
-#helper function
+# Pick random questions in the Quiz XML file
 def getRandomIndexes(length):
     qIdx = [None]*3 # which question index to use 
 

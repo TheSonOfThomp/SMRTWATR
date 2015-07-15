@@ -1,10 +1,11 @@
 <html>
 <head>
-	<title>SMRT WATR - Home</title>
+	<title>SMRT WΛTR - Home</title>
 	{% include "global_head.html" %}
 
 		<!-- Page specific style Styles -->
 	<link rel="stylesheet" type="text/css" href="/static/css/splash.css">
+	<script type="text/javascript" src="/static/js/splash.js"></script>
 
 	<script>
 	WebSocket.__swfLocation = "/static/WebSocketMain.swf";
@@ -40,6 +41,24 @@
 			<a class="btn btn-block btn-default btn-lblue btn-round" href="https://newsite.ewb.ca/donate" role="button">MΛKE IT RΛIN</a>
 		</div>
 		<div class="col-xs-2 col-sm-2 col-md-3 col-lg-4"></div>
+	</div>
+	<div class="row footer">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left" id="sign-in">
+			<a href="#" onclick="N_A_()">SIGN IN</a>
+		</div>
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center" id="scores">
+			<a href="#" onclick="N_A_()">SCORES</a>
+		</div>
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right" id="donate">
+			<a href="https://newsite.ewb.ca/donate" target="_blank">DONΛTE</a>
+		</div>
+	</div>
+	<div class="row" id="alert-row">
+		<!-- <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div> -->
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="alert alert-info" role="alert" id="alert"></div>
+		</div>
+		<!-- <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div> -->
 	</div>
 </div>
 </body>

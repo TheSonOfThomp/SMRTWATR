@@ -32,4 +32,37 @@ body {
 	.make-it-rain-row {
 		margin: 1.5rem 0;
 	}
+
+	.footer {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		margin: 0;
+		padding-bottom: 1rem;
+		font-weight: normal;
+
+		a {
+			padding: 0.4rem;
+
+		}
+
+		#sign-in a {
+			color: $smrt_blue;
+		}
+
+		#scores a {
+			color: $smrt_teal;
+		}
+
+		#donate a {
+			color: $smrt_yellow;
+			font-weight: bold;
+		}
+	}
+
+	#alert-row {
+		position: absolute;
+		bottom: 0;
+		padding: 0 15px;
+	}
 }
