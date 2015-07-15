@@ -11,7 +11,7 @@ if __name__ == "__main__":
 	#print cookie[6:]
 
 	websocket.enableTrace(True)
-	ws = websocket.create_connection("ws://localhost:9999/game/ws")
+	ws = websocket.create_connection("ws://smrtwatr:9999/game/ws")
 	print("connected")
 	
 	score = 0
