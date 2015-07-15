@@ -1,3 +1,4 @@
+
 #include "Delay.h"
 #include <Servo.h>
 
@@ -9,11 +10,12 @@ const int SERVO_DELAY = 25; // ms per degree
 const int SERVO_LL = 10;
 const int SERVO_RL = 170;
 char instr_buff[BUFFER_LEN];
+char prev_state;
 int DISCRETE_JET_HEIGHTS[4] = {600, 1100, 2500, 4095}; // discrete heights to be used during quiz mode
 NonBlockDelay d;
 
 // jet mapping is
-// center, bottom-left, top-left, top-right, bottom-right (ccw)
+// bottom-left, top-left, top-right, bottom-right (ccw), center
 int jet_height[5] = {0, 0, 0, 0, 0};
 int jet_pins[5] = {23, 22, 20, 17, 16};
 
@@ -38,9 +40,10 @@ void setup() {
 // 2. Routine mode, in which it executes a full display
 
 // data format
-// q [1-x] [0-3] [0-3] [0-3] [0-3]
+// q [1-x] [0-3] [0-3] [0-3] [0-3] 
+// q10234 question 1, player 1: 0 points player 2: 2 points ect.
 // q is the start bit
-// [0-x] is the routine. Routines 1, 2, 3, 4 are quiz questions
+// [0-x] is the routine. Routines 1, 2, 3 are quiz questions
 // [0-3] [0-3] [0-3] [0-3] [0-3] are the jet heights representing player's scores
 
 void loop() {
@@ -48,7 +51,13 @@ void loop() {
         if (Serial.available()>=BUFFER_LEN) {
             Serial.readBytes(instr_buff, BUFFER_LEN);
             Serial.println(instr_buff);
-            routine_setup(); // instructions have just been recieved, set any initial state here
+            if (instr_buff[1] != prev_state) {
+              routine_setup();
+              prev_state = instr_buff[1];
+            }
+            else {
+              quiz_score_routine();
+            }
         }
     } else {
         Serial.read();
@@ -75,10 +84,6 @@ void routine_setup() {
         zero_servos();
         break;
     case '4':
-        servo_sweep[0] = servo_sweep[2] = CW;
-        servo_sweep[1] = servo_sweep[3] = CCW;
-        set_discrete_pump_heights();
-        zero_servos();
         break;
     }
 }
@@ -88,15 +93,19 @@ void routine() {
     case '1':
     case '2':
     case '3':
-    case '4':
         if (d.Timeout()) {
             sweep_servos();
             d.Delay(SERVO_DELAY);
         }
         break;
-    case '5':
+    case '4':
         break;
     }
+}
+
+void quiz_score_routine() {
+    // called when the score changes
+    set_discrete_pump_heights();
 }
 
 void set_discrete_pump_heights() {
