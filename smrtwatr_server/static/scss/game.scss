@@ -133,13 +133,61 @@ body {
 			text-align: center;
 			margin-top: 0.6em;
 
-		.player-name {
-			font-size: 1.2rem;
-		}
+			.player-name {
+				font-size: 1.2rem;
+			}
 
-		.player-score {
-			font-size: 1.2rem;
+			.player-score {
+				font-size: 1.2rem;
+			}
 		}
-	}
 	}
 }
+body.end-game {
+	background-image: url('../img/smrt-bg-transp.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
+	#quizbtm {
+			display: none;
+	}
+
+	.quiz-end {
+		
+		.ctrl-splash{
+			
+		}
+
+		.ctrl {
+			
+		}
+
+		.end-splash {
+			.back-home-row {
+				padding: 0.4rem 0;
+				.btn {
+					background-color: $smrt_teal;
+					color: $smrt_white;
+					border: none;
+				}
+			}
+			.donate-row {
+				padding: 0.4rem 0;
+				.btn {
+					background-color: $smrt_yellow;
+					color: $smrt_white;
+					border: none;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+

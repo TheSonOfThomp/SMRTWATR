@@ -5,6 +5,10 @@ body {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+	font-size: 16px;
+	font-family: $font_stack;
+	color: $smrt_blue;
+	background-color: $smrt_bg;
 
 	.play-row {
 		margin: 0 0 2rem 0; 

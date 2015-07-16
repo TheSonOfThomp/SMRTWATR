@@ -17,17 +17,7 @@ from random import randint
 
 loader = tornado.template.Loader(os.path.join(os.path.join(os.path.realpath(__file__) + '/../'), 'templates'))
 
-# questions = [
-#     {'q': 'What is the best Taylor Swift song?', 'a': ['Our Song', 'Red', 'Teardrops on My Guitar', 'Speak Now']},
-#     {'q': 'Best Female Canadian Soccer Player?', 'a': ['Tancredi', 'Chapman', 'Schmidt', 'Fleming']},
-#     {'q': 'Best Season?', 'a': ['Fall', 'Winter', 'Spring', 'Summer']}
-# ]
-
-# answers = [
-#     'Speak Now',
-#     'Chapman',
-#     'Fall'
-# ]
+__DEBUG__ = 1
     
 def gamebroadcast(message):
     for waiter in GameWebSocket.waiters:
@@ -132,6 +122,22 @@ class Game(object):
             Timer(100.0, self.end_control),
             Timer(101.0, self.reset_game)
         ]
+
+        if __DEBUG__:
+            Timers = [
+                Timer(0.0, self.quiz_splash),
+                Timer(2.0, self.start_question, [0]),
+                Timer(4.0, self.end_question, [0]),
+                Timer(6.0, self.start_question, [1]),
+                Timer(8.0, self.end_question, [1]),
+                Timer(10.0, self.start_question, [2]),
+                Timer(12.0, self.end_question, [2]),
+                Timer(14.0, self.check_winner),
+                Timer(16.0, self.give_control),
+                Timer(26.0, self.end_control),
+                Timer(30.0, self.reset_game)
+            ]
+
         for i in range(len(Timers)):
             Timers[i].start()
 

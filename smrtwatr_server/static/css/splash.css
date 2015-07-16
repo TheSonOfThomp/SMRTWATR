@@ -3,7 +3,11 @@ body {
   background-image: url("../img/smrt-bg.jpg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  font-size: 16px;
+  font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
+  color: #1D4381;
+  background-color: #F2F6FC; }
   body .play-row {
     margin: 0 0 2rem 0; }
     body .play-row .play .full {

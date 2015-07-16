@@ -3,20 +3,17 @@
 	{% if player.game.grid == 'start'%}
 		<div class="quiz-splash">
 		{% include "start_game.html" %}
-		</div>
     {% elif player.game.grid == 'end' %}
         <div class="quiz-end">
         {% include "end_game.html" %}
-        </div>
 	{% else %}
     	<!-- if there is a game, we include the game template -->
     	<div class="quiz">
     	{% include "quiz.html" %}
-    	</div>
     {% end %}
 {% else %}
     <!-- otherwise, we show the waiting room -->
     <div class="waiting-room">
     {% include "waitingRoom.html" %}
-    </div>
 {% end %}
+</div>
