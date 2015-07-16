@@ -1,5 +1,4 @@
 /* Colours */
-/* Player Colours */
 body {
   background-image: url("../img/smrt-bg.jpg");
   background-size: cover;
@@ -30,7 +29,8 @@ body {
     padding-bottom: 1rem;
     font-weight: normal; }
     body .footer a {
-      padding: 0.4rem; }
+      padding: 0.4rem;
+      text-decoration: none; }
     body .footer #sign-in a {
       color: #1D4381; }
     body .footer #scores a {

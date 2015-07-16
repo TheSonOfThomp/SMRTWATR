@@ -145,5 +145,331 @@
       </option>
       <dyk>That's a lot of litres</dyk>
     </question>
+
+    <question type="">
+  <text>
+    What percentage of Earth's water is available for drinking?&#13;
+  </text>
+  <option>
+    <text>Less than 1%</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>About 10%</text>
+    <score/>
+  </option>
+  <option>
+    <text>About 5%</text>
+    <score/>
+  </option>
+  <option>
+    <text>About 15%</text>
+    <score/>
+  </option>
+  <dyk>
+      
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    What percentage of global freshwater is located in Canada?&#13;
+  </text>
+  <option>
+    <text>10%</text>
+    <score/>
+  </option>
+  <option>
+    <text>20%</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>40%</text>
+    <score/>
+  </option>
+  <option>
+    <text>50%</text>
+    <score/>
+  </option>
+  <dyk>
+      
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    How much water does the average Canadian use each day?&#13;
+  </text>
+  <option>
+    <text>100L</text>
+    <score/>
+  </option>
+  <option>
+    <text>200L</text>
+    <score/>
+  </option>
+  <option>
+    <text>300L</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>400L</text>
+    <score/>
+  </option>
+  <dyk>
+      
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    What accounts for 35% of indoor water use?&#13;
+  </text>
+  <option>
+    <text>Shower</text>
+    <score/>
+  </option>
+  <option>
+    <text>Dishwasher</text>
+    <score/>
+  </option>
+  <option>
+    <text>Toilet</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>Laundry Machine</text>
+    <score/>
+  </option>
+  <dyk>
+      
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    How much of an iceberg sits underwater?&#13;
+  </text>
+  <option>
+    <text>75%</text>
+    <score/>
+  </option>
+  <option>
+    <text>80%</text>
+    <score/>
+  </option>
+  <option>
+    <text>85%</text>
+    <score/>
+  </option>
+  <option>
+    <text>90%</text>
+    <score>1</score>
+  </option>
+  <dyk>
+      
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    How much of your brain is water&#13;
+  </text>
+  <option>
+    <text>22%</text>
+    <score/>
+  </option>
+  <option>
+    <text>36%</text>
+    <score/>
+  </option>
+  <option>
+    <text>78%</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>92%</text>
+    <score/>
+  </option>
+  <dyk>
+      
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    Which animal can last the longest without water?&#13;
+  </text>
+  <option>
+    <text>Wolf</text>
+    <score/>
+  </option>
+  <option>
+    <text>Camel</text>
+    <score/>
+  </option>
+  <option>
+    <text>Giraffe</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>Ocelot</text>
+    <score/>
+  </option>
+  <dyk>
+    Giraffes and rats can last longer without water than camels   
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    Which animal can last the longest without water?&#13;
+  </text>
+  <option>
+    <text>Fox</text>
+    <score/>
+  </option>
+  <option>
+    <text>Rat</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>Camel</text>
+    <score/>
+  </option>
+  <option>
+    <text>Yak</text>
+    <score/>
+  </option>
+  <dyk>
+    Giraffes and rats can last longer without water than camels 
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    At what temperature does water freeze?&#13;
+  </text>
+  <option>
+    <text>-32 ˚R</text>
+    <score/>
+  </option>
+  <option>
+    <text>492 ˚R</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>0 ˚R</text>
+    <score/>
+  </option>
+  <option>
+    <text>273 ˚R</text>
+    <score/>
+  </option>
+  <dyk>
+    When water freezes it expands by 9%
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    What does the "WD" stand for in WD-40?&#13;
+  </text>
+  <option>
+    <text>Water Diffuser</text>
+    <score/>
+  </option>
+  <option>
+    <text>Water Deterrent</text>
+    <score/>
+  </option>
+  <option>
+    <text>Wet Deterrent</text>
+    <score/>
+  </option>
+  <option>
+    <text>Water Displacer</text>
+    <score>1</score>
+  </option>
+  <dyk>
+    When water freezes it expands by 9%
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    Which ocean is the biggest?&#13;
+  </text>
+  <option>
+    <text>Atlantic</text>
+    <score/>
+  </option>
+  <option>
+    <text>Pacific</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>Arctic</text>
+    <score/>
+  </option>
+  <option>
+    <text>Indian</text>
+    <score/>
+  </option>
+  <dyk>
+    The "Pacific" ocean is the peaceful ocean.
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    How many bathtubs could Niagara Falls fill in one second?&#13;
+  </text>
+  <option>
+    <text>400 bathtubs</text>
+    <score/>
+  </option>
+  <option>
+    <text>2000 bathtubs</text>
+    <score/>
+  </option>
+  <option>
+    <text>4000 bathtubs</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>10 000 bathtubs</text>
+    <score/>
+  </option>
+  <dyk>
+    The "Pacific" ocean is the peaceful ocean.
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    Which of these states has the most coast-line?&#13;
+  </text>
+  <option>
+    <text>Alaska</text>
+    <score/>
+  </option>
+  <option>
+    <text>Rhode Island</text>
+    <score/>
+  </option>
+  <option>
+    <text>New York</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>California</text>
+    <score/>
+  </option>
+  <dyk>
+    After Hawaii, New York is the state surrounded by the most water
+  </dyk>
+</question>
+
   </quiz>
 </quizzes>

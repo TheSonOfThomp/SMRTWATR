@@ -1,12 +1,16 @@
-{% if hasattr(player, 'correct') %}
-<!-- FIXED TO BOTTOM -->
-  <!-- PLAYER NAME & SCORE -->
-  <div class="row player-row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="player-name player_{{ player.symbol }}">
-              <span class="player-dot"></span>PLΛYER {{ player.symbol }}
+{% if player.game.winner %}
+<!-- Nothing is fixed to the bottom -->
+
+{% elif player.game.grid %}
+    <!-- FIXED TO BOTTOM -->
+      <!-- PLAYER NAME & SCORE -->
+      <div class="row player-row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="player-name player_{{ player.symbol }}">
+                  <span class="player-dot"></span>PLΛYER {{ player.symbol }}
+              </div>
+              <div class="player-score player_{{ player.symbol }}">{{ player.score }}pts</div>
           </div>
-          <div class="player-score player_{{ player.symbol }}">{{ player.score }}pts</div>
       </div>
   </div>
 
@@ -38,6 +42,7 @@
       killTimer();
       $('#radialTimer').hide();
   </script>
-  {% else %}
+
   {% end %}
+{% else %}
 {% end %}
