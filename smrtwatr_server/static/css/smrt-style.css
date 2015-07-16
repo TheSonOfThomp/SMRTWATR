@@ -58,21 +58,21 @@ html {
       margin-right: 0.2em;
       border-radius: 100%; }
     html body .player_1 {
-      color: #2565CC; }
+      color: #19838E; }
       html body .player_1 .player-dot {
-        background-color: #2565CC; }
+        background-color: #19838E; }
     html body .player_2 {
-      color: #CC3525; }
-      html body .player_2 .player-dot {
-        background-color: #CC3525; }
-    html body .player_3 {
-      color: #A1CD24; }
-      html body .player_3 .player-dot {
-        background-color: #A1CD24; }
-    html body .player_4 {
       color: #CF9925; }
-      html body .player_4 .player-dot {
+      html body .player_2 .player-dot {
         background-color: #CF9925; }
+    html body .player_3 {
+      color: #CC3525; }
+      html body .player_3 .player-dot {
+        background-color: #CC3525; }
+    html body .player_4 {
+      color: #9013FE; }
+      html body .player_4 .player-dot {
+        background-color: #9013FE; }
     html body .empty_player {
       color: #9B9B9B; }
     html body .btn-round {

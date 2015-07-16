@@ -2,7 +2,8 @@
 //Based on the codepen by David M.
 //http://codepen.io/wasser/
 // rAF - https://raw.githubusercontent.com/darius/requestAnimationFrame/master/requestAnimationFrame.min.js
-var timerT = 0;
+var timerT = 0
+var startTime = 0;
 "use strict";
 if (!Date.now) Date.now = function() {
   return (new Date).getTime()
@@ -31,6 +32,7 @@ if (!Date.now) Date.now = function() {
   // Don't use this function unless you're sure there is no timer set yet
   // Otherwise use resetTimer()
 function setTimer(time) {
+    startTime = new Date().getTime();
     'use strict';
   var totalTime = time-1,
       currentTime = totalTime,
@@ -74,4 +76,9 @@ function hideTimer(){
 
 function showTimer(){
   $('.timer').show();
+}
+
+function qTime() {
+  t = new Date.getTime();
+  return t - startTime;
 }

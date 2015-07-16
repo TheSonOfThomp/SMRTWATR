@@ -34,7 +34,7 @@ def gamebroadcast(message):
         except:
             logging.error("Error sending message", exc_info=True)
 
-# Pick random questions in the Quiz XML file
+#   Pick random questions in the Quiz XML file
 def getRandomIndexes(length):
     qIdx = [None]*3 # which question index to use 
 
@@ -56,8 +56,6 @@ class Game(object):
         self.rightAnswer = ''
         self.questions = [None] * 3 # null array with length 3 
         self.qindex = 0
-        self.controlMode = 'nocontrol'
-        self.winner = None
 
     def getQuestions(self):
         quizXML = ElementTree.parse('testQuiz.xml').getroot()
@@ -123,9 +121,6 @@ class Game(object):
         t5 = Timer(45.0, self.start_question, [2])
         t6 = Timer(60.0, self.end_question)
         t7 = Timer(65.0, self.check_winner)
-        t8 = Timer(70.0, self.give_control)
-        t9 = Timer(100.0, self.end_control)
-        t10 = Timer(101.0, self.reset_game)
         t0.start()
         t1.start()
         t2.start()
@@ -134,9 +129,6 @@ class Game(object):
         t5.start()
         t6.start()
         t7.start()
-        t8.start()
-        t9.start()
-        t10.start()
 
     def make_guess(self, player, answer):
         #answer should be the index
@@ -170,29 +162,11 @@ class Game(object):
             elif player.score > score :
                 winner = 'Player' + player.symbol
                 score = player.score
-                self.winner = player
-        self.broadcast('Winner is ' + winner)
-        gamebroadcast('Winner is ' + winner)
-        self.grid = 'end'
-        self.controlMode = 'pre'
-
-    def give_control(self):
-        self.controlMode = 'control'
-        self.broadcast('Time for control')
-
-    def end_control(self):
-        self.controlMode = 'nocontrol'
-        self.broadcast('Control is done')
-
-    def reset_game(self):
-        self.grid = None
-        self.winner = None
-        
-        for player in self.players:
             player.score = 0
             del(player.correct)
-            player.socket.close()
-            gamebroadcast('Player' + player.symbol + ' has been kicked')
+        self.broadcast('Winner is ' + winner)
+        gamebroadcast('Winner is ' + winner)
+        self.grid = None
 
 class Player(object):
     def __init__(self, symbol, game):
