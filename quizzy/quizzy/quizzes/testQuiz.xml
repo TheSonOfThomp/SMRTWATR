@@ -6,8 +6,7 @@
       <text>testtest</text>
     </description>
     <question type="">
-      <text>How many people worldwide do not have access to clean drinking water?&#13;
-</text>
+      <text>How many people worldwide do not have access to clean drinking water?</text>
       <option>
         <text>350 million (about 1 in 20 people)</text>
         <score/>
@@ -24,12 +23,10 @@
         <text>1.4 billion (about 1 in 5 people)</text>
         <score/>
       </option>
-      <dyk>http://www.unwater.org/water-cooperation-2013/water-cooperation/facts-and-figures/en/&#13;
-</dyk>
+      <dyk>http://www.unwater.org/water-cooperation-2013/water-cooperation/facts-and-figures/en/ </dyk>
     </question>
     <question type="">
-      <text>How many people die each year from diseases related to contaminated water?&#13;
-</text>
+      <text>How many people die each year from diseases related to contaminated water?</text>
       <option>
         <text>0 - 1 million</text>
         <score/>
@@ -49,8 +46,7 @@
       <dyk>...</dyk>
     </question>
     <question type="">
-      <text>What volume of untreated sewage gets dumped into Canada’s water resources each year?&#13;
-</text>
+      <text>What volume of untreated sewage gets dumped into Canada’s water resources each year?</text>
       <option>
         <text>2 million litres</text>
         <score/>
@@ -68,6 +64,86 @@
         <score>1</score>
       </option>
       <dyk>200 Billlllllion!!!!!</dyk>
+    </question>
+    <question type="">
+      <text>What percentage of the earth's surface is water?</text>
+      <option>
+        <text>50%</text>
+        <score/>
+      </option>
+      <option>
+        <text>60%</text>
+        <score/>
+      </option>
+      <option>
+        <text>70%</text>
+        <score/>
+      </option>
+      <option>
+        <text>80%</text>
+        <score>1</score>
+      </option>
+      <dyk>Just keep swimming..</dyk>
+    </question>
+    <question type="">
+      <text>What percentage of Earth's water is available for drinking?</text>
+      <option>
+        <text>Less than 1%</text>
+        <score>1</score>
+      </option>
+      <option>
+        <text>About 5%</text>
+        <score/>
+      </option>
+      <option>
+        <text>About 10%</text>
+        <score/>
+      </option>
+      <option>
+        <text>About 15%</text>
+        <score/>
+      </option>
+      <dyk>Less than 1% of Earth's water is available for drinking!</dyk>
+    </question>
+    <question type="">
+      <text>What percentage of global freshwater is located in Canada?</text>
+      <option>
+        <text>10%</text>
+        <score/>
+      </option>
+      <option>
+        <text>20%</text>
+        <score>1</score>
+      </option>
+      <option>
+        <text>40%</text>
+        <score/>
+      </option>
+      <option>
+        <text>50%</text>
+        <score/>
+      </option>
+      <dyk>Go Canada!</dyk>
+    </question>
+    <question type="">
+      <text>How much water does the average Canadian use each day?</text>
+      <option>
+        <text>100 L</text>
+        <score/>
+      </option>
+      <option>
+        <text>200 L </text>
+        <score/>
+      </option>
+      <option>
+        <text>300 L</text>
+        <score>1</score>
+      </option>
+      <option>
+        <text>400 L</text>
+        <score/>
+      </option>
+      <dyk>That's a lot of litres</dyk>
     </question>
   </quiz>
 </quizzes>

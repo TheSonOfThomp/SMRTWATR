@@ -112,7 +112,7 @@
       </form>
 
       <form method="post" action="index.php" id="load_form" enctype="multipart/form-data">
-        <div class="main button" style="width: 143px; float: left; margin: 100px 0px 100px 0px;">
+        <div class="main button" style="width:143px; float: left; margin: 100px 0px 100px 0px;">
           <h2 style="cursor:pointer;" id="load">Load Quiz</h2>
         </div>
 

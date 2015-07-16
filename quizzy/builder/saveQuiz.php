@@ -58,9 +58,8 @@ XML;
     $quiz_file_path = $_POST['quiz_file_path'];
   } 
   else {
-    $quiz_file_path = '../quizzy/quizzes/textQuiz_.xml';
+    $quiz_file_path = '../quizzy/quizzes/textQuiz1.xml';
   }
-
   $QUIZ_FILE = fopen($quiz_file_path, 'c');
   
 

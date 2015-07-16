@@ -14,9 +14,11 @@
   <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 </div>
 
-<!-- LIST OF OPTIONS -->
+
 <div class="list-group quiz-options">
+
 {% for a, answer in enumerate(player.game.grid['opt']) %}
+
   <a type="button" class="list-group-item option" id="option_{{a}}" href="#" onclick="ws.send('{{ player.remember(player.make_guess, a) }}');return false;">
   {{answer}}
   </a>
