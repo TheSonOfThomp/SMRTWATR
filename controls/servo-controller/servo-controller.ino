@@ -7,8 +7,8 @@ const bool CCW = false;
 
 const int BUFFER_LEN = 6;
 const int SERVO_DELAY = 25; // ms per degree
-const int SERVO_LL = 0;
-const int SERVO_RL = 90;
+const int SERVO_LL = 10;
+const int SERVO_RL = 85;
 const int CJET_QHEIGHT = 3; //height of the center jet during the quiz (see discrete_jet_heights array below --> 4095)
 int timecount = 0; //counts the number of 25ms increments that have passed. 
 char instr_buff[BUFFER_LEN];
@@ -124,6 +124,8 @@ void routine_setup() {
         set_discrete_pump_heights(3, 3, 3, 3, 3);
         zero_servos();
         break;
+    case '0':
+      break;
     }
 }
 

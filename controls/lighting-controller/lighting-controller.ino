@@ -8,7 +8,7 @@ char instr_buff[BUFFER_LEN];
 //---LED SETUP STUFF
 #define COLOR_ORDER GBR
 
-#define NUM_LEDS 48       // Change to reflect the number of LEDs you have
+#define NUM_LEDS 42       // Change to reflect the number of LEDs you have
 
 CRGB leds[NUM_LEDS];      //naming our LED array
 
