@@ -1,14 +1,25 @@
-<h1>You now have control of the fountain</h1>
 
-
-{% for i in range(0,4) %}
-<!-- ROUTINE 1 -->
 <div class="row routine-opt-row">
 	<div class="col-xs-2 col-sm-2 col-md-3 col-lg-4"></div>
 	<div class="make-it-rain col-xs-8 col-sm-8 col-md-6 col-lg-4">
-		<input type="radio" class="routine-opt" id="routine_{{i}}" onclick="gws.send('pi: CMD for ROUTINE {{i}}');return false;"/>
-		<label class="" for="routine_{{i}}">ROUTINE {{i}}</label>
+		<div class="input-group">
+		<form>
+			{% for i in range(1,5) %}
+			<input type="radio" class="routine-opt-box" id="routine_{{i}}" onclick="ws.send('{{ player.remember(player.control_sequence, i) }}');return false;"/>
+			<label class="routine-opt" for="routine_{{i}}">ROUTINE {{i}}</label>
+			{% end %}
+		</form>
+		</div>
 	</div>
 	<div class="col-xs-2 col-sm-2 col-md-3 col-lg-4"></div>
 </div>
-{% end %}
+
+
+<script type="text/javascript">
+	$('.routine-opt-box').click(function(){
+		$('.routine-opt-box').removeClass('checked');
+		$(this).addClass('checked');
+	});
+	$('#radialTimer').show();
+	resetTimer(30);
+</script>

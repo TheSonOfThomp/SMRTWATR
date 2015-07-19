@@ -25,7 +25,7 @@ $(document).ready(function() {
     gws.onmessage = function(msg) {
         console.log('gws: ' + msg.data);
     	if (msg.data.lastIndexOf('pi:', 0) === 0) {
-        
+            update_quizbtm();
         }
         else {
             update_quizbtm();

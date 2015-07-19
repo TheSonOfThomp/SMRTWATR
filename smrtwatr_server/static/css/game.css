@@ -43,14 +43,14 @@ body {
     padding: 0;
     margin: 0;
     text-align: center; }
-  body .waiting-room, body .quiz-splash, body .end-splash {
+  body .waiting-room, body .quiz-splash, body .ctrl-splash, body .end-splash {
     /* WAITING ROOM */ }
-    body .waiting-room .player-row, body .quiz-splash .player-row, body .end-splash .player-row {
+    body .waiting-room .player-row, body .quiz-splash .player-row, body .ctrl-splash .player-row, body .end-splash .player-row {
       text-align: center;
       margin-top: 1em; }
-      body .waiting-room .player-row .player-name, body .quiz-splash .player-row .player-name, body .end-splash .player-row .player-name {
+      body .waiting-room .player-row .player-name, body .quiz-splash .player-row .player-name, body .ctrl-splash .player-row .player-name, body .end-splash .player-row .player-name {
         font-size: 1.5rem; }
-      body .waiting-room .player-row .player-score, body .quiz-splash .player-row .player-score, body .end-splash .player-row .player-score {
+      body .waiting-room .player-row .player-score, body .quiz-splash .player-row .player-score, body .ctrl-splash .player-row .player-score, body .end-splash .player-row .player-score {
         font-size: 1.5rem; }
   body .quiz {
     /* QUIZ PLAY */ }
@@ -100,6 +100,8 @@ body.end-game {
     display: none; }
   body.end-game .quiz-end .bottom-buttons {
     margin-top: 1.5rem; }
+  body.end-game .quiz-end .ctrl-splash .description h3 {
+    line-height: 1.5em; }
   body.end-game .quiz-end .end-splash {
     margin-top: 1rem; }
     body.end-game .quiz-end .end-splash .back-home-row {
@@ -114,13 +116,29 @@ body.end-game {
         background-color: #CF9925;
         color: #fafafa;
         border: none; }
-  body.end-game .quiz-end .ctrl input.routine-opt {
+  body.end-game .quiz-end .ctrl .routine-opt-row {
+    margin-top: 1.5rem;
+    text-align: center; }
+  body.end-game .quiz-end .ctrl .routine-opt {
+    transition: all 100ms linear;
+    -webkit-transition: all 100ms linear; }
+  body.end-game .quiz-end .ctrl input[type="radio"] {
     display: none; }
-  body.end-game .quiz-end .ctrl label.routine-opt {
+  body.end-game .quiz-end .ctrl input[type="radio"] + label {
+    display: inline-block;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 0.8rem 0.6rem;
+    margin: 0.5rem 0.2rem;
     background-color: #f2f2f2;
-    padding: 8px 10px;
+    border: 1px solid #6C91CD;
+    border-radius: 2.5rem;
+    font-weight: lighter;
     cursor: pointer; }
-  body.end-game .quiz-end .ctrl label.routine-opt:hover, body.end-game .quiz-end .ctrl label.routine_opt:active {
-    background-color: #6C91CD; }
+  body.end-game .quiz-end .ctrl input[type="radio"].checked + label {
+    background-color: #6C91CD;
+    border: 1px solid #1D4381;
+    color: #1D4381; }
 
 /*# sourceMappingURL=game.css.map */

@@ -17,7 +17,7 @@ from random import randint
 
 loader = tornado.template.Loader(os.path.join(os.path.join(os.path.realpath(__file__) + '/../'), 'templates'))
 
-__DEBUG__ = 1
+__DEBUG__ = True;
     
 def gamebroadcast(message):
     for waiter in GameWebSocket.waiters:
@@ -97,8 +97,10 @@ class Game(object):
         self.grid = self.questions[i]
         self.startTime = time.time();
         self.rightAnswer = self.questions[i]['ans'] #index of question
+        # SEND LIGHTING COMMAND
         self.broadcast('new question')  
         gamebroadcast('new question')
+
 
     def end_question(self, *args):
         i = args[0]
@@ -134,8 +136,8 @@ class Game(object):
                 Timer(12.0, self.end_question, [2]),
                 Timer(14.0, self.check_winner),
                 Timer(20.0, self.give_control),
-                Timer(30.0, self.end_control),
-                Timer(32.0, self.reset_game)
+                Timer(50.0, self.end_control),
+                Timer(52.0, self.reset_game)
             ]
 
         for i in range(len(Timers)):
@@ -190,6 +192,7 @@ class Game(object):
     def end_control(self):
         self.controlMode = 'nocontrol'
         self.broadcast('Control is done')
+        gamebroadcast('pi: q:8')
 
     def reset_game(self):
         self.grid = None
@@ -225,6 +228,10 @@ class Player(object):
 
     def make_guess(self, answer):
         self.game.make_guess(self, answer)
+
+    def control_sequence(self, sequence):
+        print('pi: q:' + str(sequence))
+        gamebroadcast('pi: q:' + str(sequence))
 
 class PlayerHandler(tornado.web.RequestHandler):
     def __init__(self, *args, **kwargs):

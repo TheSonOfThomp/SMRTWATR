@@ -66,7 +66,7 @@ body {
 		text-align: center;
 	}
 
-	.waiting-room, .quiz-splash, .end-splash {
+	.waiting-room, .quiz-splash, .ctrl-splash, .end-splash {
 		/* WAITING ROOM */
 		.player-row {
 			text-align: center;
@@ -163,7 +163,11 @@ body.end-game {
 			margin-top: 1.5rem;
 		}
 		.ctrl-splash{
-			
+			.description {
+				h3 {
+					line-height: 1.5em;
+				}
+			}
 		}
 		.end-splash {
 			margin-top: 1rem;
@@ -186,23 +190,37 @@ body.end-game {
 		}
 
 		.ctrl {
-			input.routine-opt {
+			.routine-opt-row {
+				margin-top: 1.5rem;
+				text-align: center;
+			}
+
+			.routine-opt {
+				transition: all 100ms linear;
+				-webkit-transition: all 100ms linear;
+			}	
+			input[type="radio"] {
 				display: none;
 			}
-			label.routine-opt {
+			input[type="radio"] + label {
+				display: inline-block;
+				width: 100%;
+				font-size: 1rem;
+				line-height: 1.5rem;
+				padding: 0.8rem 0.6rem;
+				margin: 0.5rem 0.2rem;
 				background-color: $smrt_l_grey;
-				padding: 8px 10px;
+				border: 1px solid $smrt_light_blue;
+				border-radius: 2.5rem;
+				font-weight: lighter;
 				cursor: pointer;
 			}
-			label.routine-opt:hover, label.routine_opt:active {
+			input[type="radio"].checked + label {
 				background-color: $smrt_light_blue;
+				border: 1px solid $smrt_blue;
+				color: $smrt_blue;
 			}
 		}
-
-		
-
-
-
 	}
 }
 
