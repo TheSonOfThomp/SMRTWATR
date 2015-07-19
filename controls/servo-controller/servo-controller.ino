@@ -8,7 +8,7 @@ const bool CCW = false;
 const int BUFFER_LEN = 6;
 const int SERVO_DELAY = 25; // ms per degree
 const int SERVO_LL = 10;
-const int SERVO_RL = 170;
+const int SERVO_RL = 90;
 char instr_buff[BUFFER_LEN];
 char prev_state;
 int DISCRETE_JET_HEIGHTS[4] = {600, 1100, 2500, 4095}; // discrete heights to be used during quiz mode
