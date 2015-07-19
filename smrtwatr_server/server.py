@@ -136,8 +136,8 @@ class Game(object):
                 Timer(12.0, self.end_question, [2]),
                 Timer(14.0, self.check_winner),
                 Timer(20.0, self.give_control),
-                Timer(50.0, self.end_control),
-                Timer(52.0, self.reset_game)
+                Timer(25.0, self.end_control),
+                Timer(27.0, self.reset_game)
             ]
 
         for i in range(len(Timers)):
@@ -195,14 +195,15 @@ class Game(object):
         gamebroadcast('pi: q:8')
 
     def reset_game(self):
+        gamebroadcast('END')
         self.grid = None
         self.winner = None
         
         for player in self.players:
             player.score = 0
             del(player.correct)
-            player.socket.close()
             gamebroadcast('Player' + player.symbol + ' has been kicked')
+        player.socket.close()
 
 class Player(object):
     def __init__(self, symbol, game):

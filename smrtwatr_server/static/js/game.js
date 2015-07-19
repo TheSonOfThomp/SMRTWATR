@@ -24,7 +24,12 @@ $(document).ready(function() {
 
     gws.onmessage = function(msg) {
         console.log('gws: ' + msg.data);
-    	if (msg.data.lastIndexOf('pi:', 0) === 0) {
+        if (msg.data === 'END') {
+
+            window.location.assign('/');
+        }
+
+    	else if (msg.data.lastIndexOf('pi:', 0) === 0) {
             update_quizbtm();
         }
         else {
@@ -41,8 +46,8 @@ $(document).ready(function() {
     $('#radialTimer').hide();
 });
 
-// ANIMATION TIMING VARIABLES //
 
+// ANIMATION TIMING VARIABLES //
 // How long it takes for the wrong answers to slide up 
 var optSlideTime = 500;
 // How long it takes or the DYK to fade in
