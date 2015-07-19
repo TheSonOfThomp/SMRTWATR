@@ -1,5 +1,4 @@
 /* Colours */
-/* Player Colours */
 body {
   font-size: 16px;
   font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
@@ -90,5 +89,25 @@ body {
       font-size: 1.2rem; }
     body #quizbtm .player-row .player-score {
       font-size: 1.2rem; }
+
+body.end-game {
+  background-image: url("../img/smrt-bg-transp.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
+  body.end-game #quizbtm {
+    display: none; }
+  body.end-game .quiz-end .end-splash .back-home-row {
+    padding: 0.4rem 0; }
+    body.end-game .quiz-end .end-splash .back-home-row .btn {
+      background-color: #19838E;
+      color: #fafafa;
+      border: none; }
+  body.end-game .quiz-end .end-splash .donate-row {
+    padding: 0.4rem 0; }
+    body.end-game .quiz-end .end-splash .donate-row .btn {
+      background-color: #CF9925;
+      color: #fafafa;
+      border: none; }
 
 /*# sourceMappingURL=game.css.map */

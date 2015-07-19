@@ -5,6 +5,10 @@ body {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+	font-size: 16px;
+	font-family: $font_stack;
+	color: $smrt_blue;
+	background-color: $smrt_bg;
 
 	.play-row {
 		margin: 0 0 2rem 0; 
@@ -31,5 +35,39 @@ body {
 	
 	.make-it-rain-row {
 		margin: 1.5rem 0;
+	}
+
+	.footer {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		margin: 0;
+		padding-bottom: 1rem;
+		font-weight: normal;
+
+		a {
+			padding: 0.4rem;
+			text-decoration: none;
+
+		}
+
+		#sign-in a {
+			color: $smrt_blue;
+		}
+
+		#scores a {
+			color: $smrt_teal;
+		}
+
+		#donate a {
+			color: $smrt_yellow;
+			font-weight: bold;
+		}
+	}
+
+	#alert-row {
+		position: absolute;
+		bottom: 0;
+		padding: 0 15px;
 	}
 }

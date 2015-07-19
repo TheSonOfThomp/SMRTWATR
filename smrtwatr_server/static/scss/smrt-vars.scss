@@ -7,6 +7,8 @@ $smrt_teal: #19838E;
 $smrt_light_blue: #6C91CD;
 $smrt_white: #fafafa;
 $smrt_l_grey: #f2f2f2;
+$smrt_yellow: #CF9925;
+
 
 $ans_correct: #A1CD24;
 $ans_incorrect: #8E3A2E;
@@ -16,9 +18,14 @@ $ans_incorrect_bg: #D9C0BC;
 $font_stack: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
 $secondary_font: "Raleway", "Lato", "Trebuchet", sans-serif;
 
-/* Player Colours */
-$player_1: #2565CC; // Blue
-$player_2: #CC3525; // Red
-$player_3: #A1CD24; // Green
-$player_4: #CF9925; // Yellow
+$player_1: $smrt_teal; // Blue
+$player_2: $smrt_yellow; // Red
+$player_3: #CC3525; // Green
+$player_4: #9013FE; // Yellow
 $empty_player: #9B9B9B; // Grey
+
+
+// old blue #2565CC
+// old red #CC3525
+// old green #A1CD24
+// old yellow #CF9925

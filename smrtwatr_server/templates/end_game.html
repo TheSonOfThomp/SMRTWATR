@@ -1,0 +1,12 @@
+<script type="text/javascript">$('body').addClass('end-game')</script>
+{% if player.game.controlMode == 'pre' and player.game.winner == player %}
+	<div class="ctrl-splash">
+	{% include "control_splash.html" %}
+{% elif player.game.controlMode == 'control' and player.game.winner == player %}
+	<div class="ctrl">
+	{% include "control.html" %}
+{% else %}
+	<div class="end-splash">
+	{% include "end_splash.html" %}
+{% end %}
+</div>

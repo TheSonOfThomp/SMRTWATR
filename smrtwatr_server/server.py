@@ -7,6 +7,8 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.template
 import traceback
+import time
+import math
 from threading import Timer
 from itertools import cycle
 
@@ -15,17 +17,7 @@ from random import randint
 
 loader = tornado.template.Loader(os.path.join(os.path.join(os.path.realpath(__file__) + '/../'), 'templates'))
 
-# questions = [
-#     {'q': 'What is the best Taylor Swift song?', 'a': ['Our Song', 'Red', 'Teardrops on My Guitar', 'Speak Now']},
-#     {'q': 'Best Female Canadian Soccer Player?', 'a': ['Tancredi', 'Chapman', 'Schmidt', 'Fleming']},
-#     {'q': 'Best Season?', 'a': ['Fall', 'Winter', 'Spring', 'Summer']}
-# ]
-
-# answers = [
-#     'Speak Now',
-#     'Chapman',
-#     'Fall'
-# ]
+__DEBUG__ = 1
     
 def gamebroadcast(message):
     for waiter in GameWebSocket.waiters:
@@ -34,7 +26,7 @@ def gamebroadcast(message):
         except:
             logging.error("Error sending message", exc_info=True)
 
-#helper function
+# Pick random questions in the Quiz XML file
 def getRandomIndexes(length):
     qIdx = [None]*3 # which question index to use 
 
@@ -53,9 +45,11 @@ class Game(object):
         self.winner = None
         self.openPlayers = ["1", "2", "3", "4"]
         self.grid = None
-        self.rightAnswer = ''
+        self.startTime = 0
         self.questions = [None] * 3 # null array with length 3 
+        self.rightAnswer = ''       
         self.qindex = 0
+        self.controlMode = 'nocontrol'
 
     def getQuestions(self):
         quizXML = ElementTree.parse('testQuiz.xml').getroot()
@@ -101,11 +95,13 @@ class Game(object):
         i = args[0]
         self.qindex = i + 1
         self.grid = self.questions[i]
+        self.startTime = time.time();
         self.rightAnswer = self.questions[i]['ans'] #index of question
         self.broadcast('new question')  
         gamebroadcast('new question')
 
-    def end_question(self):
+    def end_question(self, *args):
+        i = args[0]
         for player in self.players:
             if player.guess == '':
                 self.make_guess(player, '')
@@ -113,29 +109,47 @@ class Game(object):
     def start_game(self):
         self.getQuestions()
         self.winner = None
-        t0 = Timer(0.0, self.quiz_splash)
-        t1 = Timer(5.0, self.start_question, [0])
-        t2 = Timer(20.0, self.end_question)
-        t3 = Timer(25.0, self.start_question, [1])
-        t4 = Timer(40.0, self.end_question)
-        t5 = Timer(45.0, self.start_question, [2])
-        t6 = Timer(60.0, self.end_question)
-        t7 = Timer(65.0, self.check_winner)
-        t0.start()
-        t1.start()
-        t2.start()
-        t3.start()
-        t4.start()
-        t5.start()
-        t6.start()
-        t7.start()
+        Timers = [
+            Timer(0.0, self.quiz_splash),
+            Timer(5.0, self.start_question, [0]),
+            Timer(20.0, self.end_question, [0]),
+            Timer(25.0, self.start_question, [1]),
+            Timer(40.0, self.end_question, [1]),
+            Timer(45.0, self.start_question, [2]),
+            Timer(60.0, self.end_question, [2]),
+            Timer(65.0, self.check_winner),
+            Timer(70.0, self.give_control),
+            Timer(100.0, self.end_control),
+            Timer(101.0, self.reset_game)
+        ]
+
+        if __DEBUG__:
+            Timers = [
+                Timer(0.0, self.quiz_splash),
+                Timer(2.0, self.start_question, [0]),
+                Timer(4.0, self.end_question, [0]),
+                Timer(6.0, self.start_question, [1]),
+                Timer(8.0, self.end_question, [1]),
+                Timer(10.0, self.start_question, [2]),
+                Timer(12.0, self.end_question, [2]),
+                Timer(14.0, self.check_winner),
+                Timer(16.0, self.give_control),
+                Timer(26.0, self.end_control),
+                Timer(30.0, self.reset_game)
+            ]
+
+        for i in range(len(Timers)):
+            Timers[i].start()
 
     def make_guess(self, player, answer):
+        currTime = time.time()
+        qScore = 100 * (15 - (currTime - self.startTime))/15 # assuming 15 secs per
+        qScore = int(qScore)
         #answer should be the index
         player.guess = answer
         if answer == self.rightAnswer :
             player.correct = True
-            player.score += 10
+            player.score += qScore
             gamebroadcast('pi: q:' + str(self.qindex) + ' p:' + player.symbol + ' c:1')
             player.socket.write_message('You Are Right!')
         else :
@@ -162,11 +176,29 @@ class Game(object):
             elif player.score > score :
                 winner = 'Player' + player.symbol
                 score = player.score
-            player.score = 0
-            del(player.correct)
+                self.winner = player
         self.broadcast('Winner is ' + winner)
         gamebroadcast('Winner is ' + winner)
+        self.grid = 'end'
+        self.controlMode = 'pre'
+
+    def give_control(self):
+        self.controlMode = 'control'
+        self.broadcast('Time for control')
+
+    def end_control(self):
+        self.controlMode = 'nocontrol'
+        self.broadcast('Control is done')
+
+    def reset_game(self):
         self.grid = None
+        self.winner = None
+        
+        for player in self.players:
+            player.score = 0
+            del(player.correct)
+            player.socket.close()
+            gamebroadcast('Player' + player.symbol + ' has been kicked')
 
 class Player(object):
     def __init__(self, symbol, game):

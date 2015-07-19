@@ -1,10 +1,13 @@
 /* Colours */
-/* Player Colours */
 body {
   background-image: url("../img/smrt-bg.jpg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  font-size: 16px;
+  font-family: "Open Sans", "Helvetica Neue", "Roboto Light", "Arial", sans-serif;
+  color: #1D4381;
+  background-color: #F2F6FC; }
   body .play-row {
     margin: 0 0 2rem 0; }
     body .play-row .play .full {
@@ -22,5 +25,26 @@ body {
     border: 1px solid #1D4381; }
   body .make-it-rain-row {
     margin: 1.5rem 0; }
+  body .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 1rem;
+    font-weight: normal; }
+    body .footer a {
+      padding: 0.4rem;
+      text-decoration: none; }
+    body .footer #sign-in a {
+      color: #1D4381; }
+    body .footer #scores a {
+      color: #19838E; }
+    body .footer #donate a {
+      color: #CF9925;
+      font-weight: bold; }
+  body #alert-row {
+    position: absolute;
+    bottom: 0;
+    padding: 0 15px; }
 
 /*# sourceMappingURL=splash.css.map */
