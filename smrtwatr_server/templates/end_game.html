@@ -1,4 +1,11 @@
 <script type="text/javascript">$('body').addClass('end-game')</script>
+<div class="row">
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		<img src="/static/img/large_header_logo.png" width="100%;">
+	</div>
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+</div>
 {% if player.game.controlMode == 'pre' and player.game.winner == player %}
 	<div class="ctrl-splash">
 	{% include "control_splash.html" %}

@@ -20,6 +20,10 @@ body {
     body .other-players-row .other-player:nth-child(2) {
       border-left: 1px solid #1D4381;
       border-right: 1px solid #1D4381; }
+  body .game-title {
+    color: #19838E;
+    font-size: 1.5rem;
+    text-align: center; }
   body .dyk-row {
     padding: 0.4rem 0; }
   body .timer-row {
@@ -39,14 +43,14 @@ body {
     padding: 0;
     margin: 0;
     text-align: center; }
-  body .waiting-room, body .quiz-splash {
+  body .waiting-room, body .quiz-splash, body .end-splash {
     /* WAITING ROOM */ }
-    body .waiting-room .player-row, body .quiz-splash .player-row {
+    body .waiting-room .player-row, body .quiz-splash .player-row, body .end-splash .player-row {
       text-align: center;
       margin-top: 1em; }
-      body .waiting-room .player-row .player-name, body .quiz-splash .player-row .player-name {
+      body .waiting-room .player-row .player-name, body .quiz-splash .player-row .player-name, body .end-splash .player-row .player-name {
         font-size: 1.5rem; }
-      body .waiting-room .player-row .player-score, body .quiz-splash .player-row .player-score {
+      body .waiting-room .player-row .player-score, body .quiz-splash .player-row .player-score, body .end-splash .player-row .player-score {
         font-size: 1.5rem; }
   body .quiz {
     /* QUIZ PLAY */ }
@@ -54,9 +58,6 @@ body {
       padding-top: 0.8rem;
       padding-bottom: 0.4rem; }
       body .quiz .question-header-row .question-header {
-        color: #19838E;
-        font-size: 1.5rem;
-        text-align: center;
         text-decoration: underline; }
     body .quiz .question-content-row {
       padding-top: 0.4rem;
@@ -97,17 +98,29 @@ body.end-game {
   background-repeat: no-repeat; }
   body.end-game #quizbtm {
     display: none; }
-  body.end-game .quiz-end .end-splash .back-home-row {
-    padding: 0.4rem 0; }
-    body.end-game .quiz-end .end-splash .back-home-row .btn {
-      background-color: #19838E;
-      color: #fafafa;
-      border: none; }
-  body.end-game .quiz-end .end-splash .donate-row {
-    padding: 0.4rem 0; }
-    body.end-game .quiz-end .end-splash .donate-row .btn {
-      background-color: #CF9925;
-      color: #fafafa;
-      border: none; }
+  body.end-game .quiz-end .bottom-buttons {
+    margin-top: 1.5rem; }
+  body.end-game .quiz-end .end-splash {
+    margin-top: 1rem; }
+    body.end-game .quiz-end .end-splash .back-home-row {
+      padding: 0.4rem 0; }
+      body.end-game .quiz-end .end-splash .back-home-row .btn {
+        background-color: #19838E;
+        color: #fafafa;
+        border: none; }
+    body.end-game .quiz-end .end-splash .donate-row {
+      padding: 0.4rem 0; }
+      body.end-game .quiz-end .end-splash .donate-row .btn {
+        background-color: #CF9925;
+        color: #fafafa;
+        border: none; }
+  body.end-game .quiz-end .ctrl input.routine-opt {
+    display: none; }
+  body.end-game .quiz-end .ctrl label.routine-opt {
+    background-color: #f2f2f2;
+    padding: 8px 10px;
+    cursor: pointer; }
+  body.end-game .quiz-end .ctrl label.routine-opt:hover, body.end-game .quiz-end .ctrl label.routine_opt:active {
+    background-color: #6C91CD; }
 
 /*# sourceMappingURL=game.css.map */

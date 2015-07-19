@@ -17,7 +17,6 @@ $(document).ready(function() {
         
         update_grid();
         //update_quizbtm();
-        parse_msg(msg);
         console.log('ws: ' + msg.data);
         $('#messages').prepend(msg.data + '<br/>');
         // toast new players
@@ -25,12 +24,14 @@ $(document).ready(function() {
 
     gws.onmessage = function(msg) {
         console.log('gws: ' + msg.data);
-    	//if (msg.data.lastIndexOf('Update', 0) === 0) {
+    	if (msg.data.lastIndexOf('pi:', 0) === 0) {
+        
+        }
+        else {
             update_quizbtm();
-    		parse_msg(msg)
             // toast other players' scores
     		$('#messages').prepend(msg.data + '<br/>');
-    	//}
+    	}
     	console.log(msg);
     }
 
@@ -39,19 +40,6 @@ $(document).ready(function() {
 
     $('#radialTimer').hide();
 });
-
-function parse_msg(msg) {
-    switch (msg.data) {
-        case 'Player added': 
-        	//alert all players
-            break;
-        case 'new question':
-
-            break;
-        default: 
-        	break;
-    }
-}
 
 // ANIMATION TIMING VARIABLES //
 

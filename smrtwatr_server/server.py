@@ -133,9 +133,9 @@ class Game(object):
                 Timer(10.0, self.start_question, [2]),
                 Timer(12.0, self.end_question, [2]),
                 Timer(14.0, self.check_winner),
-                Timer(16.0, self.give_control),
-                Timer(26.0, self.end_control),
-                Timer(30.0, self.reset_game)
+                Timer(20.0, self.give_control),
+                Timer(30.0, self.end_control),
+                Timer(32.0, self.reset_game)
             ]
 
         for i in range(len(Timers)):
@@ -167,15 +167,16 @@ class Game(object):
             traceback.print_exc()
     
     def check_winner(self):
-        score = 0
+        winning_score = 0
         winner = 'nobody. Because everyone scored 0:'
         for player in self.players:
             self.broadcast('Player ' + player.symbol + ' score: ' + str(player.score))
-            if player.score == score :
+            if player.score == winning_score :
                 winner = winner + ' and Player' + player.symbol
-            elif player.score > score :
+                self.winner = player
+            elif player.score > winning_score :
                 winner = 'Player' + player.symbol
-                score = player.score
+                winning_score = player.score
                 self.winner = player
         self.broadcast('Winner is ' + winner)
         gamebroadcast('Winner is ' + winner)

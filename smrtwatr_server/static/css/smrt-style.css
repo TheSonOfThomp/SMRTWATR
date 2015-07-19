@@ -25,7 +25,7 @@ html {
       html body .header-row .game-header {
         background-image: url("../img/small_header_logo.png");
         height: 64px; }
-    html body .small-title h6 {
+    html body .small-title h5, html body .small-title h6 {
       font-weight: normal;
       padding-left: 0.6em;
       margin-bottom: 0.2em; }
@@ -75,7 +75,9 @@ html {
     html body .empty_player {
       color: #9B9B9B; }
     html body .btn-round {
-      border-radius: 26px; }
+      border-radius: 30px;
+      padding-top: 8px;
+      padding-bottom: 8px; }
     html body .btn-lblue {
       color: #fafafa;
       background-color: #6C91CD; }

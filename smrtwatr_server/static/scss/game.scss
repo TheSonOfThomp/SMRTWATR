@@ -25,6 +25,13 @@ body {
 		}
 	}
 
+	.game-title {
+		color: $smrt_teal;
+		font-size: 1.5rem;
+		text-align: center;
+		//text-decoration: underline;
+	}
+
 	.dyk-row {
 		padding: 0.4rem 0;
 	}
@@ -59,7 +66,7 @@ body {
 		text-align: center;
 	}
 
-	.waiting-room, .quiz-splash {
+	.waiting-room, .quiz-splash, .end-splash {
 		/* WAITING ROOM */
 		.player-row {
 			text-align: center;
@@ -81,9 +88,6 @@ body {
 			padding-top: 0.8rem;
 			padding-bottom: 0.4rem;
 			.question-header {
-				color: $smrt_teal;
-				font-size: 1.5rem;
-				text-align: center;
 				text-decoration: underline;
 			}
 		}
@@ -155,15 +159,14 @@ body.end-game {
 
 	.quiz-end {
 		
+		.bottom-buttons {
+			margin-top: 1.5rem;
+		}
 		.ctrl-splash{
 			
 		}
-
-		.ctrl {
-			
-		}
-
 		.end-splash {
+			margin-top: 1rem;
 			.back-home-row {
 				padding: 0.4rem 0;
 				.btn {
@@ -181,6 +184,25 @@ body.end-game {
 				}
 			}
 		}
+
+		.ctrl {
+			input.routine-opt {
+				display: none;
+			}
+			label.routine-opt {
+				background-color: $smrt_l_grey;
+				padding: 8px 10px;
+				cursor: pointer;
+			}
+			label.routine-opt:hover, label.routine_opt:active {
+				background-color: $smrt_light_blue;
+			}
+		}
+
+		
+
+
+
 	}
 }
 

@@ -33,7 +33,7 @@ html {
 		.small-title {
 			
 
-			h6 {
+			h5, h6 {
 				font-weight: normal;
 				padding-left: 0.6em;
 				margin-bottom: 0.2em;
@@ -107,7 +107,9 @@ html {
 
 		/* HELPER CLASSES */
 		.btn-round {
-			border-radius: 26px;
+			border-radius: 30px;
+			padding-top: 8px;
+			padding-bottom: 8px;
 		}
 		.btn-lblue {
 			color: $smrt_white;
