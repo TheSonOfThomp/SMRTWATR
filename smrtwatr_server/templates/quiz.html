@@ -54,11 +54,16 @@
 
 {% if player.correct == True or player.correct == False %}
 <!-- DID YOU KNOW -->
-<div class="row dyk-row simple-dyk-row">
+<div class="row dyk-row">
     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-        <div class="simple-dyk" style="display: none;">
-          {{ player.game.grid['dyk'] }}
+        <div class="panel panel-dyk">
+            <div class="panel-heading">
+                <h3 class="panel-title"></h3>
+            </div>
+            <div class="panel-body">
+                {{ player.game.grid['dyk'] }}
+            </div>
         </div>
     </div>
     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>

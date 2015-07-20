@@ -27,13 +27,13 @@ def gamebroadcast(message):
             logging.error("Error sending message", exc_info=True)
 
 # Pick random questions in the Quiz XML file
-def getRandomIndexes(length):
-    qIdx = [None]*3 # which question index to use 
+def getRandomIndexes(span,num):
+    qIdx = [None]*num # which question index to use 
 
     for i in range(len(qIdx)):
-        rI = randint(0,length - 1) #first we get a random number within the range of our total questions
+        rI = randint(0,span - 1) #first we get a random number within the range of our total questions
         while (rI in qIdx[0:i]): # check if that number is in the list of indexes already
-            rI = randint(0,length - 1) 
+            rI = randint(0,span - 1) 
         # once we find a value that's not in the array, we assign it
         qIdx[i] = rI
     return qIdx
@@ -47,22 +47,35 @@ class Game(object):
         self.grid = None
         self.startTime = 0
         self.questions = [None] * 3 # null array with length 3 
+        self.DYKs = self.getDYKs()
         self.rightAnswer = ''       
         self.qindex = 0
         self.controlMode = 'nocontrol'
+
+    def getDYKs(self):
+        quizXML = ElementTree.parse('dyk.xml').getroot()
+        dykList = quizXML.findall('dyk')
+        DYKs = [None]*4
+        qIdx = getRandomIndexes(len(dykList), 4)
+
+        for idx in range(len(qIdx)):
+            DYKs[idx] = dykList[qIdx[idx]].text
+
+        return DYKs
 
     def getQuestions(self):
         quizXML = ElementTree.parse('testQuiz.xml').getroot()
         quiz = quizXML.find('quiz')
         qList = quiz.findall('question') # List of questions
        
-        qIdx = getRandomIndexes(len(quiz.findall('question'))) # Random questions numbers
+        qIdx = getRandomIndexes(len(qList), 3) # Random questions numbers
 
         # for i, quest in enumerate(qList): # Use to iterate thru all questions
         for idx in range(len(qIdx)):
 
             question = qList[qIdx[idx]].find('text').text
-            dyk = qList[qIdx[idx]].find('dyk').text
+            #dyk = qList[qIdx[idx]].find('dyk').text
+            dyk = self.DYKs[idx+1]
             option = [None] * 4
             answer = -1
             for j, opt in enumerate(qList[qIdx[idx]].findall('option')):
@@ -77,6 +90,8 @@ class Game(object):
             'ans': answer,
             'dyk' : dyk
             }
+
+
 
     def add_player(self, player):
         self.players.append(player)
@@ -102,8 +117,7 @@ class Game(object):
         gamebroadcast('pi: q:' + str(self.qindex) + ' p:1 c:0')
 
 
-    def end_question(self, *args):
-        i = args[0]
+    def end_question(self):
         for player in self.players:
             if player.guess == '':
                 self.make_guess(player, '')
@@ -114,31 +128,16 @@ class Game(object):
         Timers = [
             Timer(0.0, self.quiz_splash),
             Timer(5.0, self.start_question, [0]),
-            Timer(20.0, self.end_question, [0]),
+            Timer(20.0, self.end_question),
             Timer(25.0, self.start_question, [1]),
-            Timer(40.0, self.end_question, [1]),
+            Timer(40.0, self.end_question),
             Timer(45.0, self.start_question, [2]),
-            Timer(60.0, self.end_question, [2]),
+            Timer(60.0, self.end_question),
             Timer(65.0, self.check_winner),
             Timer(70.0, self.give_control),
             Timer(100.0, self.end_control),
-            Timer(101.0, self.reset_game)
+            Timer(105.0, self.reset_game)
         ]
-
-        if __DEBUG__:
-            Timers = [
-                Timer(0.0, self.quiz_splash),
-                Timer(2.0, self.start_question, [0]),
-                Timer(4.0, self.end_question, [0]),
-                Timer(6.0, self.start_question, [1]),
-                Timer(8.0, self.end_question, [1]),
-                Timer(10.0, self.start_question, [2]),
-                Timer(12.0, self.end_question, [2]),
-                Timer(14.0, self.check_winner),
-                Timer(20.0, self.give_control),
-                Timer(25.0, self.end_control),
-                Timer(27.0, self.reset_game)
-            ]
 
         for i in range(len(Timers)):
             Timers[i].start()
@@ -204,6 +203,7 @@ class Game(object):
             del(player.correct)
             gamebroadcast('Player' + player.symbol + ' has been kicked')
         player.socket.close()
+        player.close()
 
 class Player(object):
     def __init__(self, symbol, game):
@@ -231,7 +231,7 @@ class Player(object):
         self.game.make_guess(self, answer)
 
     def control_sequence(self, sequence):
-        print('pi: q:' + str(sequence))
+        #print('pi: q:' + str(sequence))
         gamebroadcast('pi: s:' + str(sequence))
 
 class PlayerHandler(tornado.web.RequestHandler):

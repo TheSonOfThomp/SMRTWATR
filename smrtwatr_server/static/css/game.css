@@ -38,11 +38,13 @@ body {
       body .panel-dyk .panel-heading .panel-title {
         color: #fafafa; }
     body .panel-dyk .panel-body {
-      background-color: #D1DBE9; }
+      background-color: #D1DBE9;
+      border-radius: 4px; }
   body .simple-dyk {
-    padding: 0;
+    padding: 1rem 0.5rem;
     margin: 0;
-    text-align: center; }
+    text-align: center;
+    background-color: #D1DBE9; }
   body .waiting-room, body .quiz-splash, body .ctrl-splash, body .end-splash {
     /* WAITING ROOM */ }
     body .waiting-room .player-row, body .quiz-splash .player-row, body .ctrl-splash .player-row, body .end-splash .player-row {

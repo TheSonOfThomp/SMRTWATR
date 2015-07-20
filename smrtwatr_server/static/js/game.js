@@ -14,7 +14,7 @@ $(document).ready(function() {
     gws = new WebSocket('ws://' + location.hostname + ':' + location.port + '/game/ws')
 
     ws.onmessage = function(msg) {
-        
+    
         update_grid();
         //update_quizbtm();
         console.log('ws: ' + msg.data);
@@ -28,7 +28,9 @@ $(document).ready(function() {
 
             window.location.assign('/');
         }
-
+        else if (msg.data.lastIndexOf('Player', 0) === 0)) {
+            // Ignore
+        }
     	else if (msg.data.lastIndexOf('pi:', 0) === 0) {
             update_quizbtm();
         }
@@ -37,6 +39,7 @@ $(document).ready(function() {
             // toast other players' scores
     		$('#messages').prepend(msg.data + '<br/>');
     	}
+
     	console.log(msg);
     }
 
