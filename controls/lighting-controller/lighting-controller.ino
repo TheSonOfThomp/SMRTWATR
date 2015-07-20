@@ -2,8 +2,9 @@
 
 #include <FastLED.h>
 
-const int BUFFER_LEN = 2;
+const int BUFFER_LEN = 6;
 char instr_buff[BUFFER_LEN];
+char prev_state;
 
 //---LED SETUP STUFF
 #define COLOR_ORDER GBR
@@ -78,14 +79,17 @@ void setup()
 //------------------MAIN LOOP------------------
 void loop() {
   if (Serial.peek() == 'q') {
-    if (Serial.available() >= BUFFER_LEN) {
-      Serial.readBytes(instr_buff, BUFFER_LEN);
-      ledMode = instr_buff[1];
-      Serial.println(instr_buff);
+        if (Serial.available()>=BUFFER_LEN) {
+            Serial.readBytes(instr_buff, BUFFER_LEN);
+            Serial.println(instr_buff);
+            if (instr_buff[1] != prev_state) {
+              ledMode = instr_buff[1];
+              prev_state = instr_buff[1];
+            }
+        }
+    } else {
+        Serial.read();
     }
-  } else {
-    Serial.read();
-  }
 
   switch (ledMode) {
 
