@@ -192,7 +192,7 @@ class Game(object):
     def end_control(self):
         self.controlMode = 'nocontrol'
         self.broadcast('Control is done')
-        gamebroadcast('pi: q:8')
+        gamebroadcast('pi: end')
 
     def reset_game(self):
         gamebroadcast('END')
@@ -232,7 +232,7 @@ class Player(object):
 
     def control_sequence(self, sequence):
         print('pi: q:' + str(sequence))
-        gamebroadcast('pi: q:' + str(sequence))
+        gamebroadcast('pi: s:' + str(sequence))
 
 class PlayerHandler(tornado.web.RequestHandler):
     def __init__(self, *args, **kwargs):

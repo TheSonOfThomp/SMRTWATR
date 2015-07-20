@@ -1,5 +1,5 @@
 import websocket
-import httplib
+#import httplib
  
 if __name__ == "__main__":
 
@@ -21,6 +21,12 @@ if __name__ == "__main__":
 		result = ws.recv()
 		print("Received {}".format(result))
 		if result.startswith('pi:'):
+			if result.startswith("end", 4):
+				print("Sending teensy: q8 0000")
+			if result.startswith("s:", 4):
+				seq = result.split("s:")[1][0] + 4
+				print("Sending teensy: q" + seq + " 0000")
+				
 			if result.split("c:",1)[1][0] == '1' :
 				score += 10 ** (4-int(result.split("p:",1)[1][0]))
 			print("Sending teensy: q" + result.split("q:",1)[1][0] + '%04d' % score )
