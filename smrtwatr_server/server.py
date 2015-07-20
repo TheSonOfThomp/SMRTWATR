@@ -99,7 +99,7 @@ class Game(object):
         self.rightAnswer = self.questions[i]['ans'] #index of question
         # SEND LIGHTING COMMAND
         self.broadcast('new question')  
-        gamebroadcast('new question')
+        gamebroadcast('pi: q:' + str(self.qindex) + ' p:1 c:0')
 
 
     def end_question(self, *args):
