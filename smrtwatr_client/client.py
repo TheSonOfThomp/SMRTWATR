@@ -8,7 +8,7 @@ if __name__ == "__main__":
 	print("connected")
 
 	#ser4 = serial.Serial('COM4', baudrate=9600, timeout=2)
-	ser5 = serial.Serial('COM5', baudrate=9600, timeout=2)
+	ser5 = serial.Serial('/dev/cu.usbmodem1141421', baudrate=9600, timeout=2)
 	
 	score = 0
 	result = 1

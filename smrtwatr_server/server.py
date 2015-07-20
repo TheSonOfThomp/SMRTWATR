@@ -17,7 +17,7 @@ from random import randint
 
 loader = tornado.template.Loader(os.path.join(os.path.join(os.path.realpath(__file__) + '/../'), 'templates'))
 
-__DEBUG__ = True;
+__DEBUG__ = False;
     
 def gamebroadcast(message):
     for waiter in GameWebSocket.waiters:
