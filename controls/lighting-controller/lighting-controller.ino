@@ -99,7 +99,7 @@ void loop() {
       Rainbow();
       break;              //Rainbow -- Change STEPS and SPEED to modify
     case '2':
-      confetti();
+      ripple();
       break;
     case '3':
       SPEEDO = 15;
@@ -118,7 +118,7 @@ void loop() {
       Fire2012WithPalette(); // run simulation frame, using palette colors
       break;
     case '6':
-      bpm();
+      confetti(30,0);
       break;
     case '7':
       cylon();
@@ -154,14 +154,14 @@ void bpm()
 
 //CONFETTI()
 
-void confetti() 
+void confetti(int timeout, int hue) 
 {
   // random colored speckles that blink in and fade smoothly
   fadeToBlackBy( leds, NUM_LEDS, 10);
   int pos = random16(NUM_LEDS);
-  leds[pos] += CHSV( HUE + random8(64), 200, 255);
+  leds[pos] += CHSV( hue + random8(64), 200, 255);
   FastLED.show();  
-  FastLED.delay(1000/100); 
+  FastLED.delay(timeout); 
 }
 
 //JUGGLE
@@ -283,12 +283,12 @@ void cylon(){
 }
 //RIPPLE --------------------------------------------------------------------------------
 void ripple() {
-  HUE = 140;
+  HUE = 60;
   HUE++;
   if (HUE > 220) {
     HUE = 140;   // constrain BG hue to blues and purples
   }
-  for (int i = 0; i < NUM_LEDS; i++) leds[i] = CHSV(HUE++, 255, 50);  // Rotate background colour.
+  for (int i = 0; i < NUM_LEDS; i++) leds[i] = CHSV(HUE++, 255, 150);  // Rotate background colour.
 
   switch (step) {
 
