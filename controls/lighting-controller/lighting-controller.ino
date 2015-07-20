@@ -9,6 +9,10 @@ char instr_buff[BUFFER_LEN];
 #define COLOR_ORDER GBR
 
 #define NUM_LEDS 42       // Change to reflect the number of LEDs you have
+//fire
+#define FRAMES_PER_SECOND 60
+#define COOLING  55
+#define SPARKING 120
 
 CRGB leds[NUM_LEDS];      //naming our LED array
 
@@ -16,6 +20,7 @@ int ledMode = 0;  //FIRST ACTIVE MODE
 
 CRGBPalette16 currentPalette;
 TBlendType    currentBlending;
+CRGBPalette16 gPal;
 
 
 // MODE VARIABLES -- Change these numbers to create new interesting modes
@@ -58,54 +63,172 @@ uint8_t myfade = 255;                                         // Starting bright
 //------------------SETUP------------------
 void setup()
 {
-    delay( 2000 ); // power-up safety delay
-    Serial.begin(9600);
-    FastLED.addLeds<DOTSTAR, 11, 13, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
-    FastLED.addLeds<DOTSTAR, 0, 20, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
-    FastLED.setBrightness(  BRIGHTNESS );
-    currentBlending = BLEND;
+  delay( 2000 ); // power-up safety delay
+  Serial.begin(9600);
+  FastLED.addLeds<DOTSTAR, 11, 13, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  FastLED.addLeds<DOTSTAR, 0, 20, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  FastLED.setBrightness(  BRIGHTNESS );
+  currentBlending = BLEND;
+  gPal = HeatColors_p;
+
+
 }
 
 #define NUM_MODES 3
 //------------------MAIN LOOP------------------
 void loop() {
-    if (Serial.peek() == 'q') {
-        if (Serial.available()>=BUFFER_LEN) {
-            Serial.readBytes(instr_buff, BUFFER_LEN);
-            ledMode = instr_buff[1];
-            Serial.println(instr_buff);
-        }
-    } else {
-        Serial.read();
+  if (Serial.peek() == 'q') {
+    if (Serial.available() >= BUFFER_LEN) {
+      Serial.readBytes(instr_buff, BUFFER_LEN);
+      ledMode = instr_buff[1];
+      Serial.println(instr_buff);
     }
+  } else {
+    Serial.read();
+  }
 
-    switch (ledMode) {
+  switch (ledMode) {
+
     case '1':
-        BRIGHTNESS = 255;
-        Rainbow();
-        break;              //Rainbow -- Change STEPS and SPEED to modify
+      SPEEDO = 10;
+      BRIGHTNESS = 255;
+      Rainbow();
+      break;              //Rainbow -- Change STEPS and SPEED to modify
     case '2':
-        sinwave_1();
-        break;            //Sin Wave -- Change sinwave variables to modify
+      confetti();
+      break;
     case '3':
-        ripple();
-        break;               //Ripple -- Change
+      SPEEDO = 15;
+      BRIGHTNESS = 255;
+      sinwave_1();
+      break;               //Ripple -- Change
     case '4':
-        BRIGHTNESS=0;
-        Solid();
-        break;  //all off -- change BRIGHTNESS to 1-255 for a solid color
-    }
+      juggle();
+      break;
+    case '5':
+      // Add entropy to random number generator; we use a lot of it.
+      random16_add_entropy( random());
+      static uint8_t hue = 0;
+      hue++;
+      gPal = CRGBPalette16( CRGB::Black, CHSV(hue, 255, 192), CHSV(hue, 128, 255), CRGB::White);
+      Fire2012WithPalette(); // run simulation frame, using palette colors
+      break;
+    case '6':
+      bpm();
+      break;
+    case '7':
+      cylon();
+    case '8':
+      BRIGHTNESS = 255;
+      SPEEDO = 100;
+      STEPS = 4;
+      Rainbow();
+      break;
+  }
 
 }
 
 // SOLID COLOR -------------------------------------
 void Solid()
 {
-    fill_solid(leds, NUM_LEDS, CHSV(HUE, SATURATION, BRIGHTNESS));
-    FastLED.show();
+  fill_solid(leds, NUM_LEDS, CHSV(HUE, SATURATION, BRIGHTNESS));
+  FastLED.show();
 }
 
+void bpm()
+{
+  // colored stripes pulsing at a defined Beats-Per-Minute (BPM)
+  FastLED.show(); // display this frame
+  FastLED.delay(100);
+  uint8_t BeatsPerMinute = 62;
+  CRGBPalette16 palette = PartyColors_p;
+  uint8_t beat = beatsin8( BeatsPerMinute, 64, 255);
+  for( int i = 0; i < NUM_LEDS; i++) { //9948
+    leds[i] = ColorFromPalette(palette, HUE+(i*2), beat-HUE+(i*10));
+  }
+}
 
+//CONFETTI()
+
+void confetti() 
+{
+  // random colored speckles that blink in and fade smoothly
+  fadeToBlackBy( leds, NUM_LEDS, 10);
+  int pos = random16(NUM_LEDS);
+  leds[pos] += CHSV( HUE + random8(64), 200, 255);
+  FastLED.show();  
+  FastLED.delay(1000/100); 
+}
+
+//JUGGLE
+void juggle() {
+  // eight colored dots, weaving in and out of sync with each other
+  FastLED.show();  
+  FastLED.delay(1000/100); 
+  fadeToBlackBy( leds, NUM_LEDS, 20);
+  byte dothue = 0;
+  for( int i = 0; i < 8; i++) {
+    leds[beatsin16(i+7,0,NUM_LEDS)] |= CHSV(dothue, 200, 255);
+    dothue += 32;
+  }
+  
+}
+//FIRE 2012 With Palette
+
+void Fire2012WithPalette()
+{
+  // Array of temperature readings at each simulation cell
+  static byte heat[NUM_LEDS];
+  FastLED.show(); // display this frame
+  FastLED.delay(70);
+  // Step 1.  Cool down every cell a little
+  for ( int i = 0; i < NUM_LEDS; i++) {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / NUM_LEDS) + 2));
+  }
+
+  // Step 2.  Heat from each cell drifts 'up' and diffuses a little
+  for ( int k = NUM_LEDS - 1; k >= 2; k--) {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+
+  // Step 3.  Randomly ignite new 'sparks' of heat near the bottom
+  if ( random8() < SPARKING ) {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160, 255) );
+  }
+
+  // Step 4.  Map from heat cells to LED colors
+  for ( int j = 0; j < NUM_LEDS; j++) {
+    // Scale the heat value from 0-255 down to 0-240
+    // for best results with color palettes.
+    byte colorindex = scale8( heat[j], 240);
+    leds[j] = ColorFromPalette( gPal, colorindex);
+  }
+}
+
+// RAINBOW --------------------------------------------------
+void Rainbow()
+{
+  FastLED.setBrightness(  BRIGHTNESS );
+  currentPalette = RainbowColors_p;
+
+  static uint8_t startIndex = 0;
+  startIndex = startIndex + 1;
+
+  FillLEDsFromPaletteColors( startIndex);
+
+  FastLED.show();
+  FastLED.delay(SPEEDO);
+}
+
+void FillLEDsFromPaletteColors( uint8_t colorIndex)
+{
+
+  for ( int i = 0; i < NUM_LEDS; i++) {
+    leds[i] = ColorFromPalette( currentPalette, colorIndex, BRIGHTNESS, currentBlending);
+    colorIndex += STEPS;
+  }
+}
 //SIN WAVE
 void sinwave_1() {
     one_sin();
@@ -124,75 +247,78 @@ void one_sin() {                                                                
         leds[k] += CHSV(thishue, allsat, thisbright);                               // Assigning hues and brightness to the led array.
     }
     bgclr++;
-} // one_sin()
+} 
 
-// RAINBOW --------------------------------------------------
-void Rainbow()
-{
-    FastLED.setBrightness(  BRIGHTNESS );
-    currentPalette = RainbowColors_p;
+//CYLON
 
-    static uint8_t startIndex = 0;
-    startIndex = startIndex + 1;
+void cylon(){
+  // First slide the led in one direction
+  static uint8_t hue = 80;
+      for (int i = 0; i < NUM_LEDS; i++) {
+        // Set the i'th led to red
+        leds[i] = CRGB::White;
+        // Show the leds
+        FastLED.show();
+        // now that we've shown the leds, reset the i'th led to black
+        leds[i] = CHSV(hue, 128, 255);
+        // Wait a little bit before we loop around and do it again
+        delay(30);
+      }
 
-    FillLEDsFromPaletteColors( startIndex);
-
-    FastLED.show();
-    FastLED.delay(SPEEDO);
+      // Now go in the other direction.
+      for (int i = NUM_LEDS - 1; i >= 0; i--) {
+        // Set the i'th led to red
+        leds[i] = CRGB::White;
+        // Show the leds
+        FastLED.show();
+        // now that we've shown the leds, reset the i'th led to black
+        leds[i] = CHSV(hue, 255, 192);
+        // Wait a little bit before we loop around and do it again
+        delay(30);
+      }
 }
-
-void FillLEDsFromPaletteColors( uint8_t colorIndex)
-{
-
-    for( int i = 0; i < NUM_LEDS; i++) {
-        leds[i] = ColorFromPalette( currentPalette, colorIndex, BRIGHTNESS, currentBlending);
-        colorIndex += STEPS;
-    }
-}
-
 //RIPPLE --------------------------------------------------------------------------------
 void ripple() {
-    HUE = 140;
-    HUE++;
-    if (HUE > 220) {
-        HUE = 140;   // constrain BG hue to blues and purples
-    }
-    for (int i = 0; i < NUM_LEDS; i++) leds[i] = CHSV(HUE++, 255, 50);  // Rotate background colour.
+  HUE = 140;
+  HUE++;
+  if (HUE > 220) {
+    HUE = 140;   // constrain BG hue to blues and purples
+  }
+  for (int i = 0; i < NUM_LEDS; i++) leds[i] = CHSV(HUE++, 255, 50);  // Rotate background colour.
 
-    switch (step) {
+  switch (step) {
 
     case -1:                                                          // Initialize ripple variables.
-        center = random(NUM_LEDS);
-        colour = random16(0,256);
-        step = 0;
-        break;
+      center = random(NUM_LEDS);
+      colour = random16(0, 256);
+      step = 0;
+      break;
 
     case 0:
-        leds[center] = CHSV(colour, 255, 255);                          // Display the first pixel of the ripple.
-        step ++;
-        break;
+      leds[center] = CHSV(colour, 255, 255);                          // Display the first pixel of the ripple.
+      step ++;
+      break;
 
     case maxsteps:                                                    // At the end of the ripples.
-        step = -1;
-        break;
+      step = -10;
+      break;
 
     default:                                                          // Middle of the ripples.
-        leds[wrap(center + step)] += CHSV(colour, 255, myfade/step*2);   // Display the next pixels in the range for one side.
-        leds[wrap(center - step)] += CHSV(colour, 255, myfade/step*2);   // Display the next pixels in the range for the other side.
-        step ++;                                                      // Next step.
-        break;
-    } // switch step
+      leds[wrap(center + step)] += CHSV(colour, 255, myfade / step * 2); // Display the next pixels in the range for one side.
+      leds[wrap(center - step)] += CHSV(colour, 255, myfade / step * 2); // Display the next pixels in the range for the other side.
+      step ++;                                                      // Next step.
+      break;
+  } // switch step
 
-    show_at_max_brightness_for_power();
-    delay_at_max_brightness_for_power(SPEEDO*2.5);
+  show_at_max_brightness_for_power();
+  delay_at_max_brightness_for_power(SPEEDO * 2.5);
 } // ripple()
 
 
-
 int wrap(int step) {
-    if(step < 0) return NUM_LEDS + step;
-    if(step > NUM_LEDS - 1) return step - NUM_LEDS;
-    return step;
+  if (step < 0) return NUM_LEDS + step;
+  if (step > NUM_LEDS - 1) return step - NUM_LEDS;
+  return step;
 } // wrap()
 
 

@@ -75,6 +75,9 @@ void routine_setup() {
     int p4 = CJET_QHEIGHT;
     
     switch (instr_buff[1]) {
+    case '0':
+        set_discrete_pump_heights(2,2,2,2,3);
+        break;
     case '1':
         set_discrete_pump_heights(p0, p1, p2, p3, p4);
         servo_sweep[0] = servo_sweep[1] = servo_sweep[2] = servo_sweep[3] = CW;
@@ -119,13 +122,17 @@ void routine_setup() {
         set_discrete_pump_heights(0, 0, 0, 0, 0);
         zero_servos();
         break;
-    case '8':
+    case 'x':
         servo_sweep[0] = servo_sweep[1] = servo_sweep[2] = servo_sweep[3] = CW;
         set_discrete_pump_heights(3, 3, 3, 3, 3);
         zero_servos();
         break;
-    case '0':
-      break;
+     case '8':
+        set_discrete_pump_heights(2,2,2,2,2);
+        break;
+      case '9':
+        set_discrete_pump_heights(3,3,3,3,3);
+        break;
     }
 }
 
@@ -133,6 +140,8 @@ void routine_setup() {
 
 void routine() {
     switch (instr_buff[1]) {
+    case '0':
+        break;
     case '1':
     case '2':
     case '3':
