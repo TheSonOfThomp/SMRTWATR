@@ -1,4 +1,4 @@
-<div id="radialTimer">
+<div id="linearTimer">
 	<div class="timerTitle"></div>
 	<svg class="timer" viewBox="0 0 34 34">
 		<g>	

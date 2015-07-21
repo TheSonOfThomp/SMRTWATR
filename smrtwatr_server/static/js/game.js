@@ -28,7 +28,7 @@ $(document).ready(function() {
 
             window.location.assign('/');
         }
-        else if (msg.data.lastIndexOf('Player', 0) === 0)) {
+        else if (msg.data.lastIndexOf('Player', 0) === 0) {
             // Ignore
         }
     	else if (msg.data.lastIndexOf('pi:', 0) === 0) {

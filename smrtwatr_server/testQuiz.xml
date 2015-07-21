@@ -607,31 +607,6 @@
     What is the bond angle of water?&#13;
   </text>
   <option>
-    <text>1.05 Rad</text>
-    <score/>
-  </option>
-  <option>
-    <text>1.83 rad</text>
-    <score>1</score>
-  </option>
-  <option>
-    <text>3.14 rad</text>
-    <score/>
-  </option>
-  <option>
-    <text>1.64 rad</text>
-    <score/>
-  </option>
-  <dyk>
-    
-  </dyk>
-</question>
-
-<question type="">
-  <text>
-    What is the bond angle of water?&#13;
-  </text>
-  <option>
     <text>120 degrees</text>
     <score/>
   </option>
@@ -646,31 +621,6 @@
   <option>
     <text>80 degrees</text>
     <score/>
-  </option>
-  <dyk>
-    
-  </dyk>
-</question>
-
-<question type="">
-  <text>
-    What is the best Taylor Swift song?&#13;
-  </text>
-  <option>
-    <text>Red</text>
-    <score/>
-  </option>
-  <option>
-    <text>Shake It Off</text>
-    <score/>
-  </option>
-  <option>
-    <text>Speak Now</text>
-    <score/>
-  </option>
-  <option>
-    <text>All of them!</text>
-    <score>1</score>
   </option>
   <dyk>
     

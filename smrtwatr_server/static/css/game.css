@@ -11,7 +11,8 @@ body {
     background-color: #f2f2f2;
     border-top: 1px solid #1D4381;
     border-bottom: 1px solid #1D4381;
-    margin: 0.8rem 0; }
+    margin: 0;
+    margin-top: 0.8rem; }
     body .other-players-row .other-player {
       padding-top: 0.2em;
       padding-bottom: 0.2em;
@@ -20,6 +21,8 @@ body {
     body .other-players-row .other-player:nth-child(2) {
       border-left: 1px solid #1D4381;
       border-right: 1px solid #1D4381; }
+  body .progress {
+    margin: 0; }
   body .game-title {
     color: #19838E;
     font-size: 1.5rem;
