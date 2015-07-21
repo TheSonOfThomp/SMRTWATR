@@ -22,6 +22,7 @@ __DEBUG__ = False;
 def gamebroadcast(message):
     for waiter in GameWebSocket.waiters:
         try:
+            print(message)
             waiter.write_message(message)
         except:
             logging.error("Error sending message", exc_info=True)
@@ -116,7 +117,6 @@ class Game(object):
         self.broadcast('new question')  
         gamebroadcast('pi: q:' + str(self.qindex) + ' p:1 c:0')
 
-
     def end_question(self):
         for player in self.players:
             if player.guess == '':
@@ -161,8 +161,9 @@ class Game(object):
 
     def broadcast(self, message):
         try:
-            for player in self.players:
+            for player in self.players: 
                 if player.socket:
+                    #print(player.symbol + ': ' + message)
                     player.socket.write_message(message)
         except:
             traceback.print_exc()
@@ -200,10 +201,9 @@ class Game(object):
         
         for player in self.players:
             player.score = 0
-            del(player.correct)
+            player.correct = None
+            player.socket = None
             gamebroadcast('Player' + player.symbol + ' has been kicked')
-        player.socket.close()
-        player.close()
 
 class Player(object):
     def __init__(self, symbol, game):
@@ -237,6 +237,7 @@ class Player(object):
 class PlayerHandler(tornado.web.RequestHandler):
     def __init__(self, *args, **kwargs):
         self.player = kwargs.pop('player')
+        self.player.handler = self
         self.template = kwargs.pop('template')
         super(PlayerHandler, self).__init__(*args, **kwargs)
 
@@ -252,7 +253,7 @@ class PlayerWebSocket(tornado.websocket.WebSocketHandler):
         self.player = kwargs.pop('player')
         self.player.socket = self
         super(PlayerWebSocket, self).__init__(*args, **kwargs)
-    
+
     def on_message(self, message):
         if self.player.callbacks.get(message, None):
             self.player.callbacks[message]()
@@ -261,7 +262,7 @@ class PlayerWebSocket(tornado.websocket.WebSocketHandler):
         game.players.remove(self.player)
         game.openPlayers.append(self.player.symbol)
         game.openPlayers.sort()
-        game.broadcast("Player Removed")
+        #game.broadcast("Player Removed")
         gamebroadcast("Player Removed")
 
 class GameWebSocket(tornado.websocket.WebSocketHandler):
@@ -337,5 +338,5 @@ application = tornado.web.Application(
 
 if __name__ == '__main__':
     http_server = tornado.httpserver.HTTPServer(application)
-    http_server.listen(9999)
+    http_server.listen(80)
     tornado.ioloop.IOLoop.instance().start()

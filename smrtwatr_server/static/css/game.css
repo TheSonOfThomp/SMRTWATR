@@ -76,6 +76,7 @@ body {
     body .quiz .quiz-options {
       border-top: 1px solid #1D4381;
       border-bottom: 1px solid #1D4381;
+      margin-bottom: 0.3rem;
       /* ANSWER COLOURS */ }
       body .quiz .quiz-options .option {
         color: #1D4381;
@@ -125,8 +126,10 @@ body.end-game {
         background-color: #CF9925;
         color: #fafafa;
         border: none; }
+  body.end-game .quiz-end .ctrl h3 {
+    margin-bottom: 0; }
   body.end-game .quiz-end .ctrl .routine-opt-row {
-    margin-top: 1.5rem;
+    margin-top: 0.4rem;
     text-align: center; }
   body.end-game .quiz-end .ctrl .routine-opt {
     transition: all 100ms linear;

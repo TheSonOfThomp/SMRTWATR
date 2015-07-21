@@ -1,12 +1,19 @@
-
+<div class="row text-center">
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		<h3>Control the fountain:</h3>
+	</div>
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+</div>
 <div class="row routine-opt-row">
 	<div class="col-xs-2 col-sm-2 col-md-3 col-lg-4"></div>
 	<div class="make-it-rain col-xs-8 col-sm-8 col-md-6 col-lg-4">
 		<div class="input-group">
 		<form>
-			{% for i in range(1,5) %}
+{% set routines = ['Juggling Joe', 'Beyblade', 'Cotton Candy', 'Follow The Leader'] %}
+			{% for i, routine in enumerate(routines) %}
 			<input type="radio" class="routine-opt-box" id="routine_{{i}}" onclick="ws.send('{{ player.remember(player.control_sequence, i) }}');return false;"/>
-			<label class="routine-opt" for="routine_{{i}}">ROUTINE {{i}}</label>
+			<label class="routine-opt" for="routine_{{i}}">{{routine}}</label>
 			{% end %}
 		</form>
 		</div>
