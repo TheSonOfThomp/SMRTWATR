@@ -105,7 +105,7 @@ void loop() {
       SPEEDO = 15;
       BRIGHTNESS = 255;
       sinwave_1();
-      break;               //Ripple -- Change
+      break;               
     case '4':
       juggle();
       break;
@@ -118,7 +118,7 @@ void loop() {
       Fire2012WithPalette(); // run simulation frame, using palette colors
       break;
     case '6':
-      confetti(30,0);
+      confetti(0);
       break;
     case '7':
       cylon();
@@ -154,14 +154,14 @@ void bpm()
 
 //CONFETTI()
 
-void confetti(int timeout, int hue) 
+void confetti(int hue) 
 {
   // random colored speckles that blink in and fade smoothly
   fadeToBlackBy( leds, NUM_LEDS, 10);
   int pos = random16(NUM_LEDS);
-  leds[pos] += CHSV( hue + random8(64), 200, 255);
+  leds[pos] += CHSV( hue + random8(80), 150 + random(100), 255);
   FastLED.show();  
-  FastLED.delay(timeout); 
+  FastLED.delay(10); 
 }
 
 //JUGGLE
@@ -259,12 +259,12 @@ void cylon(){
   // First slide the led in one direction
   static uint8_t hue = 80;
       for (int i = 0; i < NUM_LEDS; i++) {
-        // Set the i'th led to red
+        // Set the i'th led to redq
         leds[i] = CRGB::White;
         // Show the leds
         FastLED.show();
         // now that we've shown the leds, reset the i'th led to black
-        leds[i] = CHSV(hue, 128, 255);
+        leds[i] = CHSV(hue + random(64), 128, 255);
         // Wait a little bit before we loop around and do it again
         delay(30);
       }
@@ -276,25 +276,22 @@ void cylon(){
         // Show the leds
         FastLED.show();
         // now that we've shown the leds, reset the i'th led to black
-        leds[i] = CHSV(hue, 255, 192);
+        leds[i] = CHSV(hue + random(64), 255, 192);
         // Wait a little bit before we loop around and do it again
         delay(30);
       }
 }
 //RIPPLE --------------------------------------------------------------------------------
 void ripple() {
-  HUE = 60;
+  HUE = 90;
   HUE++;
-  if (HUE > 220) {
-    HUE = 140;   // constrain BG hue to blues and purples
-  }
-  for (int i = 0; i < NUM_LEDS; i++) leds[i] = CHSV(HUE++, 255, 150);  // Rotate background colour.
+  for (int i = 0; i < NUM_LEDS; i++) leds[i] = CHSV(HUE++, 255, 200);  // Rotate background colour.
 
   switch (step) {
 
     case -1:                                                          // Initialize ripple variables.
       center = random(NUM_LEDS);
-      colour = random16(0, 256);
+      colour = random16(0,80);
       step = 0;
       break;
 
@@ -304,12 +301,12 @@ void ripple() {
       break;
 
     case maxsteps:                                                    // At the end of the ripples.
-      step = -10;
+      step = -1;
       break;
 
     default:                                                          // Middle of the ripples.
-      leds[wrap(center + step)] += CHSV(colour, 255, myfade / step * 2); // Display the next pixels in the range for one side.
-      leds[wrap(center - step)] += CHSV(colour, 255, myfade / step * 2); // Display the next pixels in the range for the other side.
+      leds[wrap(center + step)] += CHSV(colour, 255, 255); // Display the next pixels in the range for one side.
+      leds[wrap(center - step)] += CHSV(colour, 255, 255); // Display the next pixels in the range for the other side.
       step ++;                                                      // Next step.
       break;
   } // switch step
