@@ -23,7 +23,7 @@
       <text>1.4 billion (about 1 in 5 people)</text>
       <score/>
     </option>
-    <dyk>http://www.unwater.org/water-cooperation-2013/water-cooperation/facts-and-figures/en/ </dyk>
+    <dyk></dyk>
   </question>
 
   <question type="">
@@ -44,7 +44,7 @@
       <text>3 - 4 million</text>
       <score/>
     </option>
-    <dyk>...</dyk>
+    <dyk></dyk>
   </question>
 
   <question type="">
@@ -65,7 +65,7 @@
       <text>200 billion litres</text>
       <score>1</score>
     </option>
-    <dyk>200 Billlllllion!!!!!</dyk>
+    <dyk></dyk>
   </question>
 
   <question type="">
@@ -86,7 +86,7 @@
       <text>80%</text>
       <score>1</score>
     </option>
-    <dyk>Just keep swimming..</dyk>
+    <dyk></dyk>
   </question>
 
   <question type="">
@@ -107,7 +107,7 @@
       <text>About 15%</text>
       <score/>
     </option>
-    <dyk>Less than 1% of Earth's water is available for drinking!</dyk>
+    <dyk></dyk>
   </question>
 
   <question type="">
@@ -128,7 +128,7 @@
       <text>50%</text>
       <score/>
     </option>
-    <dyk>Go Canada!</dyk>
+    <dyk></dyk>
   </question>
 
   <question type="">
@@ -149,7 +149,7 @@
       <text>400 L</text>
       <score/>
     </option>
-    <dyk>That's a lot of litres</dyk>
+    <dyk></dyk>
   </question>
 
 <question type="">
@@ -172,9 +172,7 @@
     <text>About 15%</text>
     <score/>
   </option>
-  <dyk>
-      
-  </dyk>
+  <dyk></dyk>
 </question>
 
 <question type="">
@@ -195,31 +193,6 @@
   </option>
   <option>
     <text>50%</text>
-    <score/>
-  </option>
-  <dyk>
-      
-  </dyk>
-</question>
-
-<question type="">
-  <text>
-    How much water does the average Canadian use each day?&#13;
-  </text>
-  <option>
-    <text>100L</text>
-    <score/>
-  </option>
-  <option>
-    <text>200L</text>
-    <score/>
-  </option>
-  <option>
-    <text>300L</text>
-    <score>1</score>
-  </option>
-  <option>
-    <text>400L</text>
     <score/>
   </option>
   <dyk>
@@ -323,7 +296,7 @@
     <score/>
   </option>
   <dyk>
-    Giraffes and rats can last longer without water than camels   
+       
   </dyk>
 </question>
 
@@ -348,7 +321,7 @@
     <score/>
   </option>
   <dyk>
-    Giraffes and rats can last longer without water than camels 
+     
   </dyk>
 </question>
 
@@ -373,7 +346,7 @@
     <score/>
   </option>
   <dyk>
-    When water freezes it expands by 9%
+    
   </dyk>
 </question>
 
@@ -398,7 +371,7 @@
     <score>1</score>
   </option>
   <dyk>
-    When water freezes it expands by 9%
+    
   </dyk>
 </question>
 
@@ -423,7 +396,7 @@
     <score/>
   </option>
   <dyk>
-    The "Pacific" ocean is the peaceful ocean.
+    
   </dyk>
 </question>
 
@@ -448,7 +421,7 @@
     <score/>
   </option>
   <dyk>
-    The "Pacific" ocean is the peaceful ocean.
+    
   </dyk>
 </question>
 
@@ -473,13 +446,13 @@
     <score/>
   </option>
   <dyk>
-    After Hawaii, New York is the state surrounded by the most water
+    
   </dyk>
 </question>
 
 <question type="">
   <text>
-    What is he desnsity of water at room temperature&#13;
+    What is the desnsity of water at room temperature&#13;
   </text>
   <option>
     <text>1000 lb/cbf</text>
@@ -498,13 +471,13 @@
     <score/>
   </option>
   <dyk>
-    That's about 1000 kilograms per cubic metre.
+    
   </dyk>
 </question>
 
 <question type="">
   <text>
-    What is the largest of the Great Lakes (by volume)&#13;
+    What is the largest of the Great Lakes? (by volume)&#13;
   </text>
   <option>
     <text>Lake Ontario</text>
@@ -523,7 +496,7 @@
     <score/>
   </option>
   <dyk>
-    Lake Superior (Ontario) has more water than the other four combined.
+    
   </dyk>
 </question>
 
@@ -548,7 +521,7 @@
     <score>1</score>
   </option>
   <dyk>
-    The Caspian Sea (West Asia) is actually a lake!
+    
   </dyk>
 </question>
 
@@ -573,7 +546,7 @@
     <score></score>
   </option>
   <dyk>
-    Lake Baikal (Russia) is the deepest lake in the world and largest volume fresh water lake in the world
+    
   </dyk>
 </question>
 
@@ -598,7 +571,7 @@
     <score></score>
   </option>
   <dyk>
-    But Great Bear Lake (NWT) is the largest lake entirely within Canada
+    
   </dyk>
 </question>
 
@@ -621,6 +594,31 @@
   <option>
     <text>80 degrees</text>
     <score/>
+  </option>
+  <dyk>
+    
+  </dyk>
+</question>
+
+<question type="">
+  <text>
+    What is the best Taylor Swift song?&#13;
+  </text>
+  <option>
+    <text>Red</text>
+    <score/>
+  </option>
+  <option>
+    <text>Shake It Off</text>
+    <score/>
+  </option>
+  <option>
+    <text>Speak Now</text>
+    <score/>
+  </option>
+  <option>
+    <text>All of them!</text>
+    <score>1</score>
   </option>
   <dyk>
     
@@ -744,6 +742,192 @@
   </option>
   <dyk></dyk>
 </question>
+
+<question type="">
+  <text>
+    What percentage of volcanic eruptions occur in the ocean?&#13;
+  </text>
+  <option>
+    <text>45%</text>
+    <score/>
+  </option>
+  <option>
+    <text>90%</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>80%</text>
+    <score/>
+  </option>
+  <option>
+    <text>65%</text>
+    <score/>
+  </option>
+  <dyk></dyk>
+</question>
+
+<question type="">
+  <text>
+    What percentage of volcanic eruptions occur in the ocean?&#13;
+  </text>
+  <option>
+    <text>45%</text>
+    <score/>
+  </option>
+  <option>
+    <text>90%</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>80%</text>
+    <score/>
+  </option>
+  <option>
+    <text>65%</text>
+    <score/>
+  </option>
+  <dyk></dyk>
+</question>
+
+<question type="">
+  <text>
+    How much has the sea level risen in the past 100 years?&#13;
+  </text>
+  <option>
+    <text>10cm</text>
+    <score/>
+  </option>
+  <option>
+    <text>5cm</text>
+    <score>
+  </option>
+  <option>
+    <text>40cm</text>
+    <score/>
+  </option>
+  <option>
+    <text>25cm</text>
+    <score/>1</score>
+  </option>
+  <dyk></dyk>
+</question>
+
+<question type="">
+  <text>
+    How much of the world's oil comes from offshore ocean fields?&#13;
+  </text>
+  <option>
+    <text>1/3</text>
+    <score/>1</score>
+  </option>
+  <option>
+    <text>1/6</text>
+    <score>
+  </option>
+  <option>
+    <text>1/2</text>
+    <score/>
+  </option>
+  <option>
+    <text>1/4</text>
+    <score/>
+  </option>
+  <dyk></dyk>
+</question>
+
+<question type="">
+  <text>
+    What is the deepest free dive completed with no breathing equipment?&#13;
+  </text>
+  <option>
+    <text>101m</text>
+    <score/>1</score>
+  </option>
+  <option>
+    <text>85m</text>
+    <score>
+  </option>
+  <option>
+    <text>62m</text>
+    <score/>
+  </option>
+  <option>
+    <text>46m</text>
+    <score/>
+  </option>
+  <dyk></dyk>
+</question>
+
+<question type="">
+  <text>
+    Put these ocean organisms in order of MOST populus to LEAST populus.&#13;
+  </text>
+  <option>
+    <text>Bateria Cells, Zooplankton, Phytoplankton</text>
+    <score/>
+  </option>
+  <option>
+    <text>Zooplankton, Phytoplankton, Bacteria Cells</text>
+    <score>
+  </option>
+  <option>
+    <text>Bacteria Cells, Phytoplankton, Zooplankton</text>
+    <score/>1</score>
+  </option>
+  <option>
+    <text>It's definitely dolphins.</text>
+    <score/>
+  </option>
+  <dyk></dyk>
+</question>
+
+<question type="">
+  <text>
+    How much water do you need to fill a bathtub?&#13;
+  </text>
+  <option>
+    <text>50 gallons</text>
+    <score/>
+  </option>
+  <option>
+    <text>70 gallons</text>
+    <score>1</score>
+  </option>
+  <option>
+    <text>80 gallons</text>
+    <score/>
+  </option>
+  <option>
+    <text>60 gallons</text>
+    <score/>
+  </option>
+  <dyk></dyk>
+</question>
+
+<question type="">
+  <text>
+    How much water can you save in a 10 minute shower with a low-flow showerhead?&#13;
+  </text>
+  <option>
+    <text>10 gallons</text>
+    <score/>
+  </option>
+  <option>
+    <text>8 gallons</text>
+    <score>
+  </option>
+  <option>
+    <text>5 gallons</text>
+    <score/>
+  </option>
+  <option>
+    <text>15 gallons</text>
+    <score/>1</score>
+  </option>
+  <dyk></dyk>
+</question>
+
+
 
   </quiz>
 </quizzes>

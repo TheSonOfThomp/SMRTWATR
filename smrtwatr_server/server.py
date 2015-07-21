@@ -107,7 +107,7 @@ class Game(object):
     def start_question(self, *args):
         for player in self.players:
             player.correct = None
-            player.guess = ''
+            player.guess = -1
         i = args[0]
         self.qindex = i + 1
         self.grid = self.questions[i]
@@ -212,7 +212,7 @@ class Player(object):
         self.game = game
         self.callbacks = {}
         self.score = 0
-        self.guess = ''
+        self.guess = -1
 
     def add(self):
         self.game.add_player(self)
