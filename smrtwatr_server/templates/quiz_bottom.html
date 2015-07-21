@@ -14,7 +14,7 @@
       </div>
   </div>
 
-  {% if player.guess or player.correct == False or player.correct == True %}
+  {% if (player.guess >= 0) or player.correct == False or player.correct == True %}
   <!-- OTHER PLAYERS -->
   <div class="row other-players-row">
       {% for otherPlayer in player.game.players %}
@@ -22,7 +22,7 @@
               <div class="other-player player_{{otherPlayer.symbol}} col-xs-4 col-sm-4 col-md-4 col-lg-4">
                   PLΛYER {{otherPlayer.symbol}}
                   <br/>
-                  {% if otherPlayer.guess %}
+                  {% if otherPlayer.guess >= 0 %}
                     {{ otherPlayer.score }}pts
                   {% else %}
                     waiting...

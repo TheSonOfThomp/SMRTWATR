@@ -3,7 +3,7 @@
 	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
 	
 	<div class="play col-xs-4 col-sm-4 col-md-4 col-lg-4">
-	{% if (len(openPlayers) > 0)%}
+	{% if (len(openPlayers) > 0) %}
 		<a class="playdrop" href="/play/er{{openPlayers[0]}}">
 			<script type="text/javascript">
 				console.log('Will be Player ' + {{openPlayers[0]}})

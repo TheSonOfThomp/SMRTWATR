@@ -34,6 +34,7 @@ body {
     padding: 0.4rem 0; }
   body .timer-row {
     width: 100%;
+    margin: 0;
     text-align: center; }
   body .play-now-row {
     padding: 0.4rem 0; }
