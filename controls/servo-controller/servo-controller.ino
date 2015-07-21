@@ -19,7 +19,7 @@ NonBlockDelay d;
 
 // jet mapping is
 // bottom-left, top-left, top-right, bottom-right (ccw), center
-int jet_height[5] = {0, 0, 0, 0, 0};
+int jet_height[5] = {0, 0, 0, 0, 3};
 int jet_pins[5] = {23, 22, 20, 17, 16};
 
 // servo mapping is
@@ -29,6 +29,7 @@ int servo_pins[4] = {3, 4, 6, 9};
 int servo_pos[4] = {SERVO_MID, SERVO_MID, SERVO_MID, SERVO_MID}; 
 bool servo_sweep[4] = {CW, CW, CW, CW};
 int prev_scores[4] = {0, 0, 0, 0};
+int prev_jet_height[5] = {0, 0, 0, 0, 0};
 bool score_changed[4] = {false, false, false, false};
 
 void setup() {
@@ -215,12 +216,27 @@ void quiz_score_routine() {
 }
 
 void set_discrete_pump_heights(int p0, int p1, int p2, int p3, int p4) {
-   ////serial.printf("discrete jet heights: %d, %d, %d, %d, %d", p0, p1, p2, p3);  
-    analogWrite(jet_pins[0], DISCRETE_JET_HEIGHTS[p0]);
-    analogWrite(jet_pins[1], DISCRETE_JET_HEIGHTS[p1]);
-    analogWrite(jet_pins[2], DISCRETE_JET_HEIGHTS[p2]);
-    analogWrite(jet_pins[3], DISCRETE_JET_HEIGHTS[p3]);
-    analogWrite(jet_pins[4], DISCRETE_JET_HEIGHTS[p4]);
+   ////serial.printf("discrete jet heights: %d, %d, %d, %d, %d", p0, p1, p2, p3); 
+    if (p0 != prev_state[0]){
+        analogWrite(jet_pins[0], DISCRETE_JET_HEIGHTS[p0]);
+    } 
+    if (p1 != prev_state[1]){
+        analogWrite(jet_pins[1], DISCRETE_JET_HEIGHTS[p0]);
+    }
+    if (p2 != prev_state[2]){
+        analogWrite(jet_pins[2], DISCRETE_JET_HEIGHTS[p0]);
+    } 
+    if (p3 != prev_state[3]){
+        analogWrite(jet_pins[3], DISCRETE_JET_HEIGHTS[p0]);
+    } 
+    if (p4 != prev_state[4]){
+        analogWrite(jet_pins[4], DISCRETE_JET_HEIGHTS[p0]);
+    } 
+    prev_state[0] = p0;
+    prev_state[1] = p1;
+    prev_state[2] = p2;
+    prev_state[3] = p3;
+    prev_state[4] = p4;
 }
 
 void zero_servos() {
