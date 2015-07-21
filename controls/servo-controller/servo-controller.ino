@@ -7,8 +7,9 @@ const bool CCW = false;
 
 const int BUFFER_LEN = 6;
 const int SERVO_DELAY = 25; // ms per degree
-const int SERVO_LL = 20;
-const int SERVO_RL = 60;
+const int SERVO_LL = 25;
+const int SERVO_RL = 65;
+const int SERVO_MID = (SERVO_RL - SERVO_LL)/2;
 const int CJET_QHEIGHT = 3; //height of the center jet during the quiz (see discrete_jet_heights array below --> 4095)
 int timecount = 0; //counts the number of 25ms increments that have passed. 
 char instr_buff[BUFFER_LEN];
@@ -25,8 +26,10 @@ int jet_pins[5] = {23, 22, 20, 17, 16};
 // bottom-left, top-left, top-right, bottom-right (ccw)
 Servo servo[4];
 int servo_pins[4] = {3, 4, 6, 9};
-int servo_pos[4] = {SERVO_LL, SERVO_LL, SERVO_LL, SERVO_LL}; 
+int servo_pos[4] = {SERVO_MID, SERVO_MID, SERVO_MID, SERVO_MID}; 
 bool servo_sweep[4] = {CW, CW, CW, CW};
+int prev_scores[4] = {0, 0, 0, 0};
+bool score_changed[4] = {false, false, false, false};
 
 void setup() {
     Serial.begin(9600);
@@ -56,9 +59,13 @@ void loop() {
             if (instr_buff[1] != prev_state) {
               routine_setup();
               prev_state = instr_buff[1];
+              score_changed[0] = false;
+              score_changed[1] = false;
+              score_changed[2] = false;
+              score_changed[3] = false;
             }
             else {
-              quiz_score_routine();
+                quiz_score_routine();
             }
         }
     } else {
@@ -188,6 +195,20 @@ void quiz_score_routine() {
     int p1 = instr_buff[3] - '0';
     int p2 = instr_buff[4] - '0';
     int p3 = instr_buff[5] - '0';
+
+    if (prev_scores[0] != p0) {
+        score_changed[0] = true;
+    }
+    if (prev_scores[1] != p1) {
+        score_changed[1] = true;
+    }
+    if (prev_scores[2] != p2) {
+        score_changed[2] = true;
+    }
+    if (prev_scores[3] != p3) {
+        score_changed[3] = true;
+    }
+    
     int p4 = CJET_QHEIGHT;
     // called when the score changes
     set_discrete_pump_heights(p0, p1, p2, p3, p4);
@@ -200,7 +221,6 @@ void set_discrete_pump_heights(int p0, int p1, int p2, int p3, int p4) {
     analogWrite(jet_pins[2], DISCRETE_JET_HEIGHTS[p2]);
     analogWrite(jet_pins[3], DISCRETE_JET_HEIGHTS[p3]);
     analogWrite(jet_pins[4], DISCRETE_JET_HEIGHTS[p4]);
-    
 }
 
 void zero_servos() {
@@ -227,20 +247,24 @@ void zero_servos() {
 void sweep_servos() {
     // sweep the servos back and forth based on the initial condition given in servo_sweep
     for (int ii=0; ii<4; ii++) {
-        // reverse direction if necessary
-        if (servo_sweep[ii]==CW && servo_pos[ii] >= SERVO_RL) {
-            servo_sweep[ii] = CCW;
-        }
-        if (servo_sweep[ii]==CCW && servo_pos[ii] <= SERVO_LL) {
-            servo_sweep[ii] = CW;
-        }
-        // advance servos if necessary
-        if (servo_sweep[ii] == CW) {
-            servo_pos[ii] += 1;
-            servo[ii].write(servo_pos[ii]);
+        if (score_changed[ii]) {
+            // reverse direction if necessary
+            if (servo_sweep[ii]==CW && servo_pos[ii] >= SERVO_RL) {
+                servo_sweep[ii] = CCW;
+            }
+            if (servo_sweep[ii]==CCW && servo_pos[ii] <= SERVO_LL) {
+                servo_sweep[ii] = CW;
+            }
+            // advance servos if necessary
+            if (servo_sweep[ii] == CW) {
+                servo_pos[ii] += 1;
+                servo[ii].write(servo_pos[ii]);
+            } else {
+                servo_pos[ii] -= 1;
+                servo[ii].write(servo_pos[ii]);
+            }
         } else {
-            servo_pos[ii] -= 1;
-            servo[ii].write(servo_pos[ii]);
+              servo[ii].write(SERVO_MID);
         }
     }
 }
