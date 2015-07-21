@@ -56,6 +56,7 @@ $(document).ready(function() {
     update_quizbtm();
 
     $('#radialTimer').hide();
+    $('#linearTimer').hide();
 });
 
 
