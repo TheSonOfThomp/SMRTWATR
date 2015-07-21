@@ -7,13 +7,13 @@ const bool CCW = false;
 
 const int BUFFER_LEN = 6;
 const int SERVO_DELAY = 25; // ms per degree
-const int SERVO_LL = 10;
-const int SERVO_RL = 85;
+const int SERVO_LL = 20;
+const int SERVO_RL = 60;
 const int CJET_QHEIGHT = 3; //height of the center jet during the quiz (see discrete_jet_heights array below --> 4095)
 int timecount = 0; //counts the number of 25ms increments that have passed. 
 char instr_buff[BUFFER_LEN];
 char prev_state;
-int DISCRETE_JET_HEIGHTS[4] = {600, 1100, 2500, 4095}; // discrete heights to be used during quiz mode
+int DISCRETE_JET_HEIGHTS[4] = {2500, 3000, 3500, 4095}; // discrete heights to be used during quiz mode
 NonBlockDelay d;
 
 // jet mapping is
@@ -25,7 +25,7 @@ int jet_pins[5] = {23, 22, 20, 17, 16};
 // bottom-left, top-left, top-right, bottom-right (ccw)
 Servo servo[4];
 int servo_pins[4] = {3, 4, 6, 9};
-int servo_pos[4] = {0, 0, 0, 0}; 
+int servo_pos[4] = {SERVO_LL, SERVO_LL, SERVO_LL, SERVO_LL}; 
 bool servo_sweep[4] = {CW, CW, CW, CW};
 
 void setup() {
@@ -79,18 +79,18 @@ void routine_setup() {
         set_discrete_pump_heights(2,2,2,2,3);
         break;
     case '1':
-        set_discrete_pump_heights(p0, p1, p2, p3, p4);
+        set_discrete_pump_heights(p0, p1, p2, p3, 3);
         servo_sweep[0] = servo_sweep[1] = servo_sweep[2] = servo_sweep[3] = CW;
         zero_servos();
         break;
     case '2':
         servo_sweep[0] = servo_sweep[2] = CW;
         servo_sweep[1] = servo_sweep[3] = CCW;
-        set_discrete_pump_heights(p0, p1, p2, p3, p4);
+        set_discrete_pump_heights(p0, p1, p2, p3, 3);
         zero_servos();
         break;
     case '3':
-        set_discrete_pump_heights(p0, p1, p2, p3, p4);
+        set_discrete_pump_heights(p0, p1, p2, p3, 3);
         servo_sweep[0] = servo_sweep[1] = servo_sweep[2] = servo_sweep[3] = CW;
         zero_servos();
         break;
@@ -119,7 +119,7 @@ void routine_setup() {
         //serial.printf("final routine 4 setup \n");
         servo_sweep[0] = servo_sweep[1] = CCW;
         servo_sweep[2] = servo_sweep[3] = CW;
-        set_discrete_pump_heights(0, 0, 0, 0, 0);
+        set_discrete_pump_heights(0, 0, 0, 0, 3);
         zero_servos();
         break;
     case 'x':
@@ -128,7 +128,7 @@ void routine_setup() {
         zero_servos();
         break;
      case '8':
-        set_discrete_pump_heights(2,2,2,2,2);
+        set_discrete_pump_heights(2,2,2,2,3);
         break;
       case '9':
         set_discrete_pump_heights(3,3,3,3,3);
