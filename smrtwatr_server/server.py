@@ -22,6 +22,7 @@ __DEBUG__ = False;
 def gamebroadcast(message):
     for waiter in GameWebSocket.waiters:
         try:
+            print(message)
             waiter.write_message(message)
         except:
             logging.error("Error sending message", exc_info=True)
@@ -162,7 +163,7 @@ class Game(object):
         try:
             for player in self.players: 
                 if player.socket:
-                    print(player.symbol + ': ' + message)
+                    #print(player.symbol + ': ' + message)
                     player.socket.write_message(message)
         except:
             traceback.print_exc()
@@ -337,5 +338,5 @@ application = tornado.web.Application(
 
 if __name__ == '__main__':
     http_server = tornado.httpserver.HTTPServer(application)
-    http_server.listen(9999)
+    http_server.listen(80)
     tornado.ioloop.IOLoop.instance().start()

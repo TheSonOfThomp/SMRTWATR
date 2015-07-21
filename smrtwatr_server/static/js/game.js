@@ -41,10 +41,11 @@ $(document).ready(function() {
             console.log('Ignoring Message');
         }
     	else if (msg.data.indexOf('pi:') == 0) {
-            update_quizbtm();
+            update_quizbtm()
+
         }
         else {
-            update_quizbtm();
+            update_quizbtm()
             // toast other players' scores
     	}
 
