@@ -35,6 +35,7 @@ function setTimer(time) {
   var totalTime = time-1,
       currentTime = totalTime,
       percentTime = null,
+      percentLin = null,
       timerId = null,
       timerText = document.querySelector('.text'),
       timerCircle = document.querySelector('.circle');
@@ -47,9 +48,12 @@ function setTimer(time) {
       percentTime = Math.round((currentTime / totalTime) * 100);
       timerCircle.style.strokeDashoffset = percentTime - 100;
 
+      var linearP = Math.round((currentTime / (totalTime+5)) * 100);
+
       timerT = setTimeout(function() {
         timerText.textContent = currentTime;
         currentTime -= 1;
+        incrementPbar(linearP);
         requestAnimationFrame(timerId);
       }, 1000);
     };
@@ -68,10 +72,16 @@ function resetTimer(time){
   setTimer(time);
 }
 
-function hideTimer(){
-  $('.timer').hide();
+function showRadialTimer(){
+  $('#linearTimer').hide();
+  $('#radialTimer').show();
 }
 
-function showTimer(){
-  $('.timer').show();
+function showLinearTimer(){
+  $('#linearTimer').show();
+  $('#radialTimer').hide();
+}
+
+function incrementPbar(percent){
+  $('#bottom-progress-bar').css('width', percent.toString() + "%");
 }

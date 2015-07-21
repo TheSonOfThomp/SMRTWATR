@@ -74,13 +74,12 @@
     $('.simple-dyk').fadeIn(dykFadeTime);
   }, optSlideTime/1.5);
 
-  killTimer()
-  $('#radialTimer').hide();
+  showLinearTimer();
 
 </script>
 {% else %}
 <script type="text/javascript">
-  $('#radialTimer').show();
+  showRadialTimer();
   resetTimer(15);
 </script>
 {% end %}

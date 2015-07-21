@@ -14,9 +14,18 @@ $(document).ready(function() {
     gws = new WebSocket('ws://' + location.hostname + ':' + location.port + '/game/ws')
 
     ws.onmessage = function(msg) {
-    
-        update_grid();
-        //update_quizbtm();
+        if (msg.data.indexOf('Player Removed') == 0) {
+            // Ignore
+            console.log('Ignoring Message');
+        }
+        else if (msg.data.indexOf('pi:') == 0) {
+            update_grid();
+        }
+        else {
+            update_grid();
+        }
+        
+
         console.log('ws: ' + msg.data);
         $('#messages').prepend(msg.data + '<br/>');
         // toast new players
@@ -25,19 +34,18 @@ $(document).ready(function() {
     gws.onmessage = function(msg) {
         console.log('gws: ' + msg.data);
         if (msg.data === 'END') {
-
             window.location.assign('/');
         }
-        else if (msg.data.lastIndexOf('Player', 0) === 0) {
+        else if (msg.data.indexOf('Player Removed') == 0) {
             // Ignore
+            console.log('Ignoring Message');
         }
-    	else if (msg.data.lastIndexOf('pi:', 0) === 0) {
+    	else if (msg.data.indexOf('pi:') == 0) {
             update_quizbtm();
         }
         else {
             update_quizbtm();
             // toast other players' scores
-    		$('#messages').prepend(msg.data + '<br/>');
     	}
 
     	console.log(msg);

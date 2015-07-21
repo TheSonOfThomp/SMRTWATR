@@ -26,8 +26,13 @@ body {
 		}
 	}
 
-	.progress {
+	.progress.bottom {
 		margin: 0;
+		height: 3px;
+
+		.progress-bar {
+			background-color: $smrt_blue;
+		}
 	}
 
 	.game-title {
@@ -42,7 +47,8 @@ body {
 	}
 
 	.timer-row {
-		//padding: 0.6rem 0;
+		width: 100%;
+ 		//padding: 0.6rem 0;
 		text-align: center;
 	}
 

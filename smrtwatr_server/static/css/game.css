@@ -21,8 +21,11 @@ body {
     body .other-players-row .other-player:nth-child(2) {
       border-left: 1px solid #1D4381;
       border-right: 1px solid #1D4381; }
-  body .progress {
-    margin: 0; }
+  body .progress.bottom {
+    margin: 0;
+    height: 3px; }
+    body .progress.bottom .progress-bar {
+      background-color: #1D4381; }
   body .game-title {
     color: #19838E;
     font-size: 1.5rem;
@@ -30,6 +33,7 @@ body {
   body .dyk-row {
     padding: 0.4rem 0; }
   body .timer-row {
+    width: 100%;
     text-align: center; }
   body .play-now-row {
     padding: 0.4rem 0; }
