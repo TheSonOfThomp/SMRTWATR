@@ -116,6 +116,7 @@ body {
 		.quiz-options {
 			border-top: 1px solid $smrt_blue;
 	        border-bottom: 1px solid $smrt_blue;
+	        margin-bottom: 0.3rem;
 			
 			.option {
 				color: $smrt_blue;
@@ -203,8 +204,11 @@ body.end-game {
 		}
 
 		.ctrl {
+			h3 {
+				margin-bottom: 0;
+			}
 			.routine-opt-row {
-				margin-top: 1.5rem;
+				margin-top: 0.4rem;
 				text-align: center;
 			}
 
