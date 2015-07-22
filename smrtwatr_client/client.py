@@ -25,7 +25,7 @@ if __name__ == "__main__":
 				ser5.write('q80000')
 				score = 0
 			elif result.startswith("s:", 4):
-				seq = int(result.split("s:")[1][0]) + 3
+				seq = int(result.split("s:")[1][0]) + 4
 				print("Sending teensy: q" + str(seq) + "0000")
 				ser4.write("q" + str(seq) + "0000")
 				ser5.write("q" + str(seq) + "0000")
