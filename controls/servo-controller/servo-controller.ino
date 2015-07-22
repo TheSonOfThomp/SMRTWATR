@@ -29,7 +29,7 @@ int servo_pins[4] = {3, 4, 6, 9};
 int servo_pos[4] = {SERVO_MID, SERVO_MID, SERVO_MID, SERVO_MID}; 
 bool servo_sweep[4] = {CW, CW, CW, CW};
 int prev_scores[4] = {0, 0, 0, 0};
-int prev_jet_height[5] = {0, 0, 0, 0, 0};
+int prev_jet_height[5] = {10, 10, 10, 10, 10};
 bool score_changed[4] = {false, false, false, false};
 
 void setup() {
