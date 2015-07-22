@@ -10,7 +10,7 @@
 	<div class="make-it-rain col-xs-8 col-sm-8 col-md-6 col-lg-4">
 		<div class="input-group">
 		<form>
-{% set routines = ['Juggling Joe', 'Beyblade', 'Cotton Candy', 'Follow The Leader'] %}
+{% set routines = ['Juggling Joe', 'Fireball', 'Cotton Candy', 'YoYo'] %}
 			{% for i, routine in enumerate(routines) %}
 			<input type="radio" class="routine-opt-box" id="routine_{{i}}" onclick="ws.send('{{ player.remember(player.control_sequence, i) }}');return false;"/>
 			<label class="routine-opt" for="routine_{{i}}">{{routine}}</label>

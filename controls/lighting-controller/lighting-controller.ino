@@ -114,11 +114,11 @@ void loop() {
       random16_add_entropy( random());
       static uint8_t hue = 0;
       hue++;
-      gPal = CRGBPalette16( CRGB::Black, CHSV(hue, 255, 192), CHSV(hue, 128, 255), CRGB::White);
+      gPal = HeatColors_p;
       Fire2012WithPalette(); // run simulation frame, using palette colors
       break;
     case '6':
-      confetti(0);
+      confetti(100);
       break;
     case '7':
       cylon();
@@ -257,7 +257,7 @@ void one_sin() {                                                                
 
 void cylon(){
   // First slide the led in one direction
-  static uint8_t hue = 80;
+  static uint8_t hue = 100;
       for (int i = 0; i < NUM_LEDS; i++) {
         // Set the i'th led to redq
         leds[i] = CRGB::White;
