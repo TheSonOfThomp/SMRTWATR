@@ -127,7 +127,8 @@ class Game(object):
         print('STARTING GAME')
         self.getQuestions()
         self.winner = None
-        self.waitingPlayers = self.openPlayers
+        self.waitingPlayers = self.openPlayers[:]
+        print(self.waitingPlayers)
         self.openPlayers = []
         Timers = [
             Timer(0.0, self.quiz_splash),
@@ -201,6 +202,9 @@ class Game(object):
     def reset_game(self):
         self.grid = None
         self.winner = None
+        self.openPlayers = self.waitingPlayers[:]
+        print(self.openPlayers)
+        self.waitingPlayers = []
         
         for player in self.players:
             player.score = 0
@@ -210,8 +214,6 @@ class Game(object):
             gamebroadcast('Player' + player.symbol + ' has been kicked')
 
         gamebroadcast('END')
-        self.openPlayers = self.waitingPlayers
-        self.waitingPlayers = []
 
 class Player(object):
     def __init__(self, symbol, game):
