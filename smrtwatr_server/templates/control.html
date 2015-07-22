@@ -12,7 +12,7 @@
 		<form>
 {% set routines = ['Juggling Joe', 'Fireball', 'Cotton Candy', 'YoYo'] %}
 			{% for i, routine in enumerate(routines) %}
-			<input type="radio" class="routine-opt-box" id="routine_{{i}}" onclick="ws.send('{{ player.remember(player.control_sequence, i) }}');return false;"/>
+			<input type="radio" class="routine-opt-box" id="routine_{{i}}" onclick="ws.send('{{ player.remember(player.control_sequence, i + 4) }}');return false;"/>
 			<label class="routine-opt" for="routine_{{i}}">{{routine}}</label>
 			{% end %}
 		</form>
