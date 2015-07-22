@@ -45,6 +45,7 @@ class Game(object):
         self.state = self.add_player
         self.winner = None
         self.openPlayers = ["1", "2", "3", "4"]
+        self.waitingPlayers = []
         self.grid = None
         self.startTime = 0
         self.questions = [None] * 3 # null array with length 3 
@@ -123,8 +124,10 @@ class Game(object):
                 self.make_guess(player, '')
 
     def start_game(self):
+        print('STARTING GAME')
         self.getQuestions()
         self.winner = None
+        self.waitingPlayers = self.openPlayers
         self.openPlayers = []
         Timers = [
             Timer(0.0, self.quiz_splash),
@@ -196,16 +199,19 @@ class Game(object):
         gamebroadcast('pi: end')
 
     def reset_game(self):
-        gamebroadcast('END')
         self.grid = None
         self.winner = None
-        self.openPlayers = ["1", "2", "3", "4"]
         
         for player in self.players:
             player.score = 0
             player.correct = None
             player.socket = None
+            #self.players.remove(player)
             gamebroadcast('Player' + player.symbol + ' has been kicked')
+
+        gamebroadcast('END')
+        self.openPlayers = self.waitingPlayers
+        self.waitingPlayers = []
 
 class Player(object):
     def __init__(self, symbol, game):
@@ -248,7 +254,8 @@ class PlayerHandler(tornado.web.RequestHandler):
         if self.player.symbol in game.openPlayers :
             gamebroadcast('Player added')
             self.player.add()
-            game.openPlayers.remove(self.player.symbol)
+            if self.player.symbol in game.openPlayers:
+                game.openPlayers.remove(self.player.symbol)
 
 class PlayerWebSocket(tornado.websocket.WebSocketHandler):
     def __init__(self, *args, **kwargs):
@@ -282,7 +289,8 @@ class GameWebSocket(tornado.websocket.WebSocketHandler):
         GameWebSocket.waiters.remove(self)
 
     def on_message(self, message):
-        self.game.start_game()
+        if message == "Starting game":
+            self.game.start_game()
 
 
 class SplashHandler(tornado.web.RequestHandler):
