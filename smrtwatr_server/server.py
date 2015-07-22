@@ -125,6 +125,7 @@ class Game(object):
     def start_game(self):
         self.getQuestions()
         self.winner = None
+        self.openPlayers = []
         Timers = [
             Timer(0.0, self.quiz_splash),
             Timer(5.0, self.start_question, [0]),
@@ -198,6 +199,7 @@ class Game(object):
         gamebroadcast('END')
         self.grid = None
         self.winner = None
+        self.openPlayers = ["1", "2", "3", "4"]
         
         for player in self.players:
             player.score = 0
