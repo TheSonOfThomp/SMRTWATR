@@ -136,8 +136,9 @@ void routine_setup() {
         zero_servos();
         break;
      case '8':
-        rest_seq();
-        set_discrete_pump_heights(2,2,2,2,3);
+        set_discrete_pump_heights(3, 3, 3, 3, 3);
+        servo_sweep[0] = servo_sweep[1] = servo_sweep[2] = servo_sweep[3] = CW;
+        zero_servos();
         break;
       case '9':
         set_discrete_pump_heights(3,3,3,3,3);
@@ -184,6 +185,10 @@ void routine() {
         }
         break;
     case '8':
+        if (d.Timeout()) {
+            sweep_servos();
+            d.Delay(SERVO_DELAY);
+        }
         break;    
     }
 }
@@ -285,7 +290,7 @@ void sweep_servos() {
 void rest_seq(){
    for (int ii=0; ii<4; ii++) {
             servo_pos[ii] = SERVO_MID;
-            servo[ii].write(servo_pos[ii]);
+            servo[ii].write(SERVO_MID);
     }
 }
 void win_seq1(){
