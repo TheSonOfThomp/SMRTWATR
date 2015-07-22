@@ -799,7 +799,7 @@
   </option>
   <option>
     <text>5cm</text>
-    <score>
+    <score/>
   </option>
   <option>
     <text>40cm</text>
@@ -807,7 +807,7 @@
   </option>
   <option>
     <text>25cm</text>
-    <score/>1</score>
+    <score>1</score>
   </option>
   <dyk></dyk>
 </question>
@@ -818,11 +818,11 @@
   </text>
   <option>
     <text>1/3</text>
-    <score/>1</score>
+    <score>1</score>
   </option>
   <option>
     <text>1/6</text>
-    <score>
+    <score/>
   </option>
   <option>
     <text>1/2</text>
@@ -841,11 +841,11 @@
   </text>
   <option>
     <text>101m</text>
-    <score/>1</score>
+    <score>1</score>
   </option>
   <option>
     <text>85m</text>
-    <score>
+    <score/>
   </option>
   <option>
     <text>62m</text>
@@ -868,11 +868,11 @@
   </option>
   <option>
     <text>Zooplankton, Phytoplankton, Bacteria Cells</text>
-    <score>
+    <score/>
   </option>
   <option>
     <text>Bacteria Cells, Phytoplankton, Zooplankton</text>
-    <score/>1</score>
+    <score>1</score>
   </option>
   <option>
     <text>It's definitely dolphins.</text>
@@ -914,7 +914,7 @@
   </option>
   <option>
     <text>8 gallons</text>
-    <score>
+    <score/>
   </option>
   <option>
     <text>5 gallons</text>
@@ -922,7 +922,7 @@
   </option>
   <option>
     <text>15 gallons</text>
-    <score/>1</score>
+    <score>1</score>
   </option>
   <dyk></dyk>
 </question>
