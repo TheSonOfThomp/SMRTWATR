@@ -255,7 +255,7 @@ class PlayerHandler(tornado.web.RequestHandler):
     def get(self):
         self.write(loader.load(self.template).generate(player=self.player))
         if self.player.symbol in game.openPlayers :
-            gamebroadcast('Player added')
+            gamebroadcast('Player ' + self.player.symbol + ' added')
             self.player.add()
             if self.player.symbol in game.openPlayers:
                 game.openPlayers.remove(self.player.symbol)
