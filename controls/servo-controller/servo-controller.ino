@@ -136,6 +136,7 @@ void routine_setup() {
         zero_servos();
         break;
      case '8':
+        rest_seq();
         set_discrete_pump_heights(2,2,2,2,3);
         break;
       case '9':
@@ -183,10 +184,6 @@ void routine() {
         }
         break;
     case '8':
-        if (d.Timeout()) {
-            rest_seq();
-            d.Delay(SERVO_DELAY);
-        }
         break;    
     }
 }
@@ -287,21 +284,8 @@ void sweep_servos() {
 
 void rest_seq(){
    for (int ii=0; ii<4; ii++) {
-        // reverse direction if necessary
-        if (servo_sweep[ii]==CW && servo_pos[ii] >= SERVO_RL) {
-            servo_sweep[ii] = CCW;
-        }
-        if (servo_sweep[ii]==CCW && servo_pos[ii] <= SERVO_LL) {
-            servo_sweep[ii] = CW;
-        }
-        // advance servos if necessary
-        if (servo_sweep[ii] == CW) {
-            servo_pos[ii] += 1;
+            servo_pos[ii] = SERVO_MID;
             servo[ii].write(servo_pos[ii]);
-        } else {
-            servo_pos[ii] -= 1;
-            servo[ii].write(servo_pos[ii]);
-        }
     }
 }
 void win_seq1(){
