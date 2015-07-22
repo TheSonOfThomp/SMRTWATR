@@ -217,26 +217,26 @@ void quiz_score_routine() {
 
 void set_discrete_pump_heights(int p0, int p1, int p2, int p3, int p4) {
    ////serial.printf("discrete jet heights: %d, %d, %d, %d, %d", p0, p1, p2, p3); 
-    if (p0 != prev_state[0]){
+    if (p0 != prev_jet_height[0]){
         analogWrite(jet_pins[0], DISCRETE_JET_HEIGHTS[p0]);
     } 
-    if (p1 != prev_state[1]){
+    if (p1 != prev_jet_height[1]){
         analogWrite(jet_pins[1], DISCRETE_JET_HEIGHTS[p1]);
     }
-    if (p2 != prev_state[2]){
+    if (p2 != prev_jet_height[2]){
         analogWrite(jet_pins[2], DISCRETE_JET_HEIGHTS[p2]);
     } 
-    if (p3 != prev_state[3]){
+    if (p3 != prev_jet_height[3]){
         analogWrite(jet_pins[3], DISCRETE_JET_HEIGHTS[p3]);
     } 
-    if (p4 != prev_state[4]){
+    if (p4 != prev_jet_height[4]){
         analogWrite(jet_pins[4], DISCRETE_JET_HEIGHTS[p4]);
     } 
-    prev_state[0] = p0;
-    prev_state[1] = p1;
-    prev_state[2] = p2;
-    prev_state[3] = p3;
-    prev_state[4] = p4;
+    prev_jet_height[0] = p0;
+    prev_jet_height[1] = p1;
+    prev_jet_height[2] = p2;
+    prev_jet_height[3] = p3;
+    prev_jet_height[4] = p4;
 }
 
 void zero_servos() {
