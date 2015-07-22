@@ -103,7 +103,11 @@ class Game(object):
 
     def quiz_splash(self):
         self.grid = 'start'
+        self.waitingPlayers.extend(self.openPlayers)
+        print(self.waitingPlayers)
+        self.openPlayers = []
         self.broadcast('starting quiz')
+        #gamebroadcast('time to splash')
 
     def start_question(self, *args):
         for player in self.players:
@@ -127,9 +131,6 @@ class Game(object):
         print('STARTING GAME')
         self.getQuestions()
         self.winner = None
-        self.waitingPlayers = self.openPlayers[:]
-        print(self.waitingPlayers)
-        self.openPlayers = []
         Timers = [
             Timer(0.0, self.quiz_splash),
             Timer(5.0, self.start_question, [0]),
@@ -202,7 +203,7 @@ class Game(object):
     def reset_game(self):
         self.grid = None
         self.winner = None
-        self.openPlayers = self.waitingPlayers[:]
+        self.openPlayers.extend(self.waitingPlayers)
         print(self.openPlayers)
         self.waitingPlayers = []
         
