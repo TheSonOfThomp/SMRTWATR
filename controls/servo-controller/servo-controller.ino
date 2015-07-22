@@ -9,7 +9,7 @@ const int BUFFER_LEN = 6;
 const int SERVO_DELAY = 25; // ms per degree
 const int SERVO_LL = 25;
 const int SERVO_RL = 65;
-const int SERVO_MID = (SERVO_RL - SERVO_LL)/2;
+const int SERVO_MID = (SERVO_RL - SERVO_LL)/2 + SERVO_LL;
 const int CJET_QHEIGHT = 3; //height of the center jet during the quiz (see discrete_jet_heights array below --> 4095)
 int timecount = 0; //counts the number of 25ms increments that have passed. 
 char instr_buff[BUFFER_LEN];
@@ -56,7 +56,7 @@ void loop() {
     if (Serial.peek() == 'q') {
         if (Serial.available()>=BUFFER_LEN) {
             Serial.readBytes(instr_buff, BUFFER_LEN);
-            Serial.println(instr_buff);
+            Serial.println("r");
             if (instr_buff[1] != prev_state) {
               routine_setup();
               prev_state = instr_buff[1];
@@ -69,7 +69,7 @@ void loop() {
                 quiz_score_routine();
             }
         }
-    } else {
+    } else if (Serial.available() && Serial.peek() != 'q') {
         Serial.read();
     }
     routine();
@@ -370,7 +370,7 @@ void win_seq1(){
 void win_seq2(){
   //serial.print("timecount:"+ timecount);
   if (timecount == 200){ //first 5 seconds
-    set_discrete_pump_heights(3, 3, 3, 3, 0);
+    set_discrete_pump_heights(3, 3, 3, 3, 3);
   }
   else if (timecount == 400){
     set_discrete_pump_heights(0, 0, 0, 0, 3);
@@ -413,7 +413,7 @@ void win_seq2(){
 void win_seq3(){
   //serial.print("timecount:"+ timecount);
   if (timecount == 200){ //first 5 seconds
-    set_discrete_pump_heights(3, 3, 3, 3, 0);
+    set_discrete_pump_heights(3, 3, 3, 3, 3);
   }
   else if (timecount == 400){
     set_discrete_pump_heights(0, 0, 0, 0, 3);
@@ -436,10 +436,10 @@ void win_seq3(){
   for (int ii=1; ii<=3; ii+=2) {
         //serial.printf("\n in for loop");
         // reverse direction if necessary
-        if (servo_sweep[1]==CW && servo_pos[ii] >= SERVO_RL/2) {
+        if (servo_sweep[1]==CW && servo_pos[ii] >= SERVO_RL) {
             servo_sweep[ii] = CCW;
         }
-        if (servo_sweep[ii]==CCW && servo_pos[ii] <= SERVO_LL/2) {
+        if (servo_sweep[ii]==CCW && servo_pos[ii] <= SERVO_LL) {
             servo_sweep[ii] = CW;
         }
         // advance servos if necessary
