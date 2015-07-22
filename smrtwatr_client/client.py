@@ -37,5 +37,6 @@ if __name__ == "__main__":
 				ser5.write("q" + result.split("q:",1)[1][0] + '%04d' % score )
 
 
+	ser4.close()
+	ser5.close()
 	print("Closing")
-	ws.close()
