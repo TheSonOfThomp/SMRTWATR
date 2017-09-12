@@ -1,6 +1,6 @@
-SYDE 361 - Interactive Fountain Project
+#SYDE 361 - Interactive Fountain Project
 
-This repository includes the source code for the web applicaition, and the embedded software for our interactive fountain prototype.
+This repository includes the source code for the web application (client & server), and the embedded software for our interactive fountain prototype.
 
 Group Members:
 Josh Bradshaw
